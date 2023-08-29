@@ -3,17 +3,15 @@
 </script>
 
 <svelte:head>
-	<title>Gianmarco Cavallo — About</title>
+	<title>Victor Góis — About</title>
 </svelte:head>
 
 <div class="container">
 	<main>
 		<h1>About</h1>
 		<p>
-			I'm a Software developer with over 2 years of front-end development experience, experienced in
-			both enterprise and open-source software development. I'm based in Italy and currently working
-			as a freelancer and coding in Node.js, React.js (and other web technologies) and Go(lang), but
-			I tend to learn and use the best technology and approach to best solve the problem I'm facing.
+			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer and data analyst. Graduated in Journalism and master of arts on Social Communications, I've been working and researching the web and the digital technolgies in the past years. I'm based in Belo Horizonte, Brazil and currently working
+			as fullstack developer at <a href="https://www.3778.care/">3778</a>. 
 		</p>
 		<h2>Skills</h2>
 		{#each Object.entries(skills) as [section, technologies]}
