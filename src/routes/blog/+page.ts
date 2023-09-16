@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 export async function load({ fetch }) {
 	let devToArticles;
 	try {
-		devToArticles = await fetch(`${UserInfoEndpoint}ladvace`);
+		devToArticles = await fetch(`${UserInfoEndpoint}victorgois`);
 
 		devToArticles = await devToArticles.json();
 	} catch (e) {
