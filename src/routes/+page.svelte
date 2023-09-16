@@ -7,10 +7,10 @@
 </script>
 
 <svelte:head>
-	<title>Gianmarco Cavallo - Main page</title>
+	<title>VictorGóis - Main page</title>
 </svelte:head>
 <main>
-	<h1>Hi!✋ <br /> I'm Gianmarco a Front-End Developer 💻 based in Italy</h1>
+	<h1>Hi!✋ <br /> I'm Victor a Front-End Developer 💻 based in brazil</h1>
 	<div class="icons">
 		<div
 			role="button"
@@ -28,7 +28,7 @@
 		</div>
 
 		<a
-			href="https://github.com/Ladvace"
+			href="https://github.com/victorgois"
 			aria-label="GitHub"
 			target="_blank"
 			rel="noopener noreferrer"
@@ -38,7 +38,7 @@
 			</div>
 		</a>
 		<a
-			href="https://www.linkedin.com/in/ladvace/"
+			href="https://www.linkedin.com/in/victorgois/"
 			aria-label="Linkedin"
 			target="_blank"
 			rel="noopener noreferrer"
@@ -48,7 +48,7 @@
 			</div>
 		</a>
 		<a
-			href="https://medium.com/@ladvace"
+			href="https://medium.com/@victorgois"
 			aria-label="Medium"
 			target="_blank"
 			rel="noopener noreferrer"

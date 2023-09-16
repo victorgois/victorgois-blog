@@ -38,7 +38,7 @@ In `src\lib\NavRoutes.js` you need to add in the `routes` an object with the fol
 
 ```
 # Clone this repository
-$ git clone https://github.com/Ladvace/SvelteKit-Portfolio
+$ git clone https://github.com/victorgois/SvelteKit-Portfolio
 ```
 
 ```
@@ -64,4 +64,4 @@ You just need to fork this repo and linking it to your Netlify account.
 
 ## Authors ❤️
 
-- Gianmarco - https://github.com/Ladvace
+- Victor- https://github.com/victorgois
