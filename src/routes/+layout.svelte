@@ -52,7 +52,7 @@
 	// 	const pathName = to.pathname;
 	// 	const route = routes.find((route) => pathName === route.href);
 	// 	if (!route.customColor) {
-	// 		customBackground.set('#0a0908');
+	// 		customBackground.set('#3E7941');
 	// 	} else customBackground.set(route.customColor);
 	// });
 </script>
@@ -121,7 +121,7 @@
 <slot />
 
 <footer>
-	Created by <a class="me" href="/about">Ladvace</a> ❤️ with
+	Created by <a class="me" href="/about">victorgois</a> ❤️ with
 	<span class="svelte">Svelte</span>
 </footer>
 
@@ -154,7 +154,7 @@
 		height: 100%;
 		overflow: auto;
 		font-family: 'Fira Code', monospace;
-		background-color: #0a0908;
+		background-color: #3E7941;
 	}
 
 	:global(body) {

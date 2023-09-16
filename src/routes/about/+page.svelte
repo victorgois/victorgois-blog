@@ -1,5 +1,7 @@
 <script>
 	import skills from '$lib/Skills';
+	import { customBackground } from '$lib/store';
+	customBackground.set('#8B4513');
 </script>
 
 <svelte:head>
