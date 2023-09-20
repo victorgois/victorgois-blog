@@ -1,7 +1,7 @@
 <script>
-	import skills from '$lib/Skills';
-	import { customBackground } from '$lib/store';
-	customBackground.set('#8B4513');
+	import skills from "$lib/Skills";
+	import { customBackground } from "$lib/store";
+	customBackground.set("#8B4513");
 </script>
 
 <svelte:head>
@@ -10,10 +10,14 @@
 
 <div class="container">
 	<main>
-		<h1>About</h1>
-		<p>
-			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer and data analyst. Graduated in Journalism and master of arts on Social Communications, I've been working and researching the web and the digital technolgies in the past years. I'm based in Belo Horizonte, Brazil and currently working
-			as fullstack developer at <a href="https://www.3778.care/">3778</a>. 
+		<h1 class="title">About</h1>
+		<p class="paragraph">
+			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer
+			and data analyst. Graduated in Journalism and master of arts on Social Communications, I've
+			been working and researching the web and the digital technolgies in the past years. I'm based
+			in Belo Horizonte, Brazil and currently working as fullstack developer at <a
+				href="https://www.3778.care/">3778</a
+			>.
 		</p>
 		<h2>Skills</h2>
 		{#each Object.entries(skills) as [section, technologies]}
@@ -41,6 +45,15 @@
 		padding: 0;
 		display: flex;
 		justify-content: center;
+	}
+
+	.title {
+		font-family: "Lato", sans-serif;
+	}
+
+	.paragraph {
+		font-family: "Epilogue", sans-serif;
+		font-size: 21px;
 	}
 
 	main {

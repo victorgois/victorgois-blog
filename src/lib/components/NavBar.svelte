@@ -52,7 +52,7 @@
 
 	.button:hover::after {
 		content: '';
-		background: #ca3c25;
+		background: white;
 		display: block;
 		height: 3px;
 		width: 100%;
@@ -62,7 +62,7 @@
 
 	.button.selected:after {
 		content: '';
-		background: #ca3c25;
+		background: white;
 		display: block;
 		height: 3px;
 		width: 100%;
@@ -75,7 +75,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		max-width: 900px;
+		max-width: 700px;
 		box-sizing: border-box;
 	}
 
@@ -144,7 +144,7 @@
 			justify-content: center;
 			align-items: center;
 			max-width: 900px;
-			margin: 0 auto;
+			width: 90%;
 		}
 
 		.buttons {
