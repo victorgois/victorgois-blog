@@ -1,62 +1,38 @@
 <script>
-	import FaLinkedin from 'svelte-icons/fa/FaLinkedin.svelte';
-	import FaGithub from 'svelte-icons/fa/FaGithub.svelte';
-	import FaEnvelope from 'svelte-icons/fa/FaEnvelope.svelte';
-	import FaMedium from 'svelte-icons/fa/FaMedium.svelte';
-	import { modalOpened } from '$lib/store';
+	// @ts-nocheck
+	import { modalOpened } from "$lib/store";
+	import { Canvas, Layer, t } from "svelte-canvas";
+
+	$: render = ({ context, width, height }) => {
+		context.fillStyle = `hsl(${$t / 40}, 100%, 50%)`;
+		context.beginPath();
+		// Set the fill style and draw a rectangle;
+		context.fillRect(60, 20, 400, 500);
+	};
+	const handleClick = (e, context) => {
+		render({ context });
+		console.log('funciona');
+	};
 </script>
 
 <svelte:head>
-	<title>VictorGóis - Main page</title>
+	<title>Victor Góis</title>
 </svelte:head>
 <main>
-	<h1>Hi!✋ <br /> I'm Victor a Front-End Developer 💻 based in brazil</h1>
-	<div class="icons">
-		<div
-			role="button"
-			tabindex="0"
-			on:keypress={() => {
-				modalOpened.set(true);
-			}}
-			on:click={() => {
-				modalOpened.set(true);
-			}}
-		>
-			<div class="icon">
-				<FaEnvelope />
-			</div>
+	<div class="column">
+		<div class="row">
+			<h2 class="presentation">Hi! <br /> I'm Victor, a Journalist Engineer, based in brazil</h2>
+			<Canvas
+				width={350}
+				height={350}
+				layerEvents={true}
+				style="cursor: pointer"
+				on:click={handleClick}
+			>
+				<Layer {render} />
+			</Canvas>
 		</div>
-
-		<a
-			href="https://github.com/victorgois"
-			aria-label="GitHub"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<div class="icon">
-				<FaGithub />
-			</div>
-		</a>
-		<a
-			href="https://www.linkedin.com/in/victorgois/"
-			aria-label="Linkedin"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<div class="icon">
-				<FaLinkedin />
-			</div>
-		</a>
-		<a
-			href="https://medium.com/@victorgois"
-			aria-label="Medium"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<div class="icon">
-				<FaMedium />
-			</div>
-		</a>
+		<div class="row" />
 	</div>
 </main>
 
@@ -78,26 +54,33 @@
 		align-items: center;
 	}
 
-	h1 {
-		font-weight: 700;
+	.column {
+		display: flex;
+		flex-direction: column;
 	}
 
-	main > h1 {
-		margin: 50px 10px 0;
-		font-size: 36px;
+	.row {
+		display: flex;
+		flex-direction: row;
+	}
+
+	h2 {
+		font-weight: 700;
+		text-align: start;
+		width: 50%;
+	}
+
+	.selfImage {
+		width: 50%;
+		height: 250px;
 	}
 
 	.icons {
 		display: flex !important;
-		justify-content: center !important;
 		align-items: center;
 		gap: 20px;
 		cursor: pointer;
-		font-size: 30px;
-		display: flex;
 		justify-content: space-between;
-		max-width: 200px;
-		margin: 50px auto 0;
 	}
 
 	.icon {
@@ -106,12 +89,12 @@
 		width: 40px;
 	}
 	.icon:hover {
-		color: #ca3c25;
+		color: #050424;
 	}
 
-	@media (min-width: 900px) {
-		main > h1 {
-			font-size: 48px;
+	@media (max-width: 900px) {
+		main {
+			margin-left: 4rem;
 		}
 	}
 

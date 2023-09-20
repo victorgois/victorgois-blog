@@ -1,14 +1,13 @@
 <script lang="ts">
-	import Navbar from '$lib/components/NavBar.svelte';
-	import Button from '$lib/components/Button.svelte';
-	import FaCopy from 'svelte-icons/fa/FaCopy.svelte';
-	import Tooltip from '$lib/components/Tooltip.svelte';
+	import Navbar from "$lib/components/NavBar.svelte";
+	import Button from "$lib/components/Button.svelte";
+	import Tooltip from "$lib/components/Tooltip.svelte";
 	// import { beforeNavigate } from '$app/navigation';
-	import { page } from '$app/stores';
-	import Modal from '$lib/components/Modal.svelte';
-	import { onMount } from 'svelte';
-	import { customBackground } from '$lib/store';
-	import { Email } from '$lib/Constants';
+	import { page } from "$app/stores";
+	import Modal from "$lib/components/Modal.svelte";
+	import { onMount } from "svelte";
+	import { customBackground } from "$lib/store";
+	import { Email } from "$lib/Constants";
 	// import routes from '$lib/NavRoutes';
 
 	let copied = false;
@@ -43,7 +42,7 @@
 	};
 
 	onMount(() => {
-		const showCookie = localStorage.getItem('showCookieModal');
+		const showCookie = localStorage.getItem("showCookieModal");
 		if (showCookie !== null) showCookieModal = JSON.parse(showCookie);
 		else showCookieModal = true;
 	});
@@ -67,11 +66,11 @@
 			tabindex="0"
 			on:keypress={() => {
 				showCookieModal = false;
-				localStorage.setItem('showCookieModal', 'false');
+				localStorage.setItem("showCookieModal", "false");
 			}}
 			on:click={() => {
 				showCookieModal = false;
-				localStorage.setItem('showCookieModal', 'false');
+				localStorage.setItem("showCookieModal", "false");
 			}}
 		>
 			&#10005;
@@ -86,7 +85,7 @@
 			<p>{Email}</p>
 			&nbsp;
 			<div class="tooltip">
-				<Tooltip tooltip={copied ? 'Copied' : 'Copy'}>
+				<Tooltip tooltip={copied ? "Copied" : "Copy"}>
 					<div
 						id="clipboard"
 						role="button"
@@ -106,9 +105,6 @@
 							}, 500);
 						}}
 					>
-						<div>
-							<FaCopy />
-						</div>
 					</div>
 				</Tooltip>
 			</div>
@@ -131,9 +127,27 @@
 	}
 
 	@font-face {
-		font-family: 'Fira Code', monospace;
+		font-family: "DM Serif Display", sans-serif;
 		font-display: optional;
-		src: url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+		src: url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap");
+	}
+
+	@font-face {
+		font-family: "Fira Code", monospace;
+		font-display: optional;
+		src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+	}
+
+	@font-face {
+		font-family: "Lato", sans-serif;
+		font-display: optional;
+		src: url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap");
+	}
+
+	@font-face {
+		font-family: "Epilogue", sans-serif;
+		font-display: optional;
+		src: url("https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700&display=swap");
 	}
 
 	:global(#svelte) {
@@ -153,8 +167,14 @@
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		font-family: 'Fira Code', monospace;
-		background-color: #3E7941;
+		font-family: "Fira Code", monospace;
+		background: rgb(2, 0, 36);
+		background: linear-gradient(
+			180deg,
+			rgba(2, 0, 36, 1) 0%,
+			rgba(127, 175, 27, 1) 54%,
+			rgba(255, 255, 255, 0.4990371148459384) 100%
+		);
 	}
 
 	:global(body) {
@@ -176,7 +196,7 @@
 
 	:global(::selection) {
 		color: white;
-		background: #ca3c25;
+		background: #050424;
 	}
 
 	:global(::-webkit-scrollbar) {
@@ -275,11 +295,11 @@
 		color: #4158d0;
 	}
 	footer .svelte {
-		color: #ff3e00;
+		color: #050424;
 	}
 
 	footer .me {
-		color: #ff3e00;
+		color: #050424;
 	}
 
 	@media (min-width: 900px) {
