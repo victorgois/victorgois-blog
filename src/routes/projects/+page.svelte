@@ -13,7 +13,7 @@
 			Note: most of my projects are under NDA so I am unable to share those projects. If there is
 			anything you would like to see further, please feel free to contact me.
 		</p>
-		{#each projects as project}
+<!-- 		{#each projects as project}
 			<div class="project">
 				<div class="header">
 					<h2>
@@ -35,7 +35,7 @@
 					<div class="button">Project url =></div>
 				</a>
 			</div>
-		{/each}
+		{/each} -->
 	</div>
 </div>
 
