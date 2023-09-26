@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Victor Góis — About</title>
+	<title>Victor Góis — Stories</title>
 </svelte:head>
 
 <div class="container">
