@@ -11,7 +11,7 @@
 
 <div class="container">
 	<main>
-		<h1>About</h1>
+		<h1>Stories</h1>
 		<p>
 			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer
 			and data analyst. Graduated in Journalism and master of arts on Social Communications, I've

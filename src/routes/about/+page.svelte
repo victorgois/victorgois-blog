@@ -47,15 +47,6 @@
 		justify-content: center;
 	}
 
-	.title {
-		font-family: "Lato", sans-serif;
-	}
-
-	.paragraph {
-		font-family: "Epilogue", sans-serif;
-		font-size: 21px;
-	}
-
 	main {
 		max-width: 100%;
 		min-height: 500px;
