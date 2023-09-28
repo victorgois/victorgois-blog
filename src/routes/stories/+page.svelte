@@ -13,14 +13,9 @@
 	<main>
 		<h1>Stories</h1>
 		<p>
-			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer
-			and data analyst. Graduated in Journalism and master of arts on Social Communications, I've
-			been working and researching the web and the digital technolgies in the past years. I'm based
-			in Belo Horizonte, Brazil and currently working as fullstack developer at <a
-				href="https://www.3778.care/">3778</a
-			>.
+			
 		</p>
-		<h2>Skills</h2>
+		<!-- <h2>Skills</h2>
 		{#each Object.entries(skills) as [section, technologies]}
 			<ul>
 				<li>
@@ -36,7 +31,7 @@
 					</div>
 				</li>
 			</ul>
-		{/each}
+		{/each} -->
 	</main>
 </div>
 
