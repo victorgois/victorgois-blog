@@ -6,19 +6,6 @@
 	// @ts-ignore
 	let context; // Contexto de renderização 2D
 
-	// Função para inicializar o contexto 2D
-	function initCanvas() {
-		canvas = document.getElementById("myCanvas");
-		// @ts-ignore
-		context = canvas.getContext("2d");
-	}
-
-	function handleClick() {
-		canvasWidth *= 1.2;
-		canvasHeight *= 1.2;
-		drawCanvas();
-	}
-
 	// Função para desenhar no canvas com as dimensões atualizadas
 	function drawCanvas() {
 		// @ts-ignore
@@ -30,10 +17,6 @@
 		context.fillRect(60, 20, canvasWidth, canvasHeight);
 	}
 
-	// Inicializar o contexto quando o componente for montado
-	import { onMount } from "svelte";
-	onMount(initCanvas);
-
 	// Desenhar o canvas inicialmente
 	// @ts-ignore
 	$: {
@@ -42,6 +25,8 @@
 			drawCanvas();
 		}
 	}
+
+	import Typewriter from "svelte-typewriter";
 </script>
 
 <svelte:head>
@@ -51,19 +36,29 @@
 	<div class="column">
 		<div class="row">
 			<div class="presentation">
-				<h2>Hi! <br /> I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h2>
+				<h1>Hi! I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h1>
+				<Typewriter>
+					<p>
+						I am used to work with Js, Es6 and its fullstack environment. I have experience building
+						web apps and analying data. Also a big fan of data journalism and digital storytelling,
+						studying d3.js and three.js to future projects. As a journalist, I want to tell digital,
+						interactive stories (with data) that matter to my community.
+					</p>
+					<!-- <h2>Hi! <br /> I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h2>
 				<p>
 					I am used to work with Js, Es6 and its fullstack environment. I have experience building
 					web apps and analying data. Also a big fan of data journalism and digital storytelling,
 					studying d3.js and three.js to future projects. As a journalist, I want to tell digital,
 					interactive stories (with data) that matter to my community.
-				</p>
+				</p> -->
+				</Typewriter>
 			</div>
-			<canvas
+
+			<!-- <canvas
 				id="myCanvas"
 				style="width: {canvasWidth}px; height: {canvasHeight}px; cursor: pointer;"
 				on:click={handleClick}
-			/>
+			/> -->
 		</div>
 		<div class="row" />
 	</div>
