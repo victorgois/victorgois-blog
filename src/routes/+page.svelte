@@ -39,18 +39,11 @@
 				<h1>Hi! I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h1>
 				<Typewriter>
 					<p>
-						I am used to work with Js, Es6 and its fullstack environment. I have experience building
-						web apps and analying data. Also a big fan of data journalism and digital storytelling,
-						studying d3.js and three.js to future projects. As a journalist, I want to tell digital,
-						interactive stories (with data) that matter to my community.
+						I work with Es6, nodeJs, react and js fullstack environment. My main experiences are building
+						web apps, but I am also a big fan of data journalism and digital storytelling. Currently, I'm
+						studying <a href="https://d3js.org/">d3.js</a> and <a href="https://threejs.org/">three.js</a> to future projects. As a developer I want to understand deeply the JavaScript language and tools to provide the best user experience. As a journalist, I want to communicate relevant data through,
+						interactive stories.
 					</p>
-					<!-- <h2>Hi! <br /> I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h2>
-				<p>
-					I am used to work with Js, Es6 and its fullstack environment. I have experience building
-					web apps and analying data. Also a big fan of data journalism and digital storytelling,
-					studying d3.js and three.js to future projects. As a journalist, I want to tell digital,
-					interactive stories (with data) that matter to my community.
-				</p> -->
 				</Typewriter>
 			</div>
 
@@ -67,7 +60,8 @@
 <style>
 	a {
 		color: white;
-		text-decoration: none;
+		text-decoration: underline red;
+		text-decoration-thickness: 0.4rem;
 	}
 	main {
 		text-align: center;
