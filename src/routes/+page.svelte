@@ -39,10 +39,11 @@
 				<h1>Hi! I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h1>
 				<Typewriter>
 					<p>
-						I work with Es6, nodeJs, react and js fullstack environment. My main experiences are building
-						web apps, but I am also a big fan of data journalism and digital storytelling. Currently, I'm
-						studyingd3.js and three.js to future projects. As a developer I want to understand deeply the JavaScript language and tools to provide the best user experience. As a journalist, I want to communicate relevant data through,
-						interactive stories.
+						I work with Es6, nodeJs, react and js fullstack environment. My main experiences are
+						building web apps, but I am also a big fan of data journalism and digital storytelling.
+						Currently, I'm studying d3.js and three.js to future projects. As a developer I want to
+						understand deeply the JavaScript language and tools to provide the best user experience.
+						As a journalist, I want to communicate relevant data through interactive stories.
 					</p>
 				</Typewriter>
 			</div>
