@@ -1,78 +1,96 @@
 <script>
-	let canvasWidth = 350; // Defina a largura inicial
-	let canvasHeight = 350;
-	// @ts-ignore
-	let canvas; // Referência para o elemento canvas
-	// @ts-ignore
-	let context; // Contexto de renderização 2D
-
-	// Função para desenhar no canvas com as dimensões atualizadas
-	function drawCanvas() {
-		// @ts-ignore
-
-		context.fillStyle = `hsl(${canvasWidth / 40}, 100%, 50%)`;
-		// @ts-ignore
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		// @ts-ignore
-		context.fillRect(60, 20, canvasWidth, canvasHeight);
-	}
-
-	// Desenhar o canvas inicialmente
-	// @ts-ignore
-	$: {
-		// @ts-ignore
-		if (canvas && context) {
-			drawCanvas();
-		}
-	}
-
 	import Typewriter from "svelte-typewriter";
+	import TechChips from "$lib/components/TechChips.svelte";
+	import TechDetail from "$lib/components/TechDetail.svelte";
+
+	let techList = [
+		"JavaScript",
+		"React",
+		"CSS-In-Js",
+		"Svelte",
+		"Graphql",
+		"AWS",
+		"Firebase",
+		"Typescript",
+		"NextJs",
+		"PWA",
+		"Jest",
+		"Cypress",
+		"D3.js",
+		"Python",
+		"NodeJs",
+		"Wordpress",
+		"MUI"
+	];
+
+	let selectedTech = "";
+	let techListVisible = true;
+
+	/**
+	 * @param {{ detail: { tech: string; }; }} event
+	 */
+	function handleChipClick(event) {
+		selectedTech = event.detail.tech;
+		techListVisible = false;
+	}
+
+	function handleBackClick() {
+		techListVisible = true;
+		selectedTech = "";
+	}
+
+	function handleSecondEvent() {
+		techListVisible = true;
+	}
 </script>
 
 <svelte:head>
 	<title>Victor Góis</title>
 </svelte:head>
+
 <main>
 	<div class="column">
 		<div class="row">
 			<div class="presentation">
-				<h1>Hi! I'm Victor, a Journalist/FrontEnd Engineer, specializing in JavaScript.</h1>
-				<Typewriter>
+				<Typewriter mode="scramble" scrambleDuration={2800} scrambleSlowdown={false}>
+					<h1>
+						Hi! I'm Victor, a Journalist/ FrontEnd Engineer from 🇧🇷, specializing in JavaScript, Web
+						development and Data Storytelling.
+					</h1>
+				</Typewriter>
+				<Typewriter on:done={handleSecondEvent} delay={2800} mode="concurrent">
 					<p>
-						I work with Es6, nodeJs, react and js fullstack environment. My main experiences are
-						building web apps, but I am also a big fan of data journalism and digital storytelling.
-						Currently, I'm studying d3.js and three.js to future projects. As a developer I want to
-						understand deeply the JavaScript language and tools to provide the best user experience.
-						As a journalist, I want to communicate relevant data through interactive stories.
+						I've been working as a fullstack javascript developer for the last 3.5 years. Also
+						graduated in journalism, MA in communication and contemporary sociabilities. I'me
+						looking for opportunities with JS Visualization, Creative Programming and JavaScript
+						FrontEnd development in general.
 					</p>
 				</Typewriter>
 			</div>
-
-			<!-- <canvas
-				id="myCanvas"
-				style="width: {canvasWidth}px; height: {canvasHeight}px; cursor: pointer;"
-				on:click={handleClick}
-			/> -->
+			<div class="presentation">
+				{#if techListVisible}
+					<TechChips {techList} on:chipclick={handleChipClick} />
+				{:else}
+					<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
+				{/if}
+			</div>
 		</div>
-		<div class="row" />
 	</div>
 </main>
 
 <style>
-	a {
-		color: white;
-		text-decoration: underline red;
-		text-decoration-thickness: 0.4rem;
+	h1 {
+		font-size: 24px;
 	}
+
 	main {
 		text-align: center;
 		padding: 0;
 		margin: 0 auto;
 		text-align: center;
-
+		padding: 20px;
 		display: flex;
 		flex-direction: column;
-		height: calc(100vh - 80px - 88px);
 		justify-content: center;
 		align-items: center;
 	}
@@ -85,42 +103,22 @@
 	.row {
 		display: flex;
 		flex-direction: row;
-	}
-
-	h2 {
-		font-weight: 700;
+		margin: 1em;
 	}
 
 	.presentation {
 		text-align: start;
 		width: 50%;
-	}
-
-	.selfImage {
-		width: 50%;
-		height: 250px;
-	}
-
-	.icons {
-		display: flex !important;
-		align-items: center;
-		gap: 20px;
-		cursor: pointer;
-		justify-content: space-between;
-	}
-
-	.icon {
-		cursor: pointer;
-		transition: color 0.2s ease-in-out;
-		width: 40px;
-	}
-	.icon:hover {
-		color: #050424;
+		padding: 0.5em;
 	}
 
 	@media (max-width: 900px) {
-		main {
-			margin-left: 4rem;
+		.row {
+			flex-direction: column;
+		}
+		.presentation {
+			width: 100%;
+			margin-right: 3em;
 		}
 	}
 

@@ -104,8 +104,7 @@
 								copied = false;
 							}, 500);
 						}}
-					>
-					</div>
+					/>
 				</Tooltip>
 			</div>
 		</div>
@@ -153,7 +152,7 @@
 	:global(#svelte) {
 		width: 100vw;
 		height: 100%;
-		max-width: 900px;
+		max-width: 800px;
 
 		display: flex;
 		flex-direction: column;
@@ -171,8 +170,8 @@
 		background: rgb(2, 0, 36);
 		background: linear-gradient(
 			180deg,
-			rgba(2, 0, 36, 1) 0%,
-			rgba(127, 175, 27, 1) 54%,
+			rgb(2, 1, 21) 0%,
+			rgb(49, 49, 49) 54%,
 			rgba(255, 255, 255, 0.4990371148459384) 100%
 		);
 	}
@@ -282,7 +281,7 @@
 	}
 
 	footer {
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 400;
 		padding: 30px 0;
 		max-width: 900px;
@@ -325,6 +324,12 @@
 			right: 0;
 			margin-left: auto;
 			margin-right: auto;
+		}
+	}
+
+	@media (max-width: 900px) {
+		footer {
+			font-size: 10px;
 		}
 	}
 </style>
