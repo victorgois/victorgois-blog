@@ -2,26 +2,8 @@
 	import Typewriter from "svelte-typewriter";
 	import TechChips from "$lib/components/TechChips.svelte";
 	import TechDetail from "$lib/components/TechDetail.svelte";
-
-	let techList = [
-		"JavaScript",
-		"React",
-		"CSS-In-Js",
-		"Svelte",
-		"Graphql",
-		"AWS",
-		"Firebase",
-		"Typescript",
-		"NextJs",
-		"PWA",
-		"Jest",
-		"Cypress",
-		"D3.js",
-		"Python",
-		"NodeJs",
-		"Wordpress",
-		"MUI"
-	];
+	import { techList } from "$lib/Constants";
+	import { selectedTechStore } from "$lib/store";
 
 	let selectedTech = "";
 	let techListVisible = true;
@@ -32,6 +14,7 @@
 	function handleChipClick(event) {
 		selectedTech = event.detail.tech;
 		techListVisible = false;
+		selectedTechStore.set(selectedTech);
 	}
 
 	function handleBackClick() {
@@ -52,27 +35,33 @@
 	<div class="column">
 		<div class="row">
 			<div class="presentation">
-				<Typewriter mode="scramble" scrambleDuration={2800} scrambleSlowdown={false}>
-					<h1>
-						Hi! I'm Victor, a Journalist/ FrontEnd Engineer from 🇧🇷, specializing in JavaScript, Web
-						development and Data Storytelling.
-					</h1>
-				</Typewriter>
-				<Typewriter on:done={handleSecondEvent} delay={2800} mode="concurrent">
-					<p>
-						I've been working as a fullstack javascript developer for the last 3.5 years. Also
-						graduated in journalism, MA in communication and contemporary sociabilities. I'me
-						looking for opportunities with JS Visualization, Creative Programming and JavaScript
-						FrontEnd development in general.
-					</p>
-				</Typewriter>
+				<!-- <Typewriter mode="scramble" scrambleDuration={2800} scrambleSlowdown={false}> -->
+				<h1>
+					Hi! I'm Victor, a Journalist/ FrontEnd Engineer from 🇧🇷, specializing in JavaScript, Web
+					development and Data Visualization.
+				</h1>
+				<!-- </Typewriter> -->
+				<!-- <Typewriter on:done={handleSecondEvent} delay={2800} mode="concurrent"> -->
+
+				<!-- </Typewriter> -->
 			</div>
 			<div class="presentation">
+				<h4>My experiences</h4>
 				{#if techListVisible}
 					<TechChips {techList} on:chipclick={handleChipClick} />
 				{:else}
 					<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
 				{/if}
+			</div>			
+		</div>
+		<div class="row">
+			<div class="presentation">
+				<p>
+					I've been working as a javascript developer for the last 4 years. Also I am graduated in
+					journalism, MA in communication and contemporary sociabilities. I am looking for
+					opportunities with JS Visualization, Creative Programming and JavaScript FrontEnd
+					development in general.
+				</p>
 			</div>
 		</div>
 	</div>
@@ -81,6 +70,12 @@
 <style>
 	h1 {
 		font-size: 24px;
+	}
+
+	h4 {
+		display: flex;
+		justify-content: flex-end;
+		padding-right: 16px;
 	}
 
 	main {
@@ -110,6 +105,10 @@
 		text-align: start;
 		width: 50%;
 		padding: 0.5em;
+		display: flex;
+		align-content: stretch;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	@media (max-width: 900px) {
