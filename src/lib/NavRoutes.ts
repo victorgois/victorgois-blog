@@ -1,9 +1,9 @@
 const routes = [
 	{
-		href: '/',
-		label: 'Home'
-	},
-	{
+		href: "/",
+		label: "Home"
+	}
+	/* 	{
 		href: '/projects',
 		label: 'Projects'
 	},
@@ -18,7 +18,7 @@ const routes = [
 	{
 		href: '/blog',
 		label: 'Blog'
-	}
+	} */
 ];
 
 export default routes;

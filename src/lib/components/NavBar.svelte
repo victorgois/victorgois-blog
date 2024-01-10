@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Burger from './Hamburger.svelte';
-	import Logo from '$lib/assets/logo.svg';
-	import routes from '$lib/NavRoutes';
+	import Burger from "./Hamburger.svelte";
+	import Logo from "$lib/assets/logo.svg";
+	import routes from "$lib/NavRoutes";
 	let opened = false;
 	export let segment: string;
 </script>
 
-<div class={opened ? 'NavBar open' : 'NavBar'}>
+<div class={opened ? "NavBar open" : "NavBar"}>
 	<div class="innerContainer">
 		<a href="/">
 			<img src={Logo} alt="logo" class="logo" />
@@ -16,7 +16,7 @@
 		</div>
 		<div class="buttons">
 			{#each routes as route}
-				<a class={`button ${segment === route.href ? 'selected' : ''}`} href={route.href}
+				<a class={`button ${segment === route.href ? "selected" : ""}`} href={route.href}
 					>{route.label}</a
 				>
 			{/each}
@@ -24,7 +24,7 @@
 	</div>
 	<div class="responsiveButtons buttons">
 		{#each routes as route}
-			<a class={`button ${segment === route.href ? 'selected' : ''}`} href={route.href}
+			<a class={`button ${segment === route.href ? "selected" : ""}`} href={route.href}
 				>{route.label}</a
 			>
 		{/each}
@@ -51,7 +51,7 @@
 	}
 
 	.button:hover::after {
-		content: '';
+		content: "";
 		background: white;
 		display: block;
 		height: 3px;
@@ -61,7 +61,7 @@
 	}
 
 	.button.selected:after {
-		content: '';
+		content: "";
 		background: white;
 		display: block;
 		height: 3px;

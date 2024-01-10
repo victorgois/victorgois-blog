@@ -229,7 +229,7 @@
 	}
 
 	a {
-		color: rgb(0, 100, 200);
+		color: rgb(200, 232, 16);
 		text-decoration: none;
 	}
 
@@ -238,7 +238,7 @@
 	}
 
 	a:visited {
-		color: rgb(0, 80, 160);
+		color: rgb(103, 246, 32);
 	}
 
 	.modalContainer div {
@@ -291,14 +291,14 @@
 
 	footer a {
 		text-decoration: none;
-		color: #4158d0;
+		color: #cfea11;
 	}
 	footer .svelte {
-		color: #050424;
+		color: #cfea11;
 	}
 
 	footer .me {
-		color: #050424;
+		color: #cfea11;
 	}
 
 	@media (min-width: 900px) {

@@ -27,6 +27,7 @@
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.5",
 		"svelte-icons": "^2.1.0",
+		"svelte-reveal": "^0.7.0",
 		"svelte-typewriter": "^3.1.6",
 		"tslib": "^2.6.0",
 		"typescript": "^5.1.6",
@@ -34,6 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-canvas": "^0.9.3"
+		"svelte-canvas": "^0.9.3",
+		"svelte-vertical-timeline": "^1.0.0"
 	}
 }

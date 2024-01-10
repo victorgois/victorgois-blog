@@ -26,12 +26,12 @@
 					<div>Tags: {article.tags || article.category}</div>
 				</div>
 				<p>
-					{article.description || ''}
+					{article.description || ""}
 				</p>
 
 				<a
 					href={article.id ? `/blog/${article.id}` : article.link}
-					target={!article.id ? '_blank' : '_self'}
+					target={!article.id ? "_blank" : "_self"}
 				>
 					<div class="button">Read Article =></div>
 				</a>
@@ -54,10 +54,6 @@
 		padding: 1em;
 		margin: 0 auto;
 		text-align: center;
-	}
-
-	a {
-		text-decoration: none;
 	}
 
 	.articlesContainer .articles {
