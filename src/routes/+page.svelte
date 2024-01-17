@@ -49,7 +49,7 @@
 		<div class="row">
 			<div class="presentation" use:reveal>
 				<h1 use:reveal={{ transition: "fade" }}>
-					{$t("homepage.title")}
+					{$t("homepage.presentation1")}
 				</h1>
 			</div>
 			<div class="presentation">
@@ -59,24 +59,18 @@
 		<div class="row">
 			<div class="presentation" use:reveal>
 				<p use:reveal={{ transition: "fade" }}>
-					👋 I'm a JavaScript developer with +3 years of experience and comprehensive skills in
-					technologies such as Node, React, Jest, GraphQL, Next.js, SQL and CSS. My experience
-					includes applying TDD, BDD concepts and clean code practices, creating screens, components
-					and data visualizations.
+					{$t("homepage.presentation2")}
 				</p>
 			</div>
 			<div class="presentation" use:reveal>
 				<p use:reveal={{ transition: "fade" }}>
-					🔧 I have extensive experience working in agile teams, where I learned to collaborate
-					efficiently and drive the delivery of innovative projects. My biggest passion is bringing
-					data to life, whether through numerical calculations or transforming any type of media
-					into captivating interfaces or telling stories through interactive infographics.
+					{$t("homepage.presentation3")}
 				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="long-presentation">
-				<h4>Tech stacks I have most experience with</h4>
+				<h4>{$t("homepage.longPresentation1")}</h4>
 				{#if techListVisible}
 					<TechChips {techList} on:chipclick={handleChipClick} />
 				{:else}
@@ -86,7 +80,7 @@
 		</div>
 		<hr use:reveal={{ transition: "fade" }} />
 		<div class="infographic" use:reveal>
-			<h1>My professional life in a timeline</h1>
+			<h1>{$t("homepage.infographic")}</h1>
 			<Timeline />
 		</div>
 
@@ -100,35 +94,15 @@
 					>.
 				</p>
 				<p use:reveal={{ transition: "fade" }}>
-					Currently, I am deepening my knowledge in D3.js and Svelte, with the aim of specializing
-					in frontend development and data visualization. I focus on transforming data into engaging
-					visual experiences.
+					{$t("homepage.longPresentation2")}
 				</p>
 				<p use:reveal={{ transition: "fade" }}>
-					🚀 I am open to opportunities to work with JavaScript Fullstack and FrontEnd development.
-					I am constantly looking to improve my skills and face new challenges.
+					{$t("homepage.longPresentation3")}
 				</p>
 			</div>
 		</div>
-
-		<!-- 		<div class="row">
-			<div class="long-presentation" style="text-align: end;">
-				<div
-					class="footnote"
-					style="background-color: #B0C324; text-align: end; width: 15px; height: 15px;"
-				/>
-				<p>Professional Jobs</p>
-			</div>
-			<div class="long-presentation" style="text-align: end;">
-				<div
-					class="footnote"
-					style="background-color: white; text-align: end; width: 15px; height: 15px;"
-				/>
-				<p>Side Projects</p>
-			</div>
-		</div> -->
 		<p class="footnote" use:reveal={{ transition: "fade" }}>
-			Most of my work is under NDA. Please, reach me out to more details.
+			{$t("homepage.footnote")}
 		</p>
 	</div>
 </main>
