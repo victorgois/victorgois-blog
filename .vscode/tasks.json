@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "check:watch",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: check:watch",
+			"detail": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		}
+	]
+}

@@ -6,6 +6,7 @@
 	import { reveal } from "svelte-reveal";
 	import vic from "$lib/assets/vic.gif";
 	import Timeline from "$lib/components/Timeline.svelte";
+	import { t, locale } from "../i18n";
 
 	let selectedTech = "";
 	let techListVisible = true;
@@ -29,6 +30,14 @@
 	function handleSecondEvent() {
 		techListVisible = true;
 	}
+
+	// Create a locale specific timestamp
+	$: time = new Date().toLocaleDateString($locale, {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric"
+	});
 </script>
 
 <svelte:head>
@@ -39,18 +48,12 @@
 	<div class="column">
 		<div class="row">
 			<div class="presentation" use:reveal>
-				<!-- <Typewriter mode="scramble" scrambleDuration={2800} scrambleSlowdown={false}> -->
 				<h1 use:reveal={{ transition: "fade" }}>
-					Hi! I'm Victor, a Journalist/ Software Engineer from 🇧🇷, specializing in JavaScript
-					Fullstack development and Data Visualization.
+					{$t("homepage.title")}
 				</h1>
-				<!-- </Typewriter> -->
-				<!-- <Typewriter on:done={handleSecondEvent} delay={2800} mode="concurrent"> -->
-
-				<!-- </Typewriter> -->
 			</div>
 			<div class="presentation">
-				<img src={vic} alt={name} width="75%" />
+				<img src={vic} alt={name} width="100%" />
 			</div>
 		</div>
 		<div class="row">

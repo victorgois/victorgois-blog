@@ -2,13 +2,11 @@
 	import Navbar from "$lib/components/NavBar.svelte";
 	import Button from "$lib/components/Button.svelte";
 	import Tooltip from "$lib/components/Tooltip.svelte";
-	// import { beforeNavigate } from '$app/navigation';
 	import { page } from "$app/stores";
 	import Modal from "$lib/components/Modal.svelte";
 	import { onMount } from "svelte";
 	import { customBackground } from "$lib/store";
 	import { Email } from "$lib/Constants";
-	// import routes from '$lib/NavRoutes';
 
 	let copied = false;
 	const cookieEnabled = false;

@@ -33,21 +33,21 @@
 	function handleChipClick(event) {
 		selectedTech = event.detail.tech;
 		techListVisible = false;
-		selectedTechStore.set(selectedTech)
+		selectedTechStore.set(selectedTech);
 	}
 </script>
 
 <div>
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="back" on:click={handleBackClick} role="button" tabindex="0">&larr; Back</div>
-		<h2>{techName}</h2>
-		{#each matchingExperiences as experience (experience.employee)}
-			<h4>{experience.employee}</h4>
-			<p>{experience.description}</p>
-			<TechChips techList={experience.chips} on:chipclick={handleChipClick} />
-		{:else}
-			<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
-		{/each}
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div class="back" on:click={handleBackClick} role="button" tabindex="0">&larr; Back</div>
+	<h2>{techName}</h2>
+	{#each matchingExperiences as experience (experience.employee)}
+		<a href={experience.link}><h4>{experience.employee}</h4></a>
+		<p>{experience.description}</p>
+		<TechChips techList={experience.chips} on:chipclick={handleChipClick} />
+	{:else}
+		<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
+	{/each}
 </div>
 
 <style>
@@ -55,13 +55,19 @@
 		cursor: pointer;
 		margin-bottom: 1rem;
 		margin-top: 1rem;
-		color: #007bff;
+		color: white;
 		text-decoration: underline;
+		font-family: "Fira Code", monospace;
+		font-size: large;
+		font-weight: 600;
+		text-underline-offset: 5px;
 	}
 
 	h2 {
 		text-align: left;
 		padding-right: 1rem;
+		text-decoration: underline;
+		text-underline-offset: 5px;
 	}
 
 	p {

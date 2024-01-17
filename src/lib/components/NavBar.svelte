@@ -2,15 +2,20 @@
 	import Burger from "./Hamburger.svelte";
 	import Logo from "$lib/assets/logo.svg";
 	import routes from "$lib/NavRoutes";
+	import { locale, locales } from "../../i18n";
 	let opened = false;
 	export let segment: string;
 </script>
 
 <div class={opened ? "NavBar open" : "NavBar"}>
 	<div class="innerContainer">
-		<a href="/">
-			<img src={Logo} alt="logo" class="logo" />
-		</a>
+		<p class="translateButton">
+			<select bind:value={$locale}>
+				{#each locales as l}
+					<option value={l}>{l}</option>
+				{/each}
+			</select>
+		</p>
 		<div class="burger">
 			<Burger bind:open={opened} />
 		</div>
@@ -72,7 +77,7 @@
 
 	.innerContainer {
 		display: flex;
-		justify-content: space-between;
+		justify-content: end;
 		align-items: center;
 		width: 100%;
 		max-width: 700px;
@@ -84,12 +89,25 @@
 		color: white;
 	}
 
+	.translateButton {
+		margin-right: 10px;
+	}
+
+	select {
+		border-radius: 4px;
+		cursor: pointer;
+		width: 40px;
+		height: 25px;
+		font-family: "Fira Code", monospace;
+	}
+
 	.NavBar {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		padding: 10px;
 		max-width: 900px;
 		box-sizing: border-box;
 		padding: 20px;
