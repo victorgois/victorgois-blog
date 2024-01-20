@@ -5,7 +5,6 @@
 	import { selectedTechStore } from "$lib/store";
 	import { reveal } from "svelte-reveal";
 	import vic from "$lib/assets/vic.gif";
-	import Timeline from "$lib/components/Timeline.svelte";
 	import { t, locale } from "../i18n";
 
 	let selectedTech = "";
@@ -79,19 +78,23 @@
 			</div>
 		</div>
 		<hr use:reveal={{ transition: "fade" }} />
-		<div class="infographic" use:reveal>
-			<h1>{$t("homepage.infographic")}</h1>
-			<Timeline />
-		</div>
 
 		<div class="row">
 			<div class="long-presentation" use:reveal>
 				<p use:reveal={{ transition: "fade" }}>
-					📚 I refer myself professionaly as a "Journalist Engineer" inspired by 2015 Matthew
-					Daniels' <a
-						href="https://medium.com/@matthew_daniels/the-journalist-engineer-c9c1a72b993f"
-						>article</a
-					>.
+					{#if $locale === "en"}
+						{$t("homepage.longPresentation4")}
+						<a href="https://medium.com/@matthew_daniels/the-journalist-engineer-c9c1a72b993f"
+							>article</a
+						>.
+					{/if}
+					{#if $locale === "pt"}
+						{$t("homepage.longPresentation4")}
+						<a href="https://medium.com/@matthew_daniels/the-journalist-engineer-c9c1a72b993f"
+							>artigo</a
+						>
+						{$t("homepage.longPresentation5")}
+					{/if}
 				</p>
 				<p use:reveal={{ transition: "fade" }}>
 					{$t("homepage.longPresentation2")}
@@ -101,9 +104,6 @@
 				</p>
 			</div>
 		</div>
-		<p class="footnote" use:reveal={{ transition: "fade" }}>
-			{$t("homepage.footnote")}
-		</p>
 	</div>
 </main>
 
@@ -141,9 +141,6 @@
 		margin: 1em;
 	}
 
-	.infographic {
-		text-align: center;
-	}
 	.long-presentation {
 		text-align: start;
 		width: 100%;

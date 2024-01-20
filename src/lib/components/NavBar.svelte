@@ -9,13 +9,6 @@
 
 <div class={opened ? "NavBar open" : "NavBar"}>
 	<div class="innerContainer">
-		<p class="translateButton">
-			<select bind:value={$locale}>
-				{#each locales as l}
-					<option value={l}>{l}</option>
-				{/each}
-			</select>
-		</p>
 		<div class="burger">
 			<Burger bind:open={opened} />
 		</div>
@@ -26,6 +19,13 @@
 				>
 			{/each}
 		</div>
+		<p class="translateButton">
+			<select bind:value={$locale}>
+				{#each locales as l}
+					<option value={l}>{l}</option>
+				{/each}
+			</select>
+		</p>
 	</div>
 	<div class="responsiveButtons buttons">
 		{#each routes as route}
@@ -77,7 +77,7 @@
 
 	.innerContainer {
 		display: flex;
-		justify-content: end;
+		justify-content: space-between;
 		align-items: center;
 		width: 100%;
 		max-width: 700px;
@@ -89,15 +89,13 @@
 		color: white;
 	}
 
-	.translateButton {
-		margin-right: 10px;
-	}
-
 	select {
 		border-radius: 4px;
 		cursor: pointer;
 		width: 40px;
-		height: 25px;
+		height: 30px;
+		font-size: medium;
+		font-weight: 500;
 		font-family: "Fira Code", monospace;
 	}
 
@@ -121,6 +119,7 @@
 		justify-content: space-between;
 		align-items: center;
 		font-weight: 500;
+		margin-left: 1.5em;
 	}
 
 	.responsiveButtons {

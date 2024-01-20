@@ -1,6 +1,10 @@
 <script>
 	import skills from "$lib/Skills";
 	import { customBackground } from "$lib/store";
+	import Timeline from "$lib/components/Timeline.svelte";
+	import { reveal } from "svelte-reveal";
+	import { t, locale } from "../../i18n";
+
 	customBackground.set("#8B4513");
 </script>
 
@@ -11,31 +15,13 @@
 <div class="container">
 	<main>
 		<h1 class="title">About</h1>
-		<p class="paragraph">
-			I'm a Front-end/Journalist Engineer with 4 years of experience working as fullstack developer
-			and data analyst. Graduated in Journalism and master of arts on Social Communications, I've
-			been working and researching the web and the digital technolgies in the past years. I'm based
-			in Belo Horizonte, Brazil and currently working as fullstack developer at <a
-				href="https://www.3778.care/">3778</a
-			>.
+		<div class="infographic" use:reveal>
+			<h1>{$t("homepage.infographic")}</h1>
+			<Timeline />
+		</div>
+		<p class="footnote" use:reveal={{ transition: "fade" }}>
+			{$t("homepage.footnote")}
 		</p>
-		<h2>Skills</h2>
-		{#each Object.entries(skills) as [section, technologies]}
-			<ul>
-				<li>
-					<h4>
-						{section}:
-					</h4>
-					<div class="list">
-						{#each technologies as technology}
-							<div>
-								{technology}
-							</div>
-						{/each}
-					</div>
-				</li>
-			</ul>
-		{/each}
 	</main>
 </div>
 
@@ -70,6 +56,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
+	}
+
+	.infographic {
+		text-align: center;
 	}
 
 	@media (min-width: 900px) {

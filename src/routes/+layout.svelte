@@ -7,6 +7,9 @@
 	import { onMount } from "svelte";
 	import { customBackground } from "$lib/store";
 	import { Email } from "$lib/Constants";
+	import SocialIcons from "@rodneylab/svelte-social-icons";
+	import { locale, locales } from "../i18n";
+	import { reveal } from "svelte-reveal";
 
 	let copied = false;
 	const cookieEnabled = false;
@@ -112,11 +115,29 @@
 <Navbar segment={$page.url.pathname} />
 
 <slot />
-
+<hr style="width: 92%;" use:reveal={{ transition: "fade" }} />
 <footer>
-	Created by <a class="me" href="/about">victorgois</a> ❤️ with
-	<span class="svelte">Svelte</span>
+	<p>
+		<select bind:value={$locale}>
+			{#each locales as l}
+				<option value={l}>{l}</option>
+			{/each}
+		</select>
+	</p>
+	<div class="socialNetworks">
+		<SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
+		<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
+		<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
+		<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
+		<SocialIcons network="youtube" fgColor="#eeeeee" bgColor="transparent" />
+		<SocialIcons network="twitter" fgColor="#eeeeee" bgColor="transparent" />
+	</div>
 </footer>
+
+<div class="signature">
+	Created by<a class="me" href="/about"> victorgois</a> ❤️ with
+	<span class="svelte">Svelte</span>
+</div>
 
 <style>
 	* {
@@ -278,8 +299,8 @@
 		cursor: pointer;
 	}
 
-	footer {
-		font-size: 14px;
+	.signature {
+		font-size: 10px;
 		font-weight: 400;
 		padding: 30px 0;
 		max-width: 900px;
@@ -287,18 +308,41 @@
 		width: 100%;
 	}
 
-	footer a {
+	.signature a {
 		text-decoration: none;
 		color: #cfea11;
 	}
-	footer .svelte {
+	.signature .svelte {
 		color: #cfea11;
 	}
 
-	footer .me {
+	.signature .me {
 		color: #cfea11;
 	}
 
+	select {
+		border-radius: 4px;
+		cursor: pointer;
+		width: 40px;
+		height: 30px;
+		font-size: medium;
+		font-weight: 500;
+		font-family: "Fira Code", monospace;
+	}
+
+	.socialNetworks {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	footer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin: 0 30px 0 30px;
+	}
 	@media (min-width: 900px) {
 		:global(.tooltip) {
 			visibility: visible;
@@ -322,12 +366,6 @@
 			right: 0;
 			margin-left: auto;
 			margin-right: auto;
-		}
-	}
-
-	@media (max-width: 900px) {
-		footer {
-			font-size: 10px;
 		}
 	}
 </style>

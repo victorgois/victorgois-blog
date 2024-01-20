@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@rodneylab/svelte-social-icons": "^0.0.28",
 		"svelte-canvas": "^0.9.3",
 		"svelte-vertical-timeline": "^1.0.0"
 	}

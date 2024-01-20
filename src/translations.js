@@ -13,7 +13,10 @@ export default {
 		"homepage.longPresentation3":
 			"🚀 Estou aberto a oportunidades para trabalhar com desenvolvimento Fullstack e Frontend em JavaScript. Estou constantemente buscando aprimorar minhas habilidades e enfrentar novos desafios.",
 		"homepage.footnote":
-			"A maior parte do meu trabalho está sob acordos de confidencialidade (NDA). Por favor, entre em contato para obter mais detalhes."
+			"A maior parte do meu trabalho está sob acordos de confidencialidade (NDA). Por favor, entre em contato para obter mais detalhes.",
+		"homepage.longPresentation4":
+			"📚 Eu me refiro profissionalmente como um Engenheiro Jornalista, inspirado no ",
+		"homepage.longPresentation5": "de Matthew Daniels de 2015."
 	},
 	en: {
 		"homepage.presentation1":
@@ -28,6 +31,8 @@ export default {
 			"Currently, I am deepening my knowledge in D3.js and Svelte, with the aim of specializing	in frontend development and data visualization. I focus on transforming data into engaging visual experiences.",
 		"homepage.longPresentation3":
 			"🚀 I am open to opportunities to work with JavaScript Fullstack and FrontEnd development. I am constantly looking to improve my skills and face new challenges.",
-		"homepage.footnote": "Most of my work is under NDA. Please, reach me out to more details."
+		"homepage.footnote": "Most of my work is under NDA. Please, reach me out to more details.",
+		"homepage.longPresentation4":
+			"📚 I refer myself professionaly as a Journalist Engineer inspired by 2015 Matthew Daniels'"
 	}
 };
