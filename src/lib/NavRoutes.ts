@@ -1,11 +1,11 @@
 const routes = [
 	{
 		href: "/",
-		label: "Home"
+		label: "homepage.route1"
 	},
 	{
 		href: "/projects",
-		label: "Projects"
+		label: "homepage.route2"
 	},
 	/*
 	{
@@ -15,12 +15,12 @@ const routes = [
 		*/
 	{
 		href: "/about",
-		label: "About"
+		label: "homepage.route3"
 	},
 
 	{
 		href: "/blog",
-		label: "Blog"
+		label: "homepage.route4"
 	}
 ];
 

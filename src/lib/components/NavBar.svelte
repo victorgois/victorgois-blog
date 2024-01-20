@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Burger from "./Hamburger.svelte";
-	import Logo from "$lib/assets/logo.svg";
-	import routes from "$lib/NavRoutes";
-	import { locale, locales } from "../../i18n";
+	import routes from "../NavRoutes";
+	import { t, locale, locales } from "../../i18n";
+
 	let opened = false;
 	export let segment: string;
 </script>
@@ -15,7 +15,7 @@
 		<div class="buttons">
 			{#each routes as route}
 				<a class={`button ${segment === route.href ? "selected" : ""}`} href={route.href}
-					>{route.label}</a
+					>{$t(`${route.label}`)}</a
 				>
 			{/each}
 		</div>
@@ -30,8 +30,8 @@
 	<div class="responsiveButtons buttons">
 		{#each routes as route}
 			<a class={`button ${segment === route.href ? "selected" : ""}`} href={route.href}
-				>{route.label}</a
-			>
+				>{$t(`${route.label}`)}
+			</a>
 		{/each}
 	</div>
 </div>
@@ -119,7 +119,7 @@
 		justify-content: space-between;
 		align-items: center;
 		font-weight: 500;
-		margin-left: 1.5em;
+		margin-left: 2.2em;
 	}
 
 	.responsiveButtons {
@@ -162,6 +162,7 @@
 			align-items: center;
 			max-width: 900px;
 			width: 90%;
+			margin: 0;
 		}
 
 		.buttons {

@@ -115,7 +115,7 @@
 <Navbar segment={$page.url.pathname} />
 
 <slot />
-<hr style="width: 92%;" use:reveal={{ transition: "fade" }} />
+<hr style="width: 92%;" />
 <footer>
 	<p>
 		<select bind:value={$locale}>
@@ -124,6 +124,10 @@
 			{/each}
 		</select>
 	</p>
+	<p>Esse site foi desenvolvido com base no projeto de Lovelace</p>
+</footer>
+
+<div class="signature">
 	<div class="socialNetworks">
 		<SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
 		<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
@@ -132,10 +136,7 @@
 		<SocialIcons network="youtube" fgColor="#eeeeee" bgColor="transparent" />
 		<SocialIcons network="twitter" fgColor="#eeeeee" bgColor="transparent" />
 	</div>
-</footer>
-
-<div class="signature">
-	Created by<a class="me" href="/about"> victorgois</a> ❤️ with
+	Created by<a class="me" href="/about">victorgois</a> ❤️ with
 	<span class="svelte">Svelte</span>
 </div>
 
@@ -241,10 +242,12 @@
 
 	:global(a) {
 		text-decoration: none;
+		color: rgb(200, 232, 16);
 	}
 
 	:global(a) {
 		text-decoration: none;
+		color: rgb(200, 232, 16);
 	}
 
 	a {
@@ -254,6 +257,7 @@
 
 	a:hover {
 		text-decoration: underline;
+		color: rgb(12, 255, 3);
 	}
 
 	a:visited {
@@ -343,6 +347,13 @@
 		justify-content: space-between;
 		margin: 0 30px 0 30px;
 	}
+
+	footer p {
+		margin: 1px;
+		padding: 1px;
+		font-size: small;
+	}
+
 	@media (min-width: 900px) {
 		:global(.tooltip) {
 			visibility: visible;

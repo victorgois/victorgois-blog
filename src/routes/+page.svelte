@@ -4,7 +4,7 @@
 	import { techList } from "$lib/Constants";
 	import { selectedTechStore } from "$lib/store";
 	import { reveal } from "svelte-reveal";
-	import vic from "$lib/assets/vic.gif";
+	import vic from "$lib/assets/vic.webp";
 	import { t, locale } from "../i18n";
 
 	let selectedTech = "";
@@ -29,14 +29,6 @@
 	function handleSecondEvent() {
 		techListVisible = true;
 	}
-
-	// Create a locale specific timestamp
-	$: time = new Date().toLocaleDateString($locale, {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric"
-	});
 </script>
 
 <svelte:head>
@@ -52,7 +44,7 @@
 				</h1>
 			</div>
 			<div class="presentation">
-				<img src={vic} alt={name} width="100%" />
+				<img src={vic} alt={name} width="350px" height="350px" />
 			</div>
 		</div>
 		<div class="row">
@@ -121,7 +113,6 @@
 	main {
 		text-align: center;
 		padding: 0;
-		margin: 0 auto;
 		text-align: center;
 		padding: 20px;
 		display: flex;
@@ -133,12 +124,13 @@
 	.column {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
+		max-width: 700px;
 	}
 
 	.row {
 		display: flex;
 		flex-direction: row;
-		margin: 1em;
 	}
 
 	.long-presentation {
@@ -176,10 +168,10 @@
 	@media (max-width: 900px) {
 		.row {
 			flex-direction: column;
+			margin-right: 1em;
 		}
 		.presentation {
 			width: 100%;
-			margin-right: 3em;
 		}
 	}
 

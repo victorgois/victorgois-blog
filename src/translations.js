@@ -16,7 +16,11 @@ export default {
 			"A maior parte do meu trabalho está sob acordos de confidencialidade (NDA). Por favor, entre em contato para obter mais detalhes.",
 		"homepage.longPresentation4":
 			"📚 Eu me refiro profissionalmente como um Engenheiro Jornalista, inspirado no ",
-		"homepage.longPresentation5": "de Matthew Daniels de 2015."
+		"homepage.longPresentation5": "de Matthew Daniels de 2015.",
+		"homepage.route1": "home",
+		"homepage.route2": "projetos",
+		"homepage.route3": "sobre",
+		"homepage.route4": "blog"
 	},
 	en: {
 		"homepage.presentation1":
@@ -33,6 +37,10 @@ export default {
 			"🚀 I am open to opportunities to work with JavaScript Fullstack and FrontEnd development. I am constantly looking to improve my skills and face new challenges.",
 		"homepage.footnote": "Most of my work is under NDA. Please, reach me out to more details.",
 		"homepage.longPresentation4":
-			"📚 I refer myself professionaly as a Journalist Engineer inspired by 2015 Matthew Daniels'"
+			"📚 I refer myself professionaly as a Journalist Engineer inspired by 2015 Matthew Daniels'",
+		"homepage.route1": "home",
+		"homepage.route2": "projects",
+		"homepage.route3": "about",
+		"homepage.route4": "blog"
 	}
 };
