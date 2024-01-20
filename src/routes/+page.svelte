@@ -4,7 +4,7 @@
 	import { techList } from "$lib/Constants";
 	import { selectedTechStore } from "$lib/store";
 	import { reveal } from "svelte-reveal";
-	import vic from "$lib/assets/vic.webp";
+	import vic from "$lib/assets/vic.gif";
 	import { t, locale } from "../i18n";
 
 	let selectedTech = "";
