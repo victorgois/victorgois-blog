@@ -1,15 +1,14 @@
 <script lang="ts">
-	import Navbar from "$lib/components/NavBar.svelte";
-	import Button from "$lib/components/Button.svelte";
-	import Tooltip from "$lib/components/Tooltip.svelte";
+	import NavBar from "../lib/components/NavBar.svelte";
+	import Button from "../lib/components/Button.svelte";
+	import Tooltip from "../lib/components/Tooltip.svelte";
 	import { page } from "$app/stores";
-	import Modal from "$lib/components/Modal.svelte";
+	import Modal from "../lib/components/Modal.svelte";
 	import { onMount } from "svelte";
-	import { customBackground } from "$lib/store";
-	import { Email } from "$lib/Constants";
+	import { customBackground } from "../lib/store";
+	import { Email } from "../lib/Constants";
 	import SocialIcons from "@rodneylab/svelte-social-icons";
-	import { locale, locales } from "../i18n";
-	import { reveal } from "svelte-reveal";
+	import { t, locale, locales } from "../i18n";
 
 	let copied = false;
 	const cookieEnabled = false;
@@ -112,10 +111,10 @@
 		<Button>Send Email</Button>
 	</div>
 </Modal>
-<Navbar segment={$page.url.pathname} />
+<NavBar segment={$page.url.pathname} />
 
 <slot />
-<hr style="width: 92%;" />
+<hr class="footerLine" />
 <footer>
 	<p>
 		<select bind:value={$locale}>
@@ -124,20 +123,38 @@
 			{/each}
 		</select>
 	</p>
-	<p>Esse site foi desenvolvido com base no projeto de Lovelace</p>
-</footer>
-
-<div class="signature">
 	<div class="socialNetworks">
-		<SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
-		<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
-		<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
-		<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
-		<SocialIcons network="youtube" fgColor="#eeeeee" bgColor="transparent" />
-		<SocialIcons network="twitter" fgColor="#eeeeee" bgColor="transparent" />
+		<a href="https://github.com/victorgois"
+			><SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
+		</a>
+		<a href="mailto:victorgois18@gmail.com">
+			<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
+		</a>
+		<a href="https://medium.com/@victorgispacheco">
+			<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
+		</a>
+		<a href="https://www.linkedin.com/in/victorgoisp/">
+			<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
+		</a>
 	</div>
-	Created by<a class="me" href="/about">victorgois</a> ❤️ with
-	<span class="svelte">Svelte</span>
+</footer>
+<div class="signature">
+	<div class="">
+		{#if $locale === "en"}
+			{$t("footer.paragraph1")}
+			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+				>Gianmarco Ladvace's project</a
+			>
+			{$t("footer.paragraph2")}
+		{/if}
+		{#if $locale === "pt"}
+			{$t("footer.paragraph1")}
+			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+				>Gianmarco Ladvace</a
+			>
+			{$t("footer.paragraph2")}
+		{/if}
+	</div>
 </div>
 
 <style>
@@ -306,7 +323,6 @@
 	.signature {
 		font-size: 10px;
 		font-weight: 400;
-		padding: 30px 0;
 		max-width: 900px;
 		text-align: center;
 		width: 100%;
@@ -341,6 +357,16 @@
 		align-items: center;
 	}
 
+	.footerLine {
+		display: block;
+		height: 1px;
+		opacity: 50%;
+		border: 0;
+		border-top: 1px solid #ccc;
+		margin: 1em 0;
+		padding: 0;
+	}
+
 	footer {
 		display: flex;
 		flex-direction: row;
@@ -350,7 +376,7 @@
 
 	footer p {
 		margin: 1px;
-		padding: 1px;
+		padding: 0.5em;
 		font-size: small;
 	}
 

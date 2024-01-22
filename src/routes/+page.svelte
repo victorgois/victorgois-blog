@@ -1,8 +1,8 @@
 <script lang="ts">
-	import TechChips from "$lib/components/TechChips.svelte";
-	import TechDetail from "$lib/components/TechDetail.svelte";
-	import { techList } from "$lib/Constants";
-	import { selectedTechStore } from "$lib/store";
+	import TechChips from "../lib/components/TechChips.svelte";
+	import TechDetail from "../lib/components/TechDetail.svelte";
+	import { techList } from "../lib/Constants";
+	import { selectedTechStore } from "../lib/store";
 	import { reveal } from "svelte-reveal";
 	import vic from "$lib/assets/vic.gif";
 	import { t, locale } from "../i18n";
@@ -38,13 +38,15 @@
 <main>
 	<div class="column">
 		<div class="row">
-			<div class="presentation" use:reveal>
-				<h1 use:reveal={{ transition: "fade" }}>
-					{$t("homepage.presentation1")}
-				</h1>
-			</div>
-			<div class="presentation">
-				<img src={vic} alt={name} width="350px" height="350px" />
+			<div class="row">
+				<div class="presentation" use:reveal>
+					<h1 use:reveal={{ transition: "fade" }}>
+						{$t("homepage.presentation1")}
+					</h1>
+				</div>
+				<div class="presentation">
+					<img src={vic} alt={name} width="350px" height="350px" />
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -149,11 +151,6 @@
 		display: flex;
 		align-content: stretch;
 		flex-direction: column;
-	}
-
-	.footnote {
-		font-size: small;
-		text-align: center;
 	}
 
 	hr {
