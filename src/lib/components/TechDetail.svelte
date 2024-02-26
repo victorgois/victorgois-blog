@@ -7,7 +7,7 @@
 	import { createEventDispatcher } from "svelte";
 	import TechDetail from "$lib/components/TechDetail.svelte";
 	import { selectedTechStore } from "$lib/store";
-
+	import { t } from "../../i18n";
 	let techListVisible = true;
 	let selectedTech = "";
 
@@ -43,7 +43,7 @@
 	<h2>{techName}</h2>
 	{#each matchingExperiences as experience (experience.employee)}
 		<a href={experience.link}><h4>{experience.employee}</h4></a>
-		<p>{experience.description}</p>
+		<p>{$t(`homepage.description.${experience.title}`)}</p>
 		<TechChips techList={experience.chips} on:chipclick={handleChipClick} />
 	{:else}
 		<TechDetail techName={selectedTech} on:backclick={handleBackClick} />

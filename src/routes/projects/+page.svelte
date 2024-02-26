@@ -1,24 +1,26 @@
 <script>
-	import { locale, t } from "../../i18n";
+	import { t } from "../../i18n";
+	import { translations } from "../../translations";
+	const menuItems = [0, 1, 2, 3, 4];
 </script>
 
 <svelte:head>
-	<title>VictorGóis — Projects</title>
+	<title>Victor Góis — Projects</title>
 </svelte:head>
 <main>
 	<div class="column">
 		<div class="row">
 			<div class="menuWrapper">
 				<ul>
-					<li class="button">{$t("project.menu1")}</li>
-					<li class="button">{$t("project.menu2")}</li>
-					<li class="button">{$t("project.menu3")}</li>
-					<li class="button">{$t("project.menu4")}</li>
-					<li class="button">{$t("project.menu5")}</li>
+					{#each menuItems as item}
+						<li class="button">{$t(`project.menu${item}`)}</li>
+					{/each}
 				</ul>
 			</div>
 			<div>
-				<h1>{$t("project.menu1")}</h1>
+				{#each menuItems as item}
+					<h1>{$t(`project.menu${item}`)}</h1>
+				{/each}
 				<p class="note">
 					Note: most of my projects are under NDA so I am unable to share those projects. If there
 					is anything you would like to see further, please feel free to contact me.

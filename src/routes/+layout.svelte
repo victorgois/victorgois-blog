@@ -332,13 +332,6 @@
 		text-decoration: none;
 		color: #cfea11;
 	}
-	.signature .svelte {
-		color: #cfea11;
-	}
-
-	.signature .me {
-		color: #cfea11;
-	}
 
 	select {
 		border-radius: 4px;

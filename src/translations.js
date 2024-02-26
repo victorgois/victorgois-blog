@@ -23,11 +23,21 @@ export const translations = {
 		"homepage.route4": "blog",
 		"footer.paragraph1": "Desenvolvido por Victor Góis a partir do projeto de ",
 		"footer.paragraph2": "sob a Licença MIT",
-		"project.menu1": "Visão Geral",
-		"project.menu2": "Projetos de Software",
-		"project.menu3": "Trabalhos acadêmicos",
-		"project.menu4": "Tech Blog (em inglês)",
-		"project.menu5": "Ideias sobre mídia e comunicação"
+		"project.menu0": "Visão Geral",
+		"project.menu1": "Projetos de Software",
+		"project.menu2": "Trabalhos acadêmicos",
+		"project.menu3": "Tech Blog (em inglês)",
+		"project.menu4": "Ideias sobre mídia e comunicação",
+		"project.description0": ["Primeira experiência", "segunda experiência"],
+		"homepage.description.3778":
+			"Eu participei no desenvolvimento de um produto desde o início até a conclusão, envolvendo a normalização de dados de clientes em nossos bancos de dados, modelagem de esquema no backend, criação de API e consumo de dados via GraphQL em nosso aplicativo frontend. O produto final consistia em telas de dados estatísticos em tempo real, conectadas via WebSocket, apresentando gráficos e tabelas que destacam as operações de uma das maiores redes hospitalares da América Latina. Utilizamos React, MUI e Storybook para fornecer componentes personalizáveis. Criei testes funcionais usando Jest. Otimizei o desempenho do carregamento da página e a ordenação de tabelas de texto a partir de insights da análise de perfil.",
+		"homepage.description.nexo":
+			"Eu participei no desenvolvimento do Nexo 3.0, a nova versão do site da publicação, desenvolvido com Next.js, Typescript e GraphQL. Como equipe, redesenhamos todos os componentes da publicação usando styled components. Também nesse contexto, desenvolvi um Progressive Web App em conjunto com o Next.js. Participei da manutenção do tema PHP WordPress para o site da Revista Gama. Desenvolvi histórias interativas digitais usando CSS, HTML e D3.js. Criei modelos de newsletter com XML e HTML. Desenvolvi scripts em Python para automatizar processos internos.",
+		"homepage.description.omnilogic":
+			"Desenvolvi scripts de rastreamento para um marketplace, métricas de negócios e infraestrutura, e modelos de e-mails e apresentação utilizando tecnologias como Java, JavaScript, React, GraphQL, Elasticsearch e Docker. Criei painéis de controle baseados em dados utilizando React.",
+		"homepage.description.8d":
+			"Desenvolvi sites no ambiente WordPress, utilizando plugins como Elementor e WooCommerce. Criei páginas de destino (landing pages) utilizando HTML, CSS e JavaScript.",
+		"homepage.description.freela": "Desenvolvendo projetos web desde 2018."
 	},
 	en: {
 		"homepage.presentation1":
@@ -55,7 +65,16 @@ export const translations = {
 		"project.menu2": "Software Projects",
 		"project.menu3": "Academic Work",
 		"project.menu4": "Tech Blog",
-		"project.menu5": "Thoughts on media and communication (on portuguese)"
+		"project.menu5": "Thoughts on media and communication (on portuguese)",
+		"homepage.description.3778":
+			"I’ve participated in the development of a product from inception to completion, involving data normalization of client data in our databases, backend schema modeling, API creation, and data consumption via GraphQL in our frontend app. The final product consisted of real-time statistical data screens, connected via WebSocket, featuring graphs and tables showcasing operations of one of the largest hospital networks in Latin America. Utilized React, MUI and Storybook for delivering customizable components. Created functional tests using Jest. Optmized the page load perfomance and text tables ordering from profiling analysis insights.",
+		"homepage.description.nexo":
+			"I’ve participated in the development of Nexo 3.0, the new version of the publication’s website, developed with Next.js, Typescript and Graphql. As a team, we redesigned all publication’s components using styled components. Also in this context, I developed a Progressive Web App togheter with Next.js. Participated in the maintenance of the PHP WordPress theme for Revista Gama’s website. Developed digital interactive stories using CSS, HTML, and D3.js. Created newsletter templates with XML and HTML. I've developed python scripts to automatize internal processes.",
+		"homepage.description.omnilogic":
+			"Developed marketplace tracking scripts, business, and infrastructure metrics, emails, and showcase templates using technologies such as Java, JavaScript, React, GraphQL, Elasticsearch, and Docker. Created data-driven dashboards using React.",
+		"homepage.description.8d":
+			"Developed websites in the WordPress environment using plugins like Elementor and WooCommerce. Created landing pages using HTML, CSS, and JavaScript.",
+		"homepage.description.freela": "Developing web projects since 2018"
 	}
 };
 
