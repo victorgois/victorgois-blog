@@ -37,7 +37,10 @@ export const translations = {
 			"Desenvolvi scripts de rastreamento para um marketplace, métricas de negócios e infraestrutura, e modelos de e-mails e apresentação utilizando tecnologias como Java, JavaScript, React, GraphQL, Elasticsearch e Docker. Criei painéis de controle baseados em dados utilizando React.",
 		"homepage.description.8d":
 			"Desenvolvi sites no ambiente WordPress, utilizando plugins como Elementor e WooCommerce. Criei páginas de destino (landing pages) utilizando HTML, CSS e JavaScript.",
-		"homepage.description.freela": "Desenvolvendo projetos web desde 2018."
+		"homepage.description.freela": "Desenvolvendo projetos web desde 2018.",
+		"blog.title": "Artigos",
+		"blog.readMore": "Leia o artigo",
+		"project.description1": "Essa é a visão geral"
 	},
 	en: {
 		"homepage.presentation1":
@@ -74,7 +77,10 @@ export const translations = {
 			"Developed marketplace tracking scripts, business, and infrastructure metrics, emails, and showcase templates using technologies such as Java, JavaScript, React, GraphQL, Elasticsearch, and Docker. Created data-driven dashboards using React.",
 		"homepage.description.8d":
 			"Developed websites in the WordPress environment using plugins like Elementor and WooCommerce. Created landing pages using HTML, CSS, and JavaScript.",
-		"homepage.description.freela": "Developing web projects since 2018"
+		"homepage.description.freela": "Developing web projects since 2018",
+		"blog.title": "Articles",
+		"blog.readMore": "Read Article",
+		"project.description1": "This is the overview"
 	}
 };
 

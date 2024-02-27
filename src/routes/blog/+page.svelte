@@ -1,4 +1,5 @@
 <script>
+	import { t } from "../../i18n";
 	export let data;
 	let devToArticles = data.devToArticles;
 
@@ -10,12 +11,12 @@
 </script>
 
 <svelte:head>
-	<title>VictorGóis — Blog</title>
+	<title>Victor Góis — Blog</title>
 </svelte:head>
 
 <div class="articlesContainer">
 	<div class="articles">
-		<h1>Articles</h1>
+		<h1>{$t("blog.title")}</h1>
 
 		{#each filteredArticles as article}
 			<div class="article">
@@ -33,7 +34,7 @@
 					href={article.id ? `/blog/${article.id}` : article.link}
 					target={!article.id ? "_blank" : "_self"}
 				>
-					<div class="button">Read Article =></div>
+					<div class="button">{$t("blog.readMore")}</div>
 				</a>
 			</div>
 		{/each}

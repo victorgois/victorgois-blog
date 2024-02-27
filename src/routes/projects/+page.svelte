@@ -1,7 +1,22 @@
 <script>
 	import { t } from "../../i18n";
-	import { translations } from "../../translations";
 	const menuItems = [0, 1, 2, 3, 4];
+	const menuContent = [
+		"Descrição da visão geral",
+		"Descrição dos projetos de software",
+		"Lista de trabalhos acadêmicos",
+		"Lista dos posts do blog dev.to",
+		"Lista dos posts do blog medium"
+	];
+
+	/**
+	 * @type {number | null}
+	 */
+	let selectedMenuItem = null;
+
+	const handleClick = (/** @type {number} */ item) => {
+		selectedMenuItem = item;
+	};
 </script>
 
 <svelte:head>
@@ -12,15 +27,21 @@
 		<div class="row">
 			<div class="menuWrapper">
 				<ul>
-					{#each menuItems as item}
-						<li class="button">{$t(`project.menu${item}`)}</li>
+					{#each menuItems as item, index (item)}
+						<li>
+							<button style="animation-delay: {index * 0.3}s;" on:click={() => handleClick(item)}>
+								{$t(`project.menu${item}`)}</button
+							>
+						</li>
 					{/each}
 				</ul>
 			</div>
 			<div>
-				{#each menuItems as item}
-					<h1>{$t(`project.menu${item}`)}</h1>
-				{/each}
+				{#if selectedMenuItem !== null}
+					<div class="content">
+						<p>{menuContent[selectedMenuItem]}</p>
+					</div>
+				{/if}
 				<p class="note">
 					Note: most of my projects are under NDA so I am unable to share those projects. If there
 					is anything you would like to see further, please feel free to contact me.
@@ -64,24 +85,16 @@
 		display: flex;
 		width: 100%;
 	}
+
 	ul {
 		list-style-type: none;
 		padding: 0;
 	}
 
-	h1 {
+	button {
 		font-weight: 700;
 		text-align: start;
 		margin: 0 auto;
-	}
-
-	.button {
-		padding: 10px 0 10px 0;
-	}
-
-	@media (min-width: 900px) {
-		.button {
-			max-width: 200px;
-		}
+		cursor: pointer;
 	}
 </style>
