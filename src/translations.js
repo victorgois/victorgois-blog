@@ -64,11 +64,11 @@ export const translations = {
 		"homepage.route4": "blog",
 		"footer.paragraph1": "Developed by Victor Góis from  ",
 		"footer.paragraph2": "under the MIT License",
-		"project.menu1": "Overview",
-		"project.menu2": "Software Projects",
-		"project.menu3": "Academic Work",
-		"project.menu4": "Tech Blog",
-		"project.menu5": "Thoughts on media and communication (on portuguese)",
+		"project.menu0": "Overview",
+		"project.menu1": "Software Projects",
+		"project.menu2": "Academic Work",
+		"project.menu3": "Tech Blog",
+		"project.menu4": "Thoughts on media and communication (on portuguese)",
 		"homepage.description.3778":
 			"I’ve participated in the development of a product from inception to completion, involving data normalization of client data in our databases, backend schema modeling, API creation, and data consumption via GraphQL in our frontend app. The final product consisted of real-time statistical data screens, connected via WebSocket, featuring graphs and tables showcasing operations of one of the largest hospital networks in Latin America. Utilized React, MUI and Storybook for delivering customizable components. Created functional tests using Jest. Optmized the page load perfomance and text tables ordering from profiling analysis insights.",
 		"homepage.description.nexo":
