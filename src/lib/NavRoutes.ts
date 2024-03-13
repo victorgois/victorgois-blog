@@ -13,11 +13,11 @@ const routes = [
 		label: 'Stories'
 	},
 		*/
-	{
+	/* 	{
 		href: "/about",
 		label: "homepage.route3"
 	},
-
+ */
 	{
 		href: "/blog",
 		label: "homepage.route4"
