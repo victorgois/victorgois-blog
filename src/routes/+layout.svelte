@@ -326,6 +326,7 @@
 		max-width: 900px;
 		text-align: center;
 		width: 100%;
+		margin: 2rem 0 2rem 0;
 	}
 
 	.signature a {
