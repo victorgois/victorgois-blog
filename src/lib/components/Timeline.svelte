@@ -12,39 +12,53 @@
 	const options = [
 		{
 			year: "2011",
-			description: "Freshman BA Information Systems at Universidade Federal de Minas Gerais (UFMG)"
+			description: "Start BSc Information Systems at Universidade Federal de Minas Gerais (UFMG)",
+			image: "https://seeklogo.com/images/U/UFMG-logo-7B1478CE80-seeklogo.com.png"
 		},
-		{ year: "2013", description: "Internship as developer (first xp with web development)" },
 		{
 			year: "2014",
-			description: "Interchange BA Multimedia Marketing at Faschoschule Schmalkalden (Germany)"
+			description: "Academic Exchange at Faschoschule Schmalkalden (Germany)",
+			image:
+				"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/1280px-Flag_of_Germany.svg.png"
 		},
-		{ year: "2016", description: "Back to Brazil. Switched major to journalism" },
+		{
+			year: "2016",
+			description: "Back to Brazil. Switched major to journalism",
+			image:
+				"https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png"
+		},
 		{
 			year: "2018",
-			description: "Started to work as freelancer dev working with python and wordpress (yeeeah)"
+			description: "Start to work as freelancer web developer"
+		},
+		{
+			year: "2019",
+			description: "Wordpress Developer - 8dpro"
 		},
 		{
 			year: "2020",
-			description:
-				"First and second fulltime jobs as a developer. First at 8dpro, as wordpress developer and then, at Omnilogic as a fullstack developer"
+			description: "Fullstack Developer - Omnilogic"
 		},
 		{
 			year: "2021",
-			description: "Graduated in journalism. Also started the MA in Communications at UFMG"
+			description: "Graduated in journalism. Also started the MA in Communications",
+			image: "https://seeklogo.com/images/U/UFMG-logo-7B1478CE80-seeklogo.com.png"
 		},
 		{
 			year: "2021",
-			description: "Started to work in Nexo Jornal as fullstack developer/journalist engineer"
+			description: "Fullstack Developer/Journalist Engineer - Nexo Jornal"
 		},
 		{
 			year: "2022",
-			description: "Started to work at 3778 healthcare as javascript fullstack developer"
+			description: "Fullstack Developer - 3778 healthcare"
 		},
-		{ year: "2023", description: "Finnished the master degree and dive into frontend development" },
+		{
+			year: "2023",
+			description: "Finnished the master degree and get more experience with software engineering"
+		},
 		{
 			year: "2024",
-			description: "Starting projects related to data journalism and digital storytelling"
+			description: "..."
 		}
 	];
 </script>
@@ -63,6 +77,9 @@
 			</TimelineSeparator>
 			<TimelineContent>
 				<p>{option.description}</p>
+				{#if option.image}
+					<img alt="teste" src={option.image} style="width: 60px;" />
+				{/if}
 			</TimelineContent>
 		</TimelineItem>
 	{/each}
