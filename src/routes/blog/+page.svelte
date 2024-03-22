@@ -1,5 +1,5 @@
 <script>
-	import { t } from "../../i18n";
+	import { t, locale } from "../../i18n";
 	export let data;
 	let devToArticles = data.devToArticles;
 
@@ -39,7 +39,11 @@
 			</div>
 		{/each}
 		{#if filteredArticles.length === 0}
-			<div>No Articles</div>
+			{#if $locale === "en"}
+				<div>No Articles</div>
+			{:else}
+				<div>Sem artigos</div>
+			{/if}
 		{/if}
 	</div>
 </div>
@@ -47,12 +51,11 @@
 <style>
 	.articlesContainer {
 		width: 100%;
-		max-width: 900px;
+		max-width: 700px;
 		display: flex;
 		justify-content: center;
 		box-sizing: border-box;
 		text-align: center;
-		padding: 1em;
 		margin: 0 auto;
 		text-align: center;
 	}
@@ -112,9 +115,6 @@
 	}
 
 	@media (min-width: 900px) {
-		.articlesContainer {
-			padding: 0;
-		}
 		.articles > h1 {
 			font-size: 48px;
 			margin: 0 0 50px 0;
