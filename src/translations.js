@@ -25,10 +25,26 @@ export const translations = {
 		"footer.paragraph2": "sob a Licença MIT",
 		"project.menu0": "Visão Geral",
 		"project.menu1": "Formação acadêmica ",
-		"project.menu2": "Trabalho acadêmico publicado",
-		"project.menu3": "Projetos de Software",
-		"project.menu4": "Tech Blog (em português)",
-		"project.menu5": "Outras escritas",
+		"project.menu4": "Trabalho acadêmico publicado",
+		"project.menu2": "Projetos de software",
+		"project.menu4": "Blog",
+		"project.menu3": "Visualizações de dados",
+		"projectPageContent.overviewTitle": "Visão Geral",
+		"projectPageContent.overview": "<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 7 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+
+		"projectPageContent.academicBackgroundTitle": "Formação acadêmica",
+		"projectPageContent.academicBackground": "<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b>  Mestrado em Comunicação Social. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>A verdade nas Deepfakes. Uma análise semiótica de deepfakes nas eleições 2022</i>, Ano de Obtenção: 2023. Orientador: Geane Carvalho Alzamora. Coorientador: Conrado Mendes.Palavras-chave: semiótica; deepfakes; inteligência artificial</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Graduação em Jornalismo. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>PROTOCOLOS, PLATAFORMAS E APIS, Experimentações com dados do Google News, Twitter e YouTube sobre o #BrequeDosApps.</i> Orientador: Carlos Frederico de Brito D'Andréa. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPq, Brasil.</li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Intercâmbio acadêmico <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Alemanha</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Graduação interrompida em 2016 em Sistemas de Informação. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil</li>",
+		"projectPageContent.dataVisTitle": "Visualizações de dados",
+		"projectPageContent.dataVis": "exemplo",
+		"projectPageContent.publishedWorkTitle": "Trabalho acadêmico publicado",
+    "projectPageContent.publishedWork": "<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: procedimentos metodológicos.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Sociedade da desinformação e infodemia. 1ed.Belo Horizonte: Selo PPGCOM/UFMG, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>O ECOSSISTEMA POLÍTICO NO YOUTUBE: UMA ANÁLISE DE REDE DOS YOUTUBERS INDICADOS PELO PRESIDENTE. 2019.</i> (Apresentação de Trabalho/Simpósio).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lésbicas no YouTube: análises e visualizações</i>. 2019. (Apresentação de Trabalho/Seminário).</li>",
+		
+		"projectPageContent.softwareProjectsTitle": "Projetos de software",
+    "projectPageContent.softwareProjects": "Explore alguns de meus projetos. Você pode conferir meus projetos completos no github ou no tableau public",
+
+		"projectPageContent.techBlogTitle": "Tech blog",
+		"projectPageContent.techBlog": "Descubra nossas publicações mais recentes no blog dev.to, cobrindo uma variedade de tópicos de tecnologia.",
+				        
 		"project.description0": ["Primeira experiência", "segunda experiência"],
 		"homepage.description.3778":
 			"Eu participei no desenvolvimento de um produto desde o início até a conclusão, envolvendo a normalização de dados de clientes em nossos bancos de dados, modelagem de esquema no backend, criação de API e consumo de dados via GraphQL em nosso aplicativo frontend. O produto final consistia em telas de dados estatísticos em tempo real, conectadas via WebSocket, apresentando gráficos e tabelas que destacam as operações de uma das maiores redes hospitalares da América Latina. Utilizamos React, MUI e Storybook para fornecer componentes personalizáveis. Criei testes funcionais usando Jest. Otimizei o desempenho do carregamento da página e a ordenação de tabelas de texto a partir de insights da análise de perfil.",
@@ -47,7 +63,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Hi! I'm Victor, a Journalist/ Software Engineer from 🇧🇷, specializing in JavaScript frontend development and Data Visualization.",
 		"homepage.presentation2":
-			"👋 I'm a JavaScript developer with +3 years of experience and comprehensive skills in technologies such as Node, React, Jest, GraphQL, Next.js, SQL and CSS. My experience includes applying TDD, BDD concepts and clean code practices, creating screens, components and data visualizations.",
+			"👋 I'm a JavaScript developer with 4 years of experience and skilled in technologies such as Javascript, Typescript React, Jest, GraphQL, Svelte, Next.js, SQL and CSS. My experience includes applying TDD, BDD concepts and clean code practices, creating screens, components and data visualizations.",
 		"homepage.presentation3":
 			"🔧 I have extensive experience working in agile teams, where I learned to collaborate efficiently and drive the delivery of innovative projects. My biggest passion is bringing	data to life, whether through numerical calculations or transforming any type of media into captivating interfaces or telling stories through interactive infographics.",
 		"homepage.longPresentation1": "Tech stacks I have most experience with",
@@ -65,18 +81,31 @@ export const translations = {
 		"homepage.route4": "blog",
 		"footer.paragraph1": "Developed by Victor Góis from  ",
 		"footer.paragraph2": "under the MIT License",
-		"project.menu0": "Visão Geral",
-		"project.menu1": "Formação acadêmica ",
-		"project.menu2": "Trabalho acadêmico publicado",
-		"project.menu3": "Projetos de software",
-		"project.menu4": "Tech blog (em português)",
-		"project.menu5": "Outras escritas",
 		"project.menu0": "Overview",
 		"project.menu1": "Education",
-		"project.menu2": "Academic work",
-		"project.menu3": "Software projects",
-		"project.menu4": "Tech blog (in portuguese)",
-		"project.menu5": "Other writtens",
+		"project.menu2": "Software projects",
+		"project.menu3": "Data visualizations",
+		"project.menu4": "Academic work",
+		"project.menu5": "Tech blog (in portuguese)",
+		"projectPageContent.overviewTitle": "Overview",
+		"projectPageContent.overview": "<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 6 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+		"projectPageContent.overview": "<p style='font-size: 14px'>I'm Victor, a journalist, graduated from the <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>. I've been working in technology for about 6 years, the last 4 as software developer.",
+		"projectPageContent.academicBackgroundTitle": "Education",
+		"projectPageContent.academicBackground": "<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> Master's in Social Communication. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>Truth in Deepfakes. A semiotic analysis of deepfakes in the 2022 elections</i>, Year of Completion: 2023. Advisor: Geane Carvalho Alzamora. Co-advisor: Conrado Mendes. Keywords: semiotics; deepfakes; artificial intelligence</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Bachelor's in Journalism. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>PROTOCOLS, PLATFORMS, AND APIS, Experimentations with Google News, Twitter, and YouTube data on #BrequeDosApps.</i> Advisor: Carlos Frederico de Brito D'Andréa. Scholarship Holder: National Council for Scientific and Technological Development, CNPq, Brazil.</li><li style='list-style-type",
+		"projectPageContent.dataVisTitle": "Data Visualizations",
+		"projectPageContent.dataVis": "example",
+		"projectPageContent.publishedWorkTitle": "Trabalho acadêmico publicado",
+		"projectPageContent.publishedWork": "<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: methodological procedures.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Society of disinformation and infodemic. 1st ed. Belo Horizonte: PPGCOM/UFMG Seal, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>The Political Ecosystem on YouTube: A Network Analysis of YouTubers Indicated by the President. 2019.</i> (Presentation at Symposium).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lesbians on YouTube: analyses and visualizations</i>. 2019. (Presentation at Seminar).</li>",
+
+		"projectPageContent.softwareProjectsTitle": "Projetos de software",
+		"projectPageContent.softwareProjects": "Explore some of my projects. You can check out my complete projects on GitHub or on Tableau Public",
+
+		"projectPageContent.techBlogTitle": "Tech blog",
+		"projectPageContent.techBlog": "Discover our latest publications on the dev.to blog, covering a variety of technology topics.",
+
+		"projectPageContent.otherWritingsTitle": "Outras escritas",
+		"projectPageContent.otherWritings": "Your English translation of other writings content here",
+
 		"homepage.description.3778":
 			"I’ve participated in the development of a product from inception to completion, involving data normalization of client data in our databases, backend schema modeling, API creation, and data consumption via GraphQL in our frontend app. The final product consisted of real-time statistical data screens, connected via WebSocket, featuring graphs and tables showcasing operations of one of the largest hospital networks in Latin America. Utilized React, MUI and Storybook for delivering customizable components. Created functional tests using Jest. Optmized the page load perfomance and text tables ordering from profiling analysis insights.",
 		"homepage.description.nexo":
@@ -113,7 +142,7 @@ export const menu = {
 		"homepage.presentation1":
 			"Oi! Eu sou Victor, um jornalista/engenheiro de software do 🇧🇷, especializado em desenvolvimento frontend com JavaScript e visualização de dados.",
 		"homepage.presentation2":
-			"👋 Sou um desenvolvedor JavaScript com mais de 3 anos de experiência e habilidades abrangentes em tecnologias como Node, React, Jest, GraphQL, Next.js, SQL e CSS. Minha experiência inclui a aplicação de conceitos de TDD, BDD e práticas de código limpo, criando telas, componentes e visualizações de dados.",
+			"👋 Sou um desenvolvedor JavaScript com mais de 4 anos de experiência e habilidades abrangentes em tecnologias como Javascript, Typescript React, Jest, GraphQL, Svelte, Next.js, SQL and CSS. Minha experiência inclui a aplicação de conceitos de TDD, BDD e práticas de código limpo, criando telas, componentes e visualizações de dados.",
 		"homepage.presentation3":
 			"🔧 Tenho uma ampla experiência trabalhando em equipes ágeis, onde aprendi a colaborar eficientemente e impulsionar a entrega de projetos inovadores. Minha maior paixão é dar vida aos dados, seja por meio de cálculos numéricos, transformando qualquer tipo de mídia em interfaces cativantes ou contando histórias por meio de infográficos interativos.",
 		"homepage.longPresentation1": "Tecnologias que tenho experiência",
