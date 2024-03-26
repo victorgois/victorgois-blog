@@ -41,13 +41,11 @@
 	class:hidden={!isVisible}
 >
 	<noscript>
-		<a href="#">
-			<img
-				alt="Trending Topics Twitter | Atravessamentos Política e Pandemia |  26/01-21/06/20Hashtags/Tópicos Trending x Tempo "
-				src="https://public.tableau.com/static/images/ev/everyHashtagsTrending/Sheet12/1_rss.png"
-				style="border: none"
-			/>
-		</a>
+		<img
+			alt="Trending Topics Twitter | Atravessamentos Política e Pandemia |  26/01-21/06/20Hashtags/Tópicos Trending x Tempo "
+			src="https://public.tableau.com/static/images/ev/everyHashtagsTrending/Sheet12/1_rss.png"
+			style="border: none"
+		/>
 	</noscript>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<object class="tableauViz" style="display:none;">
