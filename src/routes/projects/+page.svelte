@@ -3,9 +3,11 @@
 	import Timeline from "../../lib/components/Timeline.svelte";
 	import TableauGraphs from "../../lib/components/TableauGraphs.svelte";
 	import { reveal } from "svelte-reveal";
+	import { derived } from "svelte/store";
 
 	const menuItems = [0, 1, 2, 3, 4, 5];
-	const menuContent = [
+
+	const menuContent = derived([t], ([$t]) => [
 		{
 			Title: $t("projectPageContent.overviewTitle"),
 			Content: $t("projectPageContent.overview")
@@ -30,20 +32,21 @@
 			Title: $t("projectPageContent.techBlogTitle"),
 			Content: $t("projectPageContent.techBlog")
 		}
-	];
+	]);
 
 	/**
 	 * @type {number | null}
 	 */
+
 	let selectedMenuItem = null;
-	let showTimeline = false; // Adicionado para controlar a visibilidade da timeline
+	let showTimeline = false;
 
 	const handleClick = (/** @type {number} */ item) => {
 		selectedMenuItem = item;
 	};
 
 	const toggleTimeline = () => {
-		showTimeline = !showTimeline; // Alterna a visibilidade da timeline
+		showTimeline = !showTimeline;
 	};
 </script>
 
@@ -67,16 +70,18 @@
 			<div class="menuContent">
 				{#if selectedMenuItem !== null}
 					<div use:reveal={{ transition: "fade" }} class="content">
-						<h4>{menuContent[selectedMenuItem].Title}</h4>
-						<p use:reveal={{ transition: "fade" }}>{@html menuContent[selectedMenuItem].Content}</p>
+						<h4>{$menuContent[selectedMenuItem].Title}</h4>
+						<p use:reveal={{ transition: "fade" }}>
+							{@html $menuContent[selectedMenuItem].Content}
+						</p>
 					</div>
 					{#if selectedMenuItem === 3}
 						<TableauGraphs />
 					{/if}
 				{:else}
 					<div class="content">
-						<h4>{menuContent[0].Title}</h4>
-						<p use:reveal={{ transition: "fade" }}>{@html menuContent[0].Content}</p>
+						<h4>{$menuContent[0].Title}</h4>
+						<p use:reveal={{ transition: "fade" }}>{@html $menuContent[0].Content}</p>
 					</div>
 				{/if}
 			</div>
@@ -87,9 +92,7 @@
 					<button on:click={toggleTimeline}
 						>{#if $locale === "en"}Professional Timeline{:else}Timeline Profissional{/if}</button
 					>
-					<!-- Alterado de h4 para button -->
 					{#if showTimeline}
-						<!-- Adicionado para controlar a visibilidade da timeline -->
 						<Timeline />
 					{/if}
 				</div>
