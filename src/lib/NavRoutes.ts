@@ -21,6 +21,10 @@ const routes = [
 	{
 		href: "/blog",
 		label: "homepage.route4"
+	},
+	{
+		href: "/projects/visualizations",
+		label: "homepage.route5"
 	}
 ];
 

@@ -111,51 +111,56 @@
 		<Button>Send Email</Button>
 	</div>
 </Modal>
-<NavBar segment={$page.url.pathname} />
 
-<slot />
-<hr class="footerLine" />
-<footer>
-	<p>
-		<select bind:value={$locale}>
-			{#each locales as l}
-				<option value={l}>{l}</option>
-			{/each}
-		</select>
-	</p>
-	<div class="socialNetworks">
-		<a href="https://github.com/victorgois"
-			><SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="mailto:victorgois18@gmail.com">
-			<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="https://medium.com/@victorgispacheco">
-			<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="https://www.linkedin.com/in/victorgoisp/">
-			<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
+{#if $page.url.pathname === "/projects/visualizations/vis1"}
+	<slot />
+{:else}
+	<NavBar segment={$page.url.pathname} />
+
+	<slot />
+	<hr class="footerLine" />
+	<footer>
+		<p>
+			<select bind:value={$locale}>
+				{#each locales as l}
+					<option value={l}>{l}</option>
+				{/each}
+			</select>
+		</p>
+		<div class="socialNetworks">
+			<a href="https://github.com/victorgois"
+				><SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
+			</a>
+			<a href="mailto:victorgois18@gmail.com">
+				<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
+			</a>
+			<a href="https://medium.com/@victorgispacheco">
+				<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
+			</a>
+			<a href="https://www.linkedin.com/in/victorgoisp/">
+				<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
+			</a>
+		</div>
+	</footer>
+	<div class="signature">
+		<div class="">
+			{#if $locale === "en"}
+				{$t("footer.paragraph1")}
+				<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+					>Gianmarco Ladvace's project</a
+				>
+				{$t("footer.paragraph2")}
+			{/if}
+			{#if $locale === "pt"}
+				{$t("footer.paragraph1")}
+				<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+					>Gianmarco Ladvace</a
+				>
+				{$t("footer.paragraph2")}
+			{/if}
+		</div>
 	</div>
-</footer>
-<div class="signature">
-	<div class="">
-		{#if $locale === "en"}
-			{$t("footer.paragraph1")}
-			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-				>Gianmarco Ladvace's project</a
-			>
-			{$t("footer.paragraph2")}
-		{/if}
-		{#if $locale === "pt"}
-			{$t("footer.paragraph1")}
-			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-				>Gianmarco Ladvace</a
-			>
-			{$t("footer.paragraph2")}
-		{/if}
-	</div>
-</div>
+{/if}
 
 <style>
 	* {
