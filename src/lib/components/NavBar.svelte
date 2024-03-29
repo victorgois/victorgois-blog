@@ -52,12 +52,11 @@
 
 	.selected {
 		position: relative;
-		color: white;
 	}
 
 	.button:hover::after {
 		content: "";
-		background: white;
+		background: var(--color);
 		display: block;
 		height: 3px;
 		width: 100%;
@@ -67,6 +66,7 @@
 
 	.button.selected:after {
 		content: "";
+		color: var(--color);
 		background: white;
 		display: block;
 		height: 3px;
@@ -86,7 +86,6 @@
 
 	.innerContainer :global(a) {
 		height: 30px;
-		color: white;
 	}
 
 	select {
@@ -142,11 +141,11 @@
 		text-decoration: none;
 		position: relative;
 		margin: 10px;
-		color: hsla(0, 0%, 100%, 0.4);
+		color: var(--color);
 	}
 
 	.button.selected {
-		color: white;
+		color: var(--visitedColor);
 	}
 
 	.burger :global(button) {

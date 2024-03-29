@@ -1,11 +1,8 @@
 <script>
 	import skills from "$lib/Skills";
-	import { customBackground } from "$lib/store";
 	import Timeline from "$lib/components/Timeline.svelte";
 	import { reveal } from "svelte-reveal";
 	import { t, locale } from "../../i18n";
-
-	customBackground.set("#8B4513");
 </script>
 
 <svelte:head>

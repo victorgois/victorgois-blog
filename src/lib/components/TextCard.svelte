@@ -15,12 +15,12 @@
 		color: black;
 		background-color: white;
 		box-shadow: 5px 5px #888888;
-		padding: 10px;
+		padding: 20px;
 		margin: 10px;
 		font-size: large;
 		font-weight: 300;
 		font-family: Georgia, serif;
-		width: 50%;
+		max-width: 300px;
 		height: min-content;
 	}
 </style>

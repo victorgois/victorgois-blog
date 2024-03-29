@@ -5,6 +5,7 @@
 	import { reveal } from "svelte-reveal";
 	import { derived } from "svelte/store";
 
+	import { visualizations } from "../../lib/store";
 	const menuItems = [0, 1, 2, 3, 4, 5];
 
 	const menuContent = derived([t], ([$t]) => [
@@ -71,13 +72,19 @@
 				{#if selectedMenuItem !== null}
 					<div use:reveal={{ transition: "fade" }} class="content">
 						<h4>{$menuContent[selectedMenuItem].Title}</h4>
-						<p use:reveal={{ transition: "fade" }}>
-							{@html $menuContent[selectedMenuItem].Content}
-						</p>
+						{#if selectedMenuItem !== 3}
+							<p use:reveal={{ transition: "fade" }}>
+								{@html $menuContent[selectedMenuItem].Content}
+							</p>
+						{:else}
+							<p use:reveal={{ transition: "fade" }}>
+								{#each Object.values(visualizations) as { title, slug }}
+									<li><a href={`projects/visualizations/${slug}`}>{title}</a></li>
+								{/each}
+							</p>
+							<TableauGraphs />
+						{/if}
 					</div>
-					{#if selectedMenuItem === 3}
-						<TableauGraphs />
-					{/if}
 				{:else}
 					<div class="content">
 						<h4>{$menuContent[0].Title}</h4>
@@ -150,5 +157,9 @@
 		text-align: start;
 		margin: 0 auto;
 		cursor: pointer;
+	}
+
+	li {
+		list-style: none;
 	}
 </style>

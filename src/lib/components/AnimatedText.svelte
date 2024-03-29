@@ -2,7 +2,7 @@
 	import { reveal } from "svelte-reveal";
 	import { onMount } from "svelte";
 
-	let words = ["escreve", "entende", "funciona"];
+	let words = ["responde", "entende", "funciona"];
 	let currentWord = words[0];
 	let index = 0;
 
@@ -24,7 +24,7 @@
 </script>
 
 <div class="animated-text" use:reveal={{ transition: "fade" }}>
-	<span>É</span><span>desse</span><span>jeito</span><span>que</span><span>ele</span><span
+	<span>Explicamos</span><span>visualmente</span><span>como</span><span>ele</span><span
 		>{currentWord}</span
 	>
 </div>
@@ -37,7 +37,7 @@
 		border-radius: 0%;
 		margin-right: 1rem;
 		padding: 10px;
-		font-size: 36px;
+		font-size: 28px;
 		font-weight: 400;
 		font-family: "Abril Fatface", serif;
 	}

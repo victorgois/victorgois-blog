@@ -22,7 +22,7 @@
 	}
 
 	svg line {
-		stroke: currentColor;
+		stroke: var(--color);
 		stroke-width: 3;
 		transition: transform 0.3s ease-in-out;
 	}

@@ -5,7 +5,15 @@
 	import { page } from "$app/stores";
 	import Modal from "../lib/components/Modal.svelte";
 	import { onMount } from "svelte";
-	import { customBackground } from "../lib/store";
+	import {
+		visualizationTheme,
+		customBackground,
+		defaultTheme,
+		customColor,
+		customFontFamily,
+		customVisitedColor,
+		customSecondaryColor
+	} from "../lib/store";
 	import { Email } from "../lib/Constants";
 	import SocialIcons from "@rodneylab/svelte-social-icons";
 	import { t, locale, locales } from "../i18n";
@@ -13,6 +21,15 @@
 	let copied = false;
 	const cookieEnabled = false;
 	$: showCookieModal = false;
+
+	$: {
+		if ($page.url.pathname === "/projects/visualizations/como-funciona-chatgpt") {
+			customBackground.set(visualizationTheme.backgroundColor);
+			customSecondaryColor.set(visualizationTheme.secondaryColor);
+		} else {
+			customBackground.set(defaultTheme.backgroundColor);
+		}
+	}
 
 	interface CssVariables {
 		[name: string]: string;
@@ -46,17 +63,17 @@
 		if (showCookie !== null) showCookieModal = JSON.parse(showCookie);
 		else showCookieModal = true;
 	});
-
-	// beforeNavigate(({ to }) => {
-	// 	const pathName = to.pathname;
-	// 	const route = routes.find((route) => pathName === route.href);
-	// 	if (!route.customColor) {
-	// 		customBackground.set('#3E7941');
-	// 	} else customBackground.set(route.customColor);
-	// });
 </script>
 
-<svelte:body use:cssVariables={{ background: $customBackground }} />
+<svelte:body
+	use:cssVariables={{
+		background: $customBackground,
+		color: $customColor,
+		visitedColor: $customVisitedColor,
+		fontFamily: $customFontFamily,
+		secondaryColor: $customSecondaryColor
+	}}
+/>
 
 {#if showCookieModal && cookieEnabled}
 	<div class="cookieContainer">
@@ -112,7 +129,7 @@
 	</div>
 </Modal>
 
-{#if $page.url.pathname === "/projects/visualizations/vis1"}
+{#if $page.url.pathname === "/projects/visualizations/como-funciona-chatgpt"}
 	<slot />
 {:else}
 	<NavBar segment={$page.url.pathname} />
@@ -194,7 +211,7 @@
 	:global(#svelte) {
 		width: 100vw;
 		height: 100%;
-		max-width: 800px;
+		max-width: 1000px;
 
 		display: flex;
 		flex-direction: column;
@@ -208,20 +225,14 @@
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		font-family: "Fira Code", monospace;
-		background: rgb(2, 0, 36);
-		background: linear-gradient(
-			180deg,
-			rgb(2, 1, 21) 0%,
-			rgb(49, 49, 49) 54%,
-			rgba(255, 255, 255, 0.4990371148459384) 100%
-		);
+		font-family: var(--fontFamily);
+		background: var(--background);
 	}
 
 	:global(body) {
 		background-color: var(--background);
 		background-size: 200% 200%;
-		color: white;
+		color: var(--color);
 		margin: 0;
 		box-sizing: border-box;
 		display: grid;
@@ -269,11 +280,11 @@
 
 	:global(a) {
 		text-decoration: none;
-		color: rgb(200, 232, 16);
+		color: var(--visitedColor);
 	}
 
 	a {
-		color: rgb(200, 232, 16);
+		color: var(--visitedColor);
 		text-decoration: none;
 	}
 

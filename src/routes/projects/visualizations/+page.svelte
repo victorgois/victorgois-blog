@@ -1,8 +1,5 @@
 <script>
-	const visualizations = [
-		{ title: "Como funciona o ChatGPT?", slug: "vis1" },
-		{ title: "E as deepfakes?", slug: "vis2" }
-	];
+	import { visualizations } from "../../../lib/store";
 </script>
 
 <main>
