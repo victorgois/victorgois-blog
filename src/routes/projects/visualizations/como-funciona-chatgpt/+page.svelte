@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AnimatedText from "../../../../lib/components/AnimatedText.svelte";
 	import TextCard from "../../../../lib/components/TextCard.svelte";
-	import { onMount, onDestroy } from "svelte";
+	import { onMount } from "svelte";
 	import * as d3 from "d3";
 	import { reveal } from "svelte-reveal";
 
@@ -19,7 +19,7 @@
 		// Calcular a largura total dos textos
 		textNodes.each(function (d: any) {
 			const textLength = d.length;
-			const textWidth = textLength * 10; // Ajuste este valor conforme necessário
+			const textWidth = textLength; // Ajuste este valor conforme necessário
 			totalWidth += textWidth;
 		});
 
@@ -27,7 +27,7 @@
 		let currentX = 0;
 		textNodes.each(function (d: any) {
 			const textLength = d.length;
-			const textWidth = textLength * 10; // Ajuste este valor conforme necessário
+			const textWidth = textLength * 15; // Ajuste este valor conforme necessário
 			positions.push(currentX);
 			currentX += textWidth + spacing;
 		});
@@ -36,6 +36,28 @@
 		textNodes.remove();
 
 		return positions;
+	}
+
+	function animateText(svg: any) {
+		svg.append("g").attr("id", "rects");
+		svg.append("g").attr("id", "words");
+
+		svg
+			.select("#rects")
+			.selectAll("rect")
+			.data([0, 1, 2, 3, 4])
+			.enter()
+			.append("rect")
+			.attr("x", (d: any, i: number) => i)
+			.append("use")
+			.transition()
+			.duration(1000)
+			.attr("y", 0)
+			.attr("width", 50) // Largura do retângulo
+			.attr("height", 250) // Altura do retângulo
+			.style("fill", "white")
+			.style("stroke", "black")
+			.style("stroke-dasharray", "5,5");
 	}
 	onMount(() => {
 		// Add google fonts
@@ -47,44 +69,23 @@
 
 		const svg = d3.select("#pao-de-queijo-svg");
 
-		const words = ["Nós", "gostamos", "de", "pão", "de", "queijo"];
+		const words = ["Nós", "vamos", "de", "trem"];
 		const wordSpacing = 10;
 		const positions = calculateTextPositions(svg, words, wordSpacing);
 		// Espaçamento entre as palavras
 
+		console.log(positions);
 		svg
 			.selectAll("text")
 			.data(words)
 			.enter()
 			.append("text")
 			.text((d) => d)
-			.attr("x", (d, i) => positions[i] + wordSpacing * i) // Posiciona as palavras horizontalmente
+			.attr("x", (d, i) => positions[i] + wordSpacing) // Posiciona as palavras horizontalmente
 			.attr("y", 250) // Altura fixa para todas as palavras
-			.style("font-size", "16px")
+			.style("font-size", "24px")
 			.style("fill", "black")
 			.style("cy", "105");
-
-		function animateText() {
-			svg.append("g").attr("id", "rects");
-			svg.append("g").attr("id", "words");
-
-			svg
-				.select("#rects")
-				.selectAll("rect")
-				.data([0, 1, 2, 3, 4])
-				.enter()
-				.append("rect")
-				.attr("x", (d, i) => i)
-				.append("use")
-				.transition()
-				.duration(1000)
-				.attr("y", 0)
-				.attr("width", 50) // Largura do retângulo
-				.attr("height", 250) // Altura do retângulo
-				.style("fill", "white")
-				.style("stroke", "black")
-				.style("stroke-dasharray", "5,5");
-		}
 
 		/* svg
 			.selectAll("text")
@@ -159,7 +160,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 1000px;
+		max-width: 900px;
 	}
 
 	.content {
@@ -205,8 +206,8 @@
 		align-content: center;
 		margin: 1em;
 		font-size: 28px;
-		width: 365px;
-		max-width: 365px;
+		width: 355px;
+		max-width: 355px;
 	}
 
 	.progressBar {
