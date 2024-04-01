@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import * as d3 from "d3";
 	import { reveal } from "svelte-reveal";
+	import ProgressBar from "../../../../lib/components/ProgressBar.svelte";
 
 	function calculateTextPositions(svg: any, words: string[], spacing: number) {
 		const textNodes = svg
@@ -59,6 +60,7 @@
 			.style("stroke", "black")
 			.style("stroke-dasharray", "5,5");
 	}
+
 	onMount(() => {
 		// Add google fonts
 		const link = document.createElement("link");
@@ -69,12 +71,11 @@
 
 		const svg = d3.select("#pao-de-queijo-svg");
 
-		const words = ["Nós", "vamos", "de", "trem"];
+		const words = ["Nós", "vamos", "de", "trem", "?"];
 		const wordSpacing = 10;
 		const positions = calculateTextPositions(svg, words, wordSpacing);
 		// Espaçamento entre as palavras
 
-		console.log(positions);
 		svg
 			.selectAll("text")
 			.data(words)
@@ -99,13 +100,15 @@
 	});
 </script>
 
-<main on:scroll={() => console.log("funciona")}>
+<main>
+	<ProgressBar />
 	<div class="progressBar" />
 	<div class="container">
 		<h6>Inteligência Artificial</h6>
 		<h1>
 			<span>A </span><span>matemática </span>por <span>trás </span> <span />do <span />
-			<span>ChatGPT </span> <span>e </span> <span>de </span> <span>outros </span> <span>LLMs</span>
+			<span>ChatGPT </span> <span>e </span> <span>de </span> <span>outros </span>
+			<span>LLMs</span>
 		</h1>
 
 		<AnimatedText />
@@ -145,7 +148,8 @@
 			<svg id="pao-de-queijo-svg" width="100%" height="100%" />
 		</div>
 	</div>
-	<div style="height: 500px;" />
+
+	<div style="height: 800px;" />
 </main>
 
 <style>
