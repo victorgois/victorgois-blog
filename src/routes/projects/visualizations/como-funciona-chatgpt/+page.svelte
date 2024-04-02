@@ -69,6 +69,7 @@
 		const scrollWordEmbeddingSection = document.querySelector(
 			".scroll-word-embedding"
 		) as HTMLElement;
+		scrollWordEmbeddingSection.style.opacity = "1";
 		const longContainer = document.querySelector(".long-container") as HTMLElement;
 
 		const contentSection = document.querySelector(".content") as HTMLElement;
@@ -83,7 +84,6 @@
 			gapSection.style.height = `${viewportHeight}px`;
 			const gapHeight =
 				viewportHeight + (viewportHeight - mainSectionHeight) + (scrollTop - mainSectionHeight);
-			console.log(gapHeight);
 
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach((entry) => {
@@ -104,9 +104,9 @@
 
 	function drawSvg() {
 		// add svg to right column
-		const svg = d3.select("#pao-de-queijo-svg");
+		const svg = d3.select("#first-animated-phrase-svg");
 
-		const words = ["Nós", "vamos", "de", "trem", "?"];
+		const words = ["Nós", "vamos", "de", "bicicleta"];
 		const wordSpacing = 10;
 		const positions = calculateTextPositions(svg, words, wordSpacing);
 
@@ -124,12 +124,39 @@
 			.style("cy", "105");
 	}
 
+	function tokenizeSvg() {
+		const svg = d3.select("#first-animated-phrase-svg");
+		svg
+			.selectAll("text")
+			.transition()
+			.duration(2000)
+			.style("font-size", "12px")
+			.style("font-family", "Arial")
+			.attr("x", (d, i) => i * 20);
+	}
+
+	function checkCardPosition() {
+		const cards = document.querySelectorAll(".text-card");
+		cards.forEach((card, index) => {
+			const windowHeight = window.innerHeight;
+
+			(card as HTMLElement).style.marginBottom = `${windowHeight}px`;
+
+			const cardRect = card.getBoundingClientRect();
+			console.log(cardRect.top, cardRect.bottom, windowHeight / 2);
+			if (cardRect.top < windowHeight / 2 && index === 1) {
+				tokenizeSvg();
+			}
+		});
+	}
+
 	onMount(() => {
 		document.body.addEventListener("scroll", () => {
 			addGoogleFonts();
 			setElementsOpacity();
 			addDynamicPadding();
 			drawSvg();
+			checkCardPosition();
 		});
 	});
 </script>
@@ -208,7 +235,7 @@
 		</div>
 		<div class="right-column">
 			<div class="animationContent">
-				<svg id="pao-de-queijo-svg" width="100%" height="100%" />
+				<svg id="first-animated-phrase-svg" width="100%" height="100%" />
 			</div>
 		</div>
 	</div>
@@ -225,11 +252,6 @@
 		height: 0px;
 	}
 
-	.scroll-word-embedding {
-		width: 100%;
-		height: 100vh;
-	}
-
 	.container {
 		max-width: 800px;
 		margin-left: 2em;
@@ -240,6 +262,7 @@
 	.scroll-word-embedding {
 		width: 100%;
 		height: 100vh;
+		opacity: 0;
 	}
 
 	.long-container {
