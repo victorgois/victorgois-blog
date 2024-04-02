@@ -17,6 +17,7 @@
 		box-shadow: 5px 5px #888888;
 		padding: 20px;
 		margin: 10px;
+		margin-bottom: 300px;
 		font-size: large;
 		font-weight: 300;
 		font-family: Georgia, serif;

@@ -10,7 +10,6 @@
 				const windowHeight = window.innerHeight;
 				const documentHeight = document.body.scrollHeight;
 
-				const windowBottom = scrollTop + windowHeight;
 				const docHeight = Math.max(
 					documentHeight,
 					document.body.scrollHeight,
@@ -40,6 +39,8 @@
 		top: 0;
 		left: 0;
 		z-index: 1000;
+		background-color: #eaeaea;
+		opacity: 1;
 	}
 
 	.progress {

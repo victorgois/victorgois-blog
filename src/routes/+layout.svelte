@@ -209,10 +209,9 @@
 	}
 
 	:global(#svelte) {
-		width: 100vw;
+		width: 100%;
 		height: 100%;
-		max-width: 1000px;
-
+		max-width: 180vw;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -268,9 +267,9 @@
 	}
 
 	@media (min-width: 900px) {
-		:global(body) {
+		/* :global(body) {
 			padding: 0 100px;
-		}
+		} */
 	}
 
 	:global(a) {

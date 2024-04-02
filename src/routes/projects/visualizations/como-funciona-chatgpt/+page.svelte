@@ -5,6 +5,7 @@
 	import * as d3 from "d3";
 	import { reveal } from "svelte-reveal";
 	import ProgressBar from "../../../../lib/components/ProgressBar.svelte";
+	import Pallete from "../../../../lib/components/Pallete.svelte";
 
 	function calculateTextPositions(svg: any, words: string[], spacing: number) {
 		const textNodes = svg
@@ -39,43 +40,70 @@
 		return positions;
 	}
 
-	function animateText(svg: any) {
-		svg.append("g").attr("id", "rects");
-		svg.append("g").attr("id", "words");
-
-		svg
-			.select("#rects")
-			.selectAll("rect")
-			.data([0, 1, 2, 3, 4])
-			.enter()
-			.append("rect")
-			.attr("x", (d: any, i: number) => i)
-			.append("use")
-			.transition()
-			.duration(1000)
-			.attr("y", 0)
-			.attr("width", 50) // Largura do retângulo
-			.attr("height", 250) // Altura do retângulo
-			.style("fill", "white")
-			.style("stroke", "black")
-			.style("stroke-dasharray", "5,5");
+	function setElementsOpacity() {
+		const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		if (scrollTop >= 50) {
+			const spans = document.querySelectorAll(".container span") as NodeListOf<HTMLSpanElement>;
+			spans.forEach((span: HTMLSpanElement, index: number) => {
+				span.style.transition = `opacity ${index * 0.2}s`;
+				span.style.opacity = "0";
+			});
+		} else {
+			const spans = document.querySelectorAll(".container span") as NodeListOf<HTMLSpanElement>;
+			spans.forEach((span: HTMLSpanElement, index: number) => {
+				span.style.transition = `opacity ${index * 0.2}s`;
+				span.style.opacity = "1";
+			});
+		}
 	}
 
-	onMount(() => {
+	function addGoogleFonts() {
 		// Add google fonts
 		const link = document.createElement("link");
 		link.href =
 			"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap";
 		link.rel = "stylesheet";
 		document.head.appendChild(link);
+	}
 
+	function addDynamicPadding() {
+		const previousSection = document.querySelector(".main") as HTMLElement;
+		const leftColumn = document.querySelector(".left-column") as HTMLElement;
+		const content = document.querySelector(".content") as HTMLElement;
+
+		if (previousSection && leftColumn && content) {
+			const previousSectionRect = previousSection.getBoundingClientRect();
+			const contentRect = content.getBoundingClientRect();
+			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+			const visibleBottom = window.innerHeight + scrollTop;
+			const contentBottom = contentRect.top + contentRect.height;
+
+			const gapHeight = visibleBottom - contentBottom;
+
+			const leftColumHeight = window.innerHeight + contentBottom + 10;
+
+			console.log(" window.innerHeight: ", window.innerHeight, "scrollTop: ", scrollTop);
+
+			console.log("contentBottom: ", contentBottom, "visibleBottom: ", visibleBottom);
+
+			(document.querySelector(".gap-section") as HTMLElement)!.style.height = `${gapHeight}px`;
+
+			(document.querySelector(
+				".scroll-word-embedding"
+			) as HTMLElement)!.style.height = `${leftColumHeight}px`;
+		}
+	}
+
+	function drawSvg() {
+		// add svg to right column
 		const svg = d3.select("#pao-de-queijo-svg");
 
 		const words = ["Nós", "vamos", "de", "trem", "?"];
 		const wordSpacing = 10;
 		const positions = calculateTextPositions(svg, words, wordSpacing);
-		// Espaçamento entre as palavras
 
+		// Espaçamento entre as palavras
 		svg
 			.selectAll("text")
 			.data(words)
@@ -87,41 +115,43 @@
 			.style("font-size", "24px")
 			.style("fill", "black")
 			.style("cy", "105");
+	}
 
-		/* svg
-			.selectAll("text")
-			.transition()
-			.duration(1000)
-			.attr("x", (d, i) => i * 250 + i * 10) // Adicionar padding horizontal aos textos
-			.attr("y", 250) // Manter a posição vertical fixa
-			.style("font-size", "20px")
-			.style("fill", "black")
-			.style("cy", "110"); */
+	onMount(() => {
+		document.body.addEventListener("scroll", () => {
+			addGoogleFonts();
+			setElementsOpacity();
+			addDynamicPadding();
+			drawSvg();
+		});
 	});
 </script>
 
-<main>
+<section class="main">
 	<ProgressBar />
-	<div class="progressBar" />
 	<div class="container">
-		<h6>Inteligência Artificial</h6>
+		<h6><span>Inteligência Artificial</span></h6>
 		<h1>
-			<span>A </span><span>matemática </span>por <span>trás </span> <span />do <span />
+			<span>A </span><span>matemática </span><span>por</span> <span>trás </span> <span /><span
+				>do</span
+			> <span />
 			<span>ChatGPT </span> <span>e </span> <span>de </span> <span>outros </span>
 			<span>LLMs</span>
 		</h1>
 
 		<AnimatedText />
-
 		<p class="authorship" use:reveal={{ transition: "fade", duration: 1000 }}>
-			Criado por <a href="https://github.com/victorgois">Victor Góis</a> inspirado nas reportagens
-			do
-			<a
-				href="https://www.theguardian.com/technology/ng-interactive/2023/nov/01/how-ai-chatbots-like-chatgpt-or-bard-work-visual-explainer"
-				>The Guardian</a
-			>
-			e <a href="https://ig.ft.com/generative-ai/">Financial Times</a>
+			<span>
+				Criado por <a href="https://github.com/victorgois">Victor Góis</a> inspirado nas reportagens
+				do
+				<a
+					href="https://www.theguardian.com/technology/ng-interactive/2023/nov/01/how-ai-chatbots-like-chatgpt-or-bard-work-visual-explainer"
+					>The Guardian</a
+				>
+				e <a href="https://ig.ft.com/generative-ai/">Financial Times</a>
+			</span>
 		</p>
+
 		<div class="content" use:reveal={{ transition: "fade", duration: 1000 }}>
 			<p class="subhead">
 				Você já usou o ChatGPT hoje? Segundo o Traffic Analytics, os brasileiros ficaram em 4º lugar
@@ -140,19 +170,53 @@
 			</p>
 		</div>
 	</div>
-	<div class="longContainer" use:reveal={{ transition: "fade", duration: 1000 }}>
-		<TextCard
-			content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
-		/>
-		<div class="animationContent">
-			<svg id="pao-de-queijo-svg" width="100%" height="100%" />
+</section>
+
+<section class="scroll-word-embedding">
+	<div class="longContainer">
+		<div class="left-column">
+			<div class="gap-section" />
+
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+		</div>
+		<div class="right-column">
+			<div class="animationContent">
+				<svg id="pao-de-queijo-svg" width="100%" height="100%" />
+			</div>
 		</div>
 	</div>
+</section>
 
-	<div style="height: 800px;" />
-</main>
+<Pallete />
+
+<div style="height: 500px;" />
 
 <style>
+	.main {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	.gap-section {
+		height: 0px;
+	}
+
+	.scroll-word-embedding {
+		width: 100%;
+	}
+
 	.container {
 		max-width: 800px;
 		margin-left: 2em;
@@ -160,15 +224,35 @@
 		padding-top: 4em;
 	}
 
+	.scroll-word-embedding {
+		width: 100%;
+	}
+
 	.longContainer {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		max-width: 900px;
+		align-items: flex-start;
+		overflow-y: auto;
+		height: inherit;
+	}
+
+	.longContainer::-webkit-scrollbar {
+		display: none;
+	}
+
+	.left-column {
+		max-height: 800px;
+		padding-top: 4em;
+		margin-left: 4em;
+	}
+
+	.right-column {
+		position: sticky;
+		top: 0;
 	}
 
 	.content {
-		margin: 2em 4em 0 4em;
+		margin: 2em 4em 2em 4em;
 	}
 
 	h1 {
@@ -190,7 +274,7 @@
 		margin: 0;
 	}
 	.authorship {
-		margin-top: 3rem;
+		margin-top: 2rem;
 		color: var(--secondaryColor);
 		font-size: 12px;
 	}
@@ -212,16 +296,5 @@
 		font-size: 28px;
 		width: 355px;
 		max-width: 355px;
-	}
-
-	.progressBar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 0;
-		height: 4px;
-		background-color: var(--secondaryColor);
-		z-index: 1000;
-		transition: width 0.3s;
 	}
 </style>
