@@ -161,7 +161,7 @@
 			align-items: center;
 			max-width: 900px;
 			width: 90%;
-			margin: 0;
+			margin: 0 auto;
 		}
 
 		.buttons {

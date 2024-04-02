@@ -23,5 +23,6 @@
 		font-family: Georgia, serif;
 		max-width: 300px;
 		height: min-content;
+		position: relative;
 	}
 </style>

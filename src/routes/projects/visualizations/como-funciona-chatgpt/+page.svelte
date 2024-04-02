@@ -5,7 +5,6 @@
 	import * as d3 from "d3";
 	import { reveal } from "svelte-reveal";
 	import ProgressBar from "../../../../lib/components/ProgressBar.svelte";
-	import Pallete from "../../../../lib/components/Pallete.svelte";
 
 	function calculateTextPositions(svg: any, words: string[], spacing: number) {
 		const textNodes = svg
@@ -67,31 +66,39 @@
 	}
 
 	function addDynamicPadding() {
-		const previousSection = document.querySelector(".main") as HTMLElement;
+		const scrollWordEmbeddingSection = document.querySelector(
+			".scroll-word-embedding"
+		) as HTMLElement;
+		const longContainer = document.querySelector(".long-container") as HTMLElement;
+
+		const contentSection = document.querySelector(".content") as HTMLElement;
+		const gapSection = document.querySelector(".gap-section") as HTMLElement;
+
+		const viewportHeight = window.innerHeight;
+		const mainSectionHeight = contentSection.offsetHeight;
 		const leftColumn = document.querySelector(".left-column") as HTMLElement;
-		const content = document.querySelector(".content") as HTMLElement;
+		const scrollTop = document.body.scrollTop as number;
 
-		if (previousSection && leftColumn && content) {
-			const previousSectionRect = previousSection.getBoundingClientRect();
-			const contentRect = content.getBoundingClientRect();
-			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		if (leftColumn && contentSection && scrollWordEmbeddingSection && gapSection) {
+			gapSection.style.height = `${viewportHeight}px`;
+			const gapHeight =
+				viewportHeight + (viewportHeight - mainSectionHeight) + (scrollTop - mainSectionHeight);
+			console.log(gapHeight);
 
-			const visibleBottom = window.innerHeight + scrollTop;
-			const contentBottom = contentRect.top + contentRect.height;
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) {
+						scrollWordEmbeddingSection.style.overflow = "hidden";
+						longContainer.style.overflowY = "auto";
+					} else {
+						scrollWordEmbeddingSection.style.overflow = "hidden";
+						longContainer.style.overflowY = "hidden";
+						gapSection.style.height = `${gapHeight}px`;
+					}
+				});
+			});
 
-			const gapHeight = visibleBottom - contentBottom;
-
-			const leftColumHeight = window.innerHeight + contentBottom + 10;
-
-			console.log(" window.innerHeight: ", window.innerHeight, "scrollTop: ", scrollTop);
-
-			console.log("contentBottom: ", contentBottom, "visibleBottom: ", visibleBottom);
-
-			(document.querySelector(".gap-section") as HTMLElement)!.style.height = `${gapHeight}px`;
-
-			(document.querySelector(
-				".scroll-word-embedding"
-			) as HTMLElement)!.style.height = `${leftColumHeight}px`;
+			observer.observe(contentSection);
 		}
 	}
 
@@ -173,10 +180,19 @@
 </section>
 
 <section class="scroll-word-embedding">
-	<div class="longContainer">
+	<div class="long-container">
 		<div class="left-column">
 			<div class="gap-section" />
 
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
+			<TextCard
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
 			/>
@@ -198,10 +214,6 @@
 	</div>
 </section>
 
-<Pallete />
-
-<div style="height: 500px;" />
-
 <style>
 	.main {
 		display: flex;
@@ -215,6 +227,7 @@
 
 	.scroll-word-embedding {
 		width: 100%;
+		height: 100vh;
 	}
 
 	.container {
@@ -226,9 +239,10 @@
 
 	.scroll-word-embedding {
 		width: 100%;
+		height: 100vh;
 	}
 
-	.longContainer {
+	.long-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
@@ -236,14 +250,14 @@
 		height: inherit;
 	}
 
-	.longContainer::-webkit-scrollbar {
+	.long-container::-webkit-scrollbar {
 		display: none;
 	}
 
 	.left-column {
-		max-height: 800px;
 		padding-top: 4em;
 		margin-left: 4em;
+		height: 100vh;
 	}
 
 	.right-column {
