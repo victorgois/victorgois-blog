@@ -2,7 +2,6 @@ import { writable } from "svelte/store";
 
 export const visualizations = [
   { title: "Como funciona o ChatGPT?", slug: "como-funciona-chatgpt" },
-  { title: "E as deepfakes?", slug: "vis2" }
 ];
 
 export const defaultTheme = {
