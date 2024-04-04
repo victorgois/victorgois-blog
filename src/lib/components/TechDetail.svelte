@@ -55,7 +55,7 @@
 		cursor: pointer;
 		margin-bottom: 1rem;
 		margin-top: 1rem;
-		color: white;
+		color: var(--color);
 		text-decoration: underline;
 		font-family: "Fira Code", monospace;
 		font-size: large;
