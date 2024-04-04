@@ -137,46 +137,68 @@
 	<slot />
 	<hr class="footerLine" />
 	<footer>
-		<p>
-			<select bind:value={$locale}>
-				{#each locales as l}
-					<option value={l}>{l}</option>
-				{/each}
-			</select>
-		</p>
-		<div class="socialNetworks">
-			<a href="https://github.com/victorgois"
-				><SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
-			</a>
-			<a href="mailto:victorgois18@gmail.com">
-				<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
-			</a>
-			<a href="https://medium.com/@victorgispacheco">
-				<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
-			</a>
-			<a href="https://www.linkedin.com/in/victorgoisp/">
-				<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
-			</a>
+		<div class="footer-row">
+			<p>
+				<select bind:value={$locale}>
+					{#each locales as l}
+						<option value={l}>{l}</option>
+					{/each}
+				</select>
+			</p>
+			<div class="socialNetworks">
+				<a href="https://github.com/victorgois"
+					><SocialIcons
+						network="github"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="mailto:victorgois18@gmail.com">
+					<SocialIcons
+						network="mailto"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="https://medium.com/@victorgispacheco">
+					<SocialIcons
+						network="medium"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="https://www.linkedin.com/in/victorgoisp/">
+					<SocialIcons
+						network="linkedin"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+			</div>
+		</div>
+		<div class="signature">
+			<div>
+				{#if $locale === "en"}
+					{$t("footer.paragraph1")}
+					<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+						>Gianmarco Ladvace's project</a
+					>
+					{$t("footer.paragraph2")}
+				{/if}
+				{#if $locale === "pt"}
+					{$t("footer.paragraph1")}
+					<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+						>Gianmarco Ladvace</a
+					>
+					{$t("footer.paragraph2")}
+				{/if}
+			</div>
 		</div>
 	</footer>
-	<div class="signature">
-		<div class="">
-			{#if $locale === "en"}
-				{$t("footer.paragraph1")}
-				<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-					>Gianmarco Ladvace's project</a
-				>
-				{$t("footer.paragraph2")}
-			{/if}
-			{#if $locale === "pt"}
-				{$t("footer.paragraph1")}
-				<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-					>Gianmarco Ladvace</a
-				>
-				{$t("footer.paragraph2")}
-			{/if}
-		</div>
-	</div>
 {/if}
 
 <style>
@@ -338,10 +360,9 @@
 	.signature {
 		font-size: 10px;
 		font-weight: 400;
-		max-width: 900px;
 		text-align: center;
 		width: 100%;
-		margin: 2rem 0 2rem 0;
+		margin: 1rem 0 1rem 0;
 	}
 
 	.signature a {
@@ -366,6 +387,10 @@
 		align-items: center;
 	}
 
+	.socialNetworks a {
+		padding: 0.1rem;
+	}
+
 	.footerLine {
 		display: block;
 		height: 1px;
@@ -378,9 +403,15 @@
 
 	footer {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: space-between;
 		margin: 0 30px 0 30px;
+	}
+
+	.footer-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
 	}
 
 	footer p {
