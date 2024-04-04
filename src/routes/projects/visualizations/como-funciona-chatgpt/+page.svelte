@@ -28,14 +28,13 @@
 		let currentX = 0;
 		textNodes.each(function (d: any) {
 			const textLength = d.length;
-			const textWidth = textLength * 15; // Ajuste este valor conforme necessário
+			const textWidth = textLength * 21; // Ajuste este valor conforme necessário
 			positions.push(currentX);
 			currentX += textWidth + spacing;
 		});
 
 		// Remover os nós de texto após o cálculo das posições
 		textNodes.remove();
-
 		return positions;
 	}
 
@@ -107,7 +106,7 @@
 		const svg = d3.select("#first-animated-phrase-svg");
 
 		const words = ["Nós", "vamos", "de", "bicicleta"];
-		const wordSpacing = 10;
+		const wordSpacing = 20;
 		const positions = calculateTextPositions(svg, words, wordSpacing);
 
 		// Espaçamento entre as palavras
@@ -119,20 +118,95 @@
 			.text((d) => d)
 			.attr("x", (d, i) => positions[i] + wordSpacing) // Posiciona as palavras horizontalmente
 			.attr("y", 250) // Altura fixa para todas as palavras
-			.style("font-size", "24px")
+			.style("font-size", "36px")
 			.style("fill", "black")
 			.style("cy", "105");
+
+		svg.selectAll("text").each(function () {
+			const textElement = this as SVGTextElement;
+			const bbox = textElement.getBBox();
+			if (bbox) {
+				svg
+					.insert("rect", ":first-child") // Insere um retângulo antes de cada texto
+					.transition()
+					.attr("x", bbox.x)
+					.attr("y", bbox.y)
+					.attr("width", bbox.width)
+					.attr("height", bbox.height)
+
+					.style("fill", "white") // Fundo branco
+					.style("stroke", "black") // Borda preta
+					.style("stroke-dasharray", "3") // Borda pontilhada
+					.style("pointer-events", "none") // Evita que os cards bloqueiem eventos do mouse
+					.style("padding", "10px") // Evita que os cards bloqueiem eventos do mouse
+					.style("display", "none");
+			}
+		});
 	}
 
 	function tokenizeSvg() {
+		let currentPosition = 0;
 		const svg = d3.select("#first-animated-phrase-svg");
+
+		// Primeira transição para ajustar o estilo dos textos e criar os retângulos (cards)
 		svg
 			.selectAll("text")
 			.transition()
 			.duration(2000)
-			.style("font-size", "12px")
+			.style("font-size", "24px")
 			.style("font-family", "Arial")
-			.attr("x", (d, i) => i * 20);
+			.attr("x", (d: any, i) => {
+				const wordWidth = d.length * 10; // Ajuste o valor conforme necessário
+				const position = currentPosition;
+				if (d === "vamos") {
+					currentPosition += wordWidth + 40;
+				} else {
+					currentPosition += wordWidth + 25;
+				}
+
+				// Criar retângulo (card) na mesma posição do texto
+				const bbox = (svg.selectAll("text").nodes()[i] as SVGTextElement).getBBox();
+				const spacing = 20;
+				svg
+					.insert("rect", ":first-child")
+					.attr("x", bbox.x)
+					.attr("y", bbox.y)
+					.attr("width", bbox.width + spacing)
+					.style("fill", "white")
+					.style("stroke", "black")
+					.style("stroke-dasharray", "3")
+					.style("pointer-events", "none")
+					.transition()
+					.duration(2000);
+
+				return position;
+			});
+	}
+
+	function unTokenizeSvg() {
+		const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		let currentPosition = 0;
+
+		if (scrollTop < 50) {
+			const svg = d3.select("#first-animated-phrase-svg");
+
+			svg
+				.selectAll("text")
+				.transition()
+				.duration(2000)
+				.style("font-size", "36px")
+				.style("font-family", "Playfair Display")
+				.attr("x", (d: any, i) => {
+					const wordWidth = d.length * 10; // Adjust the value as needed
+					const position = currentPosition;
+					if (d === "vamos") {
+						currentPosition += wordWidth + 75;
+						return position; // Add spacing between wordse
+					}
+					currentPosition += wordWidth + 50; // Add spacing between words
+					return position;
+				});
+		}
 	}
 
 	function checkCardPosition() {
@@ -141,13 +215,16 @@
 			const windowHeight = window.innerHeight;
 
 			(card as HTMLElement).style.marginBottom = `${windowHeight}px`;
-
-			const cardRect = card.getBoundingClientRect();
-			console.log(cardRect.top, cardRect.bottom, windowHeight / 2);
-			if (cardRect.top < windowHeight / 2 && index === 1) {
-				tokenizeSvg();
-			}
 		});
+		const secondCard = document.querySelector("#text-card1") as HTMLElement;
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					tokenizeSvg();
+				}
+			});
+		});
+		observer.observe(secondCard);
 	}
 
 	onMount(() => {
@@ -157,6 +234,7 @@
 			addDynamicPadding();
 			drawSvg();
 			checkCardPosition();
+			unTokenizeSvg();
 		});
 	});
 </script>
@@ -212,25 +290,32 @@
 			<div class="gap-section" />
 
 			<TextCard
-				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem."
+				id={"text-card" + "0"}
+			/>
+			<TextCard
+				content="Primeiramente, uma frase é quebrada em pedaços menores, que chamamos de tokens. Geralmente, tokens são parte de palavras, mas vamos considerar nesse exemplo que um token é uma palavra."
+				id={"text-card" + "1"}
 			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				id={"text-card" + "2"}
 			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				id={"text-card" + "3"}
 			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				id={"text-card" + "4"}
 			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				id={"text-card" + "5"}
 			/>
 			<TextCard
 				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
-			/>
-			<TextCard
-				content="Para escrever texto, LLMs deve primeiramente transformar palavras em uma linguagem que eles entendem"
+				id={"text-card" + "6"}
 			/>
 		</div>
 		<div class="right-column">
@@ -267,7 +352,7 @@
 
 	.long-container {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		align-items: flex-start;
 		overflow-y: auto;
 		height: inherit;
@@ -284,6 +369,7 @@
 	}
 
 	.right-column {
+		min-width: 500px;
 		position: sticky;
 		top: 0;
 	}
@@ -331,7 +417,5 @@
 		align-content: center;
 		margin: 1em;
 		font-size: 28px;
-		width: 355px;
-		max-width: 355px;
 	}
 </style>
