@@ -4,9 +4,14 @@
 	 * @type {string}
 	 */
 	export let content;
+	/**
+	 * Content of the text card
+	 * @type {string}
+	 */
+	export let id;
 </script>
 
-<div class="text-card">
+<div class="text-card" {id}>
 	{content}
 </div>
 
