@@ -3,7 +3,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Oi! Eu sou Victor, um jornalista/engenheiro de software do 🇧🇷, especializado em desenvolvimento frontend com JavaScript e visualização de dados.",
 		"homepage.presentation2":
-			"👋 Sou um desenvolvedor JavaScript com mais de 3 anos de experiência e habilidades abrangentes em tecnologias como Node, React, Jest, GraphQL, Next.js, SQL e CSS. Minha experiência inclui a aplicação de conceitos de TDD, BDD e práticas de código limpo, criando telas, componentes e visualizações de dados.",
+			"👋 Sou um desenvolvedor JavaScript com mais de 4 anos de experiência profissional e habilidades abrangentes em tecnologias como Node, React, Jest, GraphQL, Next.js, SQL e CSS. Minha experiência inclui a aplicação de conceitos de TDD, BDD e práticas de código limpo, criando telas, componentes e visualizações de dados.",
 		"homepage.presentation3":
 			"🔧 Tenho uma ampla experiência trabalhando em equipes ágeis, onde aprendi a colaborar eficientemente e impulsionar a entrega de projetos inovadores. Minha maior paixão é dar vida aos dados, seja por meio de cálculos numéricos, transformando qualquer tipo de mídia em interfaces cativantes ou contando histórias por meio de infográficos interativos.",
 		"homepage.longPresentation1": "Tecnologias que tenho experiência",
@@ -22,7 +22,7 @@ export const translations = {
 		"homepage.route3": "sobre",
 		"homepage.route4": "blog",
 		"homepage.route5": "visualizações de dados",
-		"footer.paragraph1": "Desenvolvido por Victor Góis a partir do projeto de ",
+		"footer.paragraph1": "Desenvolvido por Victor Góis. Forked de ",
 		"footer.paragraph2": "sob a Licença MIT",
 		"project.menu0": "Visão Geral",
 		"project.menu1": "Formação acadêmica ",
@@ -64,7 +64,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Hi! I'm Victor, a Journalist/ Software Engineer from 🇧🇷, specializing in JavaScript frontend development and Data Visualization.",
 		"homepage.presentation2":
-			"👋 I'm a JavaScript developer with 4 years of experience and skilled in technologies such as Javascript, Typescript React, Jest, GraphQL, Svelte, Next.js, SQL and CSS. My experience includes applying TDD, BDD concepts and clean code practices, creating screens, components and data visualizations.",
+			"👋 I'm a JavaScript developer with 4 years of professional experience and skilled in technologies such as Javascript, Typescript React, Jest, GraphQL, Svelte, Next.js, SQL and CSS. My experience includes applying TDD, BDD concepts and clean code practices, creating screens, components and data visualizations.",
 		"homepage.presentation3":
 			"🔧 I have extensive experience working in agile teams, where I learned to collaborate efficiently and drive the delivery of innovative projects. My biggest passion is bringing	data to life, whether through numerical calculations or transforming any type of media into captivating interfaces or telling stories through interactive infographics.",
 		"homepage.longPresentation1": "Tech stacks I have most experience with",
@@ -81,7 +81,7 @@ export const translations = {
 		"homepage.route3": "about",
 		"homepage.route4": "blog",
 		"homepage.route5": "data visualizations",
-		"footer.paragraph1": "Developed by Victor Góis from  ",
+		"footer.paragraph1": "Developed by Victor Góis. Forked from  ",
 		"footer.paragraph2": "under the MIT License",
 		"project.menu0": "Overview",
 		"project.menu1": "Education",
