@@ -6,7 +6,7 @@
 	import { derived } from "svelte/store";
 
 	import { visualizations } from "../../lib/store";
-	const menuItems = [0, 1, 2, 3, 4, 5];
+	const menuItems = [0, 1, 2, 3, 4, 5, 6];
 
 	const menuContent = derived([t], ([$t]) => [
 		{
@@ -32,6 +32,10 @@
 		{
 			Title: $t("projectPageContent.techBlogTitle"),
 			Content: $t("projectPageContent.techBlog")
+		},
+		{
+			Title: $t("projectPageContent.professionalTimelineTitle"),
+			Content: $t("projectPageContent.professionalTimeline")
 		}
 	]);
 
@@ -71,11 +75,21 @@
 			<div class="menuContent">
 				{#if selectedMenuItem !== null}
 					<div use:reveal={{ transition: "fade" }} class="content">
-						<h4>{$menuContent[selectedMenuItem].Title}</h4>
+						{#if selectedMenuItem === 6}
+							<button class="timeline-button" on:click={toggleTimeline}>
+								<h4>{$menuContent[selectedMenuItem].Title}</h4>
+							</button>
+						{:else}
+							<h4>{$menuContent[selectedMenuItem].Title}</h4>
+						{/if}
+
 						{#if selectedMenuItem !== 3}
 							<p use:reveal={{ transition: "fade" }}>
 								{@html $menuContent[selectedMenuItem].Content}
 							</p>
+							{#if showTimeline}
+								<Timeline />
+							{/if}
 						{:else}
 							<p use:reveal={{ transition: "fade" }}>
 								{#each Object.values(visualizations) as { title, slug }}
@@ -93,24 +107,15 @@
 				{/if}
 			</div>
 		</div>
-		{#if selectedMenuItem === null || selectedMenuItem === 0}
-			<div class="row">
-				<div class="timelineWrapper">
-					<button on:click={toggleTimeline}
-						>{#if $locale === "en"}Professional Timeline{:else}Timeline Profissional{/if}</button
-					>
-					{#if showTimeline}
-						<Timeline />
-					{/if}
-				</div>
-			</div>
-		{/if}
 	</div>
 </main>
 
 <style>
-	.timelineWrapper {
+	.timeline-button {
 		text-align: center;
+		background-color: var(--backgroundColor);
+		color: var(--mainColor);
+		border: none;
 	}
 
 	main {
@@ -154,12 +159,17 @@
 
 	button {
 		font-weight: 700;
+		padding: 0.25em;
 		text-align: start;
 		margin: 0 auto;
 		cursor: pointer;
+		font-size: 18px;
+		background-color: var(--mainColor);
+		color: var(--backgroundColor);
 	}
 
 	li {
+		margin: 0.5em;
 		list-style: none;
 	}
 </style>

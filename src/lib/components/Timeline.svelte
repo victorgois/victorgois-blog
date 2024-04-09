@@ -71,7 +71,7 @@
 			</TimelineOppositeContent>
 			<TimelineSeparator>
 				<TimelineDot
-					style={"background-color: #fff; display: flex; justify-content: center; border-color: transparent; "}
+					style={"background-color: var(--backgroundColor); display: flex; justify-content: center; border-color: transparent; color: var(--mainColor);"}
 				/>
 				<TimelineConnector />
 			</TimelineSeparator>

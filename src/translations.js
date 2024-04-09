@@ -30,22 +30,30 @@ export const translations = {
 		"project.menu3": "Visualizações de dados",
 		"project.menu4": "Trabalho acadêmico",
 		"project.menu5": "Blog",
+		"project.menu6": "Timeline profissional",
 		"projectPageContent.overviewTitle": "Visão Geral",
-		"projectPageContent.overview": "<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 7 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+		"projectPageContent.overview":
+			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 7 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
 
 		"projectPageContent.academicBackgroundTitle": "Formação acadêmica",
-		"projectPageContent.academicBackground": "<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b>  Mestrado em Comunicação Social. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>A verdade nas Deepfakes. Uma análise semiótica de deepfakes nas eleições 2022</i>, Ano de Obtenção: 2023. Orientador: Geane Carvalho Alzamora. Coorientador: Conrado Mendes.Palavras-chave: semiótica; deepfakes; inteligência artificial</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Graduação em Jornalismo. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>PROTOCOLOS, PLATAFORMAS E APIS, Experimentações com dados do Google News, Twitter e YouTube sobre o #BrequeDosApps.</i> Orientador: Carlos Frederico de Brito D'Andréa. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPq, Brasil.</li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Intercâmbio acadêmico <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Alemanha</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Graduação interrompida em 2016 em Sistemas de Informação. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil</li>",
+		"projectPageContent.academicBackground":
+			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b>  Mestrado em Comunicação Social. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>A verdade nas Deepfakes. Uma análise semiótica de deepfakes nas eleições 2022</i>, Ano de Obtenção: 2023. Orientador: Geane Carvalho Alzamora. Coorientador: Conrado Mendes.Palavras-chave: semiótica; deepfakes; inteligência artificial</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Graduação em Jornalismo. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil. Título: <i>PROTOCOLOS, PLATAFORMAS E APIS, Experimentações com dados do Google News, Twitter e YouTube sobre o #BrequeDosApps.</i> Orientador: Carlos Frederico de Brito D'Andréa. Bolsista do(a): Conselho Nacional de Desenvolvimento Científico e Tecnológico, CNPq, Brasil.</li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Intercâmbio acadêmico <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Alemanha</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Graduação interrompida em 2016 em Sistemas de Informação. <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, UFMG, Brasil</li>",
 		"projectPageContent.dataVisTitle": "Visualizações de dados",
 		"projectPageContent.dataVis": "exemplo",
 		"projectPageContent.publishedWorkTitle": "Trabalho acadêmico publicado",
-    "projectPageContent.publishedWork": "<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: procedimentos metodológicos.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Sociedade da desinformação e infodemia. 1ed.Belo Horizonte: Selo PPGCOM/UFMG, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>O ECOSSISTEMA POLÍTICO NO YOUTUBE: UMA ANÁLISE DE REDE DOS YOUTUBERS INDICADOS PELO PRESIDENTE. 2019.</i> (Apresentação de Trabalho/Simpósio).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lésbicas no YouTube: análises e visualizações</i>. 2019. (Apresentação de Trabalho/Seminário).</li>",
-		
+		"projectPageContent.publishedWork":
+			"<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: procedimentos metodológicos.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Sociedade da desinformação e infodemia. 1ed.Belo Horizonte: Selo PPGCOM/UFMG, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>O ECOSSISTEMA POLÍTICO NO YOUTUBE: UMA ANÁLISE DE REDE DOS YOUTUBERS INDICADOS PELO PRESIDENTE. 2019.</i> (Apresentação de Trabalho/Simpósio).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lésbicas no YouTube: análises e visualizações</i>. 2019. (Apresentação de Trabalho/Seminário).</li>",
+
 		"projectPageContent.softwareProjectsTitle": "Projetos de software",
-    "projectPageContent.softwareProjects": "Explore alguns de meus projetos. Você pode conferir meus projetos completos no github ou no tableau public",
+		"projectPageContent.softwareProjects":
+			"Explore alguns de meus projetos. Você pode conferir meus projetos completos no github ou no tableau public",
 
 		"projectPageContent.techBlogTitle": "Tech blog",
-		"projectPageContent.techBlog": "Descubra nossas publicações mais recentes no blog dev.to, cobrindo uma variedade de tópicos de tecnologia.",
-				        
+		"projectPageContent.techBlog":
+			"Descubra nossas publicações mais recentes no blog dev.to, cobrindo uma variedade de tópicos de tecnologia.",
+		"projectPageContent.professionalTimelineTitle": "Linha do tempo profissional",
+		"projectPageContent.professionalTimeline": "Clique no título para ver a timeline",
+
 		"project.description0": ["Primeira experiência", "segunda experiência"],
 		"homepage.description.3778":
 			"Eu participei no desenvolvimento de um produto desde o início até a conclusão, envolvendo a normalização de dados de clientes em nossos bancos de dados, modelagem de esquema no backend, criação de API e consumo de dados via GraphQL em nosso aplicativo frontend. O produto final consistia em telas de dados estatísticos em tempo real, conectadas via WebSocket, apresentando gráficos e tabelas que destacam as operações de uma das maiores redes hospitalares da América Latina. Utilizamos React, MUI e Storybook para fornecer componentes personalizáveis. Criei testes funcionais usando Jest. Otimizei o desempenho do carregamento da página e a ordenação de tabelas de texto a partir de insights da análise de perfil.",
@@ -89,22 +97,31 @@ export const translations = {
 		"project.menu3": "Data visualizations",
 		"project.menu4": "Academic work",
 		"project.menu5": "Blog (in portuguese)",
+		"project.menu6": "Profissional Timeline",
 		"projectPageContent.overviewTitle": "Overview",
-		"projectPageContent.overview": "<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 6 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
-		"projectPageContent.overview": "<p style='font-size: 14px'>I'm Victor, a journalist, graduated from the <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>. I've been working in technology for about 6 years, the last 4 as software developer.",
+		"projectPageContent.overview":
+			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 6 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+		"projectPageContent.overview":
+			"<p style='font-size: 14px'>I'm Victor, a journalist, graduated from the <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>. I've been working in technology for about 6 years, the last 4 as software developer.",
 		"projectPageContent.academicBackgroundTitle": "Education",
-		"projectPageContent.academicBackground": "<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> Master's in Social Communication. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>Truth in Deepfakes. A semiotic analysis of deepfakes in the 2022 elections</i>, Year of Completion: 2023. Advisor: Geane Carvalho Alzamora. Co-advisor: Conrado Mendes. Keywords: semiotics; deepfakes; artificial intelligence</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Bachelor's in Journalism. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>PROTOCOLS, PLATFORMS, AND APIS, Experimentations with Google News, Twitter, and YouTube data on #BrequeDosApps.</i> Advisor: Carlos Frederico de Brito D'Andréa. Scholarship Holder: National Council for Scientific and Technological Development, CNPq, Brazil.</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Academic exchange <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Germany</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Undergraduate studies interrupted in 2016 in Information Systems. <a href='https://ufmg.br",
+		"projectPageContent.academicBackground":
+			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> Master's in Social Communication. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>Truth in Deepfakes. A semiotic analysis of deepfakes in the 2022 elections</i>, Year of Completion: 2023. Advisor: Geane Carvalho Alzamora. Co-advisor: Conrado Mendes. Keywords: semiotics; deepfakes; artificial intelligence</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Bachelor's in Journalism. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>PROTOCOLS, PLATFORMS, AND APIS, Experimentations with Google News, Twitter, and YouTube data on #BrequeDosApps.</i> Advisor: Carlos Frederico de Brito D'Andréa. Scholarship Holder: National Council for Scientific and Technological Development, CNPq, Brazil.</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Academic exchange <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Germany</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Undergraduate studies interrupted in 2016 in Information Systems. <a href='https://ufmg.br",
 		"projectPageContent.dataVisTitle": "Data Visualizations",
 		"projectPageContent.dataVis": "example",
 		"projectPageContent.publishedWorkTitle": "Trabalho acadêmico publicado",
-		"projectPageContent.publishedWork": "<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: methodological procedures.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Society of disinformation and infodemic. 1st ed. Belo Horizonte: PPGCOM/UFMG Seal, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>The Political Ecosystem on YouTube: A Network Analysis of YouTubers Indicated by the President. 2019.</i> (Presentation at Symposium).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lesbians on YouTube: analyses and visualizations</i>. 2019. (Presentation at Seminar).</li>",
+		"projectPageContent.publishedWork":
+			"<li style='list-style-type: none; font-size: 12px'>GÓIS, V. O. P; ALZAMORA, G. C. . <i>#perguntacorona: methodological procedures.</i> In: Geane Alzamora, Conrado Moreira Mendes, Daniel Melo Ribeiro. (Org.). Society of disinformation and infodemic. 1st ed. Belo Horizonte: PPGCOM/UFMG Seal, 2021, v. , p. 9-231.</li><br/><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; SILVA, P. I. R. . <i>The Political Ecosystem on YouTube: A Network Analysis of YouTubers Indicated by the President. 2019.</i> (Presentation at Symposium).</li><br /><li style='list-style-type: none; font-size: 12px'>PACHECO, V. G. O.; FACHARDO, I. ; TEIXEIRA, G. . <i>Lesbians on YouTube: analyses and visualizations</i>. 2019. (Presentation at Seminar).</li>",
 
 		"projectPageContent.softwareProjectsTitle": "Projetos de software",
-		"projectPageContent.softwareProjects": "Explore some of my projects. You can check out my complete projects on GitHub or on Tableau Public",
+		"projectPageContent.softwareProjects":
+			"Explore some of my projects. You can check out my complete projects on GitHub or on Tableau Public",
 
 		"projectPageContent.techBlogTitle": "Tech blog",
-		"projectPageContent.techBlog": "Discover our latest publications on the dev.to blog, covering a variety of technology topics.",
+		"projectPageContent.techBlog":
+			"Discover our latest publications on the dev.to blog, covering a variety of technology topics.",
 
+		"projectPageContent.professionalTimelineTitle": "Professional Timeline",
+		"projectPageContent.professionalTimeline": "Click on the title to check the timeline",
 		"projectPageContent.otherWritingsTitle": "Outras escritas",
 		"projectPageContent.otherWritings": "Your English translation of other writings content here",
 

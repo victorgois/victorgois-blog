@@ -66,7 +66,6 @@
 	let subscribeSelectedTheme: { (): void; unsubscribe?: any };
 
 	onMount(() => {
-		console.log("ele monta de novo");
 		subscribeSelectedTheme = selectedTheme.subscribe((value) => {
 			if (value) {
 				updateThemeVariables(value);
