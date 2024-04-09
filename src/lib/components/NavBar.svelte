@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Burger from "./Hamburger.svelte";
+	import ThemeSwitcher from "./ThemeSwitcher.svelte";
 	import routes from "../NavRoutes";
-	import { t, locale, locales } from "../../i18n";
+	import { t } from "../../i18n";
+	import LanguageSelector from "./LanguageSelector.svelte";
 
 	let opened = false;
 	export let segment: string;
@@ -19,13 +21,12 @@
 				>
 			{/each}
 		</div>
-		<p class="translateButton">
-			<select bind:value={$locale}>
-				{#each locales as l}
-					<option value={l}>{l}</option>
-				{/each}
-			</select>
-		</p>
+		<div class="top-right-navbar">
+			<ThemeSwitcher />
+			<p class="translateButton">
+				<LanguageSelector />
+			</p>
+		</div>
 	</div>
 	<div class="responsiveButtons buttons">
 		{#each routes as route}
@@ -88,14 +89,8 @@
 		height: 30px;
 	}
 
-	select {
-		border-radius: 4px;
-		cursor: pointer;
-		width: 40px;
-		height: 30px;
-		font-size: medium;
-		font-weight: 500;
-		font-family: "Fira Code", monospace;
+	.translateButton {
+		margin: 1em;
 	}
 
 	.NavBar {
@@ -118,7 +113,6 @@
 		justify-content: space-between;
 		align-items: center;
 		font-weight: 500;
-		margin-left: 2.2em;
 	}
 
 	.responsiveButtons {
@@ -150,6 +144,12 @@
 
 	.burger :global(button) {
 		margin: 0;
+	}
+
+	.top-right-navbar {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 	}
 
 	@media (min-width: 900px) {
