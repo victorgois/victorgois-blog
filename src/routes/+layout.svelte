@@ -4,17 +4,77 @@
 	import Tooltip from "../lib/components/Tooltip.svelte";
 	import { page } from "$app/stores";
 	import Modal from "../lib/components/Modal.svelte";
-	import { onMount } from "svelte";
-	import { customBackground } from "../lib/store";
+	import { onDestroy, onMount } from "svelte";
+	import {
+		visualizationTheme,
+		defaultTheme,
+		themes,
+		setCustomBackground,
+		setCustomSecondaryColor,
+		customBackground,
+		customColor,
+		customFontFamily,
+		customVisitedColor,
+		customSecondaryColor,
+		selectedTheme,
+		setCustomColor,
+		setCustomFontFamily,
+		setCustomVisitedColor
+	} from "../lib/store";
 	import { Email } from "../lib/Constants";
 	import SocialIcons from "@rodneylab/svelte-social-icons";
-	import { t, locale, locales } from "../i18n";
-
+	import { t, locale } from "../i18n";
+	import ThemeSwitcher from "../lib/components/ThemeSwitcher.svelte";
+	import LanguageSelector from "../lib/components/LanguageSelector.svelte";
+	import CssVariablesSetter from "../funcs/CssVariablesSetter.svelte";
 	let copied = false;
-	const cookieEnabled = false;
-	$: showCookieModal = false;
 
-	interface CssVariables {
+	$: {
+		if ($page.url.pathname === "/projects/visualizations/como-funciona-chatgpt") {
+			setCustomBackground(visualizationTheme.backgroundColor);
+			setCustomSecondaryColor(visualizationTheme.secondaryColor);
+		} else {
+			setCustomBackground(defaultTheme.backgroundColor);
+		}
+	}
+
+	// Função para atualizar as variáveis de tema
+	function updateThemeVariables(themeName: string) {
+		// Obter o objeto de tema correspondente ao nome do tema
+		const theme = themes[themeName];
+
+		// Verificar se o tema existe
+		if (theme) {
+			// Atualizar as propriedades personalizadas do tema
+			setCustomBackground(theme.backgroundColor);
+			setCustomColor(theme.mainColor);
+			setCustomFontFamily(theme.fontFamily);
+			setCustomVisitedColor(theme.visitedColor);
+			setCustomSecondaryColor(theme.secondaryColor);
+
+			// Atualizar as variáveis CSS do documento
+			document.documentElement.style.setProperty("--backgroundColor", theme.backgroundColor);
+			document.documentElement.style.setProperty("--mainColor", theme.mainColor);
+			document.documentElement.style.setProperty("--fontFamily", theme.fontFamily);
+			document.documentElement.style.setProperty("--visitedColor", theme.visitedColor);
+			document.documentElement.style.setProperty("--secondaryColor", theme.secondaryColor);
+		} else {
+			console.error(`Tema "${themeName}" não encontrado.`);
+		}
+	}
+
+	let subscribeSelectedTheme: { (): void; unsubscribe?: any };
+
+	onMount(() => {
+		console.log("ele monta de novo");
+		subscribeSelectedTheme = selectedTheme.subscribe((value) => {
+			if (value) {
+				updateThemeVariables(value);
+			}
+		});
+	});
+
+	/* 	interface CssVariables {
 		[name: string]: string;
 	}
 
@@ -22,7 +82,9 @@
 		node: HTMLElement,
 		variables: CssVariables
 	): { update: (variables: CssVariables) => void } => {
-		setCssVariables(node, variables);
+		const clonedVariables = { ...variables }; // Clonando o objeto
+		setCssVariables(node, clonedVariables);
+		console.log(clonedVariables);
 
 		return {
 			update(variables: CssVariables) {
@@ -32,51 +94,29 @@
 	};
 
 	const setCssVariables = (node: HTMLElement, variables: CssVariables): void => {
+		console.log(variables);
+
 		for (const name in variables) {
 			node.style.setProperty(`--${name}`, variables[name]);
 		}
-	};
+	}; */
 
 	const copy = () => {
 		navigator.clipboard.writeText(Email);
 	};
-
-	onMount(() => {
-		const showCookie = localStorage.getItem("showCookieModal");
-		if (showCookie !== null) showCookieModal = JSON.parse(showCookie);
-		else showCookieModal = true;
-	});
-
-	// beforeNavigate(({ to }) => {
-	// 	const pathName = to.pathname;
-	// 	const route = routes.find((route) => pathName === route.href);
-	// 	if (!route.customColor) {
-	// 		customBackground.set('#3E7941');
-	// 	} else customBackground.set(route.customColor);
-	// });
 </script>
 
-<svelte:body use:cssVariables={{ background: $customBackground }} />
+<CssVariablesSetter
+	variables={{
+		backgroundColor: $customBackground,
+		mainColor: $customColor,
+		visitedColor: $customVisitedColor,
+		fontFamily: $customFontFamily,
+		secondaryColor: $customSecondaryColor
+	}}
+/>
 
-{#if showCookieModal && cookieEnabled}
-	<div class="cookieContainer">
-		<p>🍪 This website use <a href="privacy-policy">Cookies.</a></p>
-		<div
-			role="button"
-			tabindex="0"
-			on:keypress={() => {
-				showCookieModal = false;
-				localStorage.setItem("showCookieModal", "false");
-			}}
-			on:click={() => {
-				showCookieModal = false;
-				localStorage.setItem("showCookieModal", "false");
-			}}
-		>
-			&#10005;
-		</div>
-	</div>
-{/if}
+<svelte:body />
 
 <Modal>
 	<div slot="content" class="modalContainer">
@@ -111,51 +151,75 @@
 		<Button>Send Email</Button>
 	</div>
 </Modal>
-<NavBar segment={$page.url.pathname} />
 
-<slot />
-<hr class="footerLine" />
-<footer>
-	<p>
-		<select bind:value={$locale}>
-			{#each locales as l}
-				<option value={l}>{l}</option>
-			{/each}
-		</select>
-	</p>
-	<div class="socialNetworks">
-		<a href="https://github.com/victorgois"
-			><SocialIcons network="github" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="mailto:victorgois18@gmail.com">
-			<SocialIcons network="mailto" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="https://medium.com/@victorgispacheco">
-			<SocialIcons network="medium" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-		<a href="https://www.linkedin.com/in/victorgoisp/">
-			<SocialIcons network="linkedin" fgColor="#eeeeee" bgColor="transparent" />
-		</a>
-	</div>
-</footer>
-<div class="signature">
-	<div class="">
-		{#if $locale === "en"}
-			{$t("footer.paragraph1")}
-			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-				>Gianmarco Ladvace's project</a
-			>
-			{$t("footer.paragraph2")}
-		{/if}
-		{#if $locale === "pt"}
-			{$t("footer.paragraph1")}
-			<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
-				>Gianmarco Ladvace</a
-			>
-			{$t("footer.paragraph2")}
-		{/if}
-	</div>
-</div>
+{#if $page.url.pathname === "/projects/visualizations/como-funciona-chatgpt"}
+	<slot />
+{:else}
+	<NavBar segment={$page.url.pathname} />
+
+	<slot />
+	<hr class="footerLine" />
+	<footer>
+		<div class="footer-row">
+			<div class="footer-column">
+				<ThemeSwitcher />
+				<p class="translateButton">
+					<LanguageSelector />
+				</p>
+			</div>
+			<div class="socialNetworks">
+				<a href="https://github.com/victorgois"
+					><SocialIcons
+						network="github"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="mailto:victorgois18@gmail.com">
+					<SocialIcons
+						network="mailto"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="https://medium.com/@victorgispacheco">
+					<SocialIcons
+						network="medium"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+				<a href="https://www.linkedin.com/in/victorgoisp/">
+					<SocialIcons
+						network="linkedin"
+						fgColor="black"
+						bgColor="transparent"
+						style="opacity: 0.5"
+					/>
+				</a>
+			</div>
+		</div>
+		<div class="signature">
+			<div>
+				{#if $locale === "en"}
+					{$t("footer.paragraph1")}
+					<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file"
+						>Ladvace's project</a
+					>
+					{$t("footer.paragraph2")}
+				{/if}
+				{#if $locale === "pt"}
+					{$t("footer.paragraph1")}
+					<a href="https://github.com/Ladvace/SvelteKit-Portfolio?tab=MIT-1-ov-file">Ladvace</a>
+					{$t("footer.paragraph2")}
+				{/if}
+			</div>
+		</div>
+	</footer>
+{/if}
 
 <style>
 	* {
@@ -187,43 +251,29 @@
 	}
 
 	:global(#svelte) {
-		width: 100vw;
+		width: 100%;
 		height: 100%;
-		max-width: 800px;
-
+		max-width: 180vw;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 	}
 
-	:global(html),
 	:global(body) {
 		transition: background-color 0.2s ease 0s;
+		background-color: var(--backgroundColor);
+		background-size: 200% 200%;
+		color: var(--mainColor);
+		margin: 0;
 		position: relative;
 		width: 100%;
-		height: 100%;
-		overflow: auto;
-		font-family: "Fira Code", monospace;
-		background: rgb(2, 0, 36);
-		background: linear-gradient(
-			180deg,
-			rgb(2, 1, 21) 0%,
-			rgb(49, 49, 49) 54%,
-			rgba(255, 255, 255, 0.4990371148459384) 100%
-		);
-	}
-
-	:global(body) {
-		background-color: var(--background);
-		background-size: 200% 200%;
-		color: white;
-		margin: 0;
 		box-sizing: border-box;
 		display: grid;
 		line-height: 1.75;
 		place-items: center;
 		height: 100%;
 		overflow-x: hidden;
+		font-family: var(--fontFamily);
 	}
 
 	:global(h1) {
@@ -231,8 +281,8 @@
 	}
 
 	:global(::selection) {
-		color: white;
-		background: #050424;
+		color: var(--mainColor);
+		background: var(--backgroundColor);
 	}
 
 	:global(::-webkit-scrollbar) {
@@ -242,7 +292,7 @@
 	}
 
 	:global(::-webkit-scrollbar-thumb) {
-		background-color: #fafffd;
+		background-color: var(--backgroundColor);
 		border-radius: 3px;
 	}
 
@@ -252,33 +302,33 @@
 	}
 
 	@media (min-width: 900px) {
-		:global(body) {
+		/* :global(body) {
 			padding: 0 100px;
-		}
+		} */
 	}
 
 	:global(a) {
 		text-decoration: none;
-		color: rgb(200, 232, 16);
+		color: var(--visitedColor);
 	}
 
 	:global(a) {
 		text-decoration: none;
-		color: rgb(200, 232, 16);
+		color: var(--visitedColor);
 	}
 
 	a {
-		color: rgb(200, 232, 16);
+		color: var(--visitedColor);
 		text-decoration: none;
 	}
 
 	a:hover {
 		text-decoration: underline;
-		color: rgb(12, 255, 3);
+		color: var(--visitedColor);
 	}
 
 	a:visited {
-		color: rgb(103, 246, 32);
+		color: var(--visitedColor);
 	}
 
 	.modalContainer div {
@@ -294,54 +344,17 @@
 		visibility: hidden;
 	}
 
-	.cookieContainer {
-		background: white;
-		border-radius: 0px;
-		text-align: center;
-		width: 100%;
-		height: 30px;
-		color: black;
-		padding: 30px;
-		display: flex;
-		justify-content: space-evenly;
-		align-items: center;
-		position: fixed;
-		bottom: 0px;
-		left: 0;
-		right: 0;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.cookieContainer > p > a {
-		text-decoration: underline;
-	}
-
-	.cookieContainer > div {
-		cursor: pointer;
-	}
-
 	.signature {
 		font-size: 10px;
 		font-weight: 400;
-		max-width: 900px;
 		text-align: center;
 		width: 100%;
-		margin: 2rem 0 2rem 0;
+		margin: 1rem 0 1rem 0;
 	}
 
 	.signature a {
 		text-decoration: none;
-		color: #cfea11;
-	}
-
-	select {
-		border-radius: 4px;
-		cursor: pointer;
-		width: 40px;
-		height: 30px;
-		font-size: medium;
-		font-weight: 500;
-		font-family: "Fira Code", monospace;
+		color: var(--secondaryColor);
 	}
 
 	.socialNetworks {
@@ -349,6 +362,10 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.socialNetworks a {
+		padding: 0.1rem;
 	}
 
 	.footerLine {
@@ -363,40 +380,35 @@
 
 	footer {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: space-between;
 		margin: 0 30px 0 30px;
+		align-items: center;
 	}
 
-	footer p {
+	.footer-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		max-width: 700px;
+		width: 100%;
+	}
+
+	.footer-column {
 		margin: 1px;
 		padding: 0.5em;
 		font-size: small;
+		display: flex;
+		align-items: center;
+	}
+
+	.translateButton {
+		margin: 1em;
 	}
 
 	@media (min-width: 900px) {
 		:global(.tooltip) {
 			visibility: visible;
-		}
-	}
-	@media (min-width: 600px) {
-		.cookieContainer {
-			background: white;
-			border-radius: 50px;
-			text-align: center;
-			width: 350px;
-			height: 30px;
-			color: black;
-			padding: 0 10px;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-			position: fixed;
-			bottom: 50px;
-			left: 0;
-			right: 0;
-			margin-left: auto;
-			margin-right: auto;
 		}
 	}
 </style>

@@ -75,7 +75,7 @@
 		font-weight: 700;
 		text-align: start;
 		margin: 0;
-		font-size: 36px;
+		font-size: 2em;
 	}
 
 	.article {
@@ -116,7 +116,7 @@
 
 	@media (min-width: 900px) {
 		.articles > h1 {
-			font-size: 48px;
+			font-size: 2em;
 			margin: 0 0 50px 0;
 		}
 

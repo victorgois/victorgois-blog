@@ -1,23 +1,36 @@
 <script>
-	import { onMount } from "svelte";
-	let isVisible = false; // Estado para controlar a visibilidade
+	import { onMount, afterUpdate } from "svelte";
+	let isVisible = false;
 
 	onMount(() => {
-		var divElement = document.getElementById("viz1710960301631");
-		if (divElement) {
-			var vizElement = divElement.getElementsByTagName("object")[0];
-			if (vizElement) {
-				vizElement.style.width = "100%";
-				vizElement.style.height = divElement.offsetWidth * 0.75 + "px";
-				var scriptElement = document.createElement("script");
-				scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+		loadTableau();
+	});
 
-				if (vizElement.parentNode) {
-					vizElement.parentNode.insertBefore(scriptElement, vizElement);
-				}
-			}
+	afterUpdate(() => {
+		if (isVisible) {
+			loadTableau();
 		}
 	});
+
+	function loadTableau() {
+		var divElement = document.getElementById("viz1710960301631");
+		if (divElement && !divElement.querySelector("object")) {
+			var vizElement = document.createElement("object");
+			vizElement.style.width = "100%";
+			vizElement.style.height = divElement.offsetWidth * 0.75 + "px";
+			vizElement.className = "tableauViz";
+			vizElement.style.display = "block";
+
+			var scriptElement = document.createElement("script");
+			scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+			scriptElement.onload = () => {
+				// Aqui você pode adicionar qualquer código necessário após o carregamento do script
+			};
+
+			divElement.appendChild(vizElement);
+			divElement.appendChild(scriptElement);
+		}
+	}
 
 	function toggleVisibility() {
 		isVisible = !isVisible;
@@ -35,10 +48,9 @@
 </button>
 
 <div
-	class="tableauPlaceholder"
+	class="tableauPlaceholder {isVisible ? '' : 'hidden'}"
 	id="viz1710960301631"
 	style="position: relative;"
-	class:hidden={!isVisible}
 >
 	<noscript>
 		<img
@@ -47,8 +59,7 @@
 			style="border: none"
 		/>
 	</noscript>
-	<!-- svelte-ignore a11y-missing-attribute -->
-	<object class="tableauViz" style="display:none;">
+	<object class="tableauViz" style="display:none;" aria-label="tableauViz">
 		<param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
 		<param name="embed_code_version" value="3" />
 		<param name="site_root" value="" />
