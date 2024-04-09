@@ -22,13 +22,13 @@
 	}
 
 	svg line {
-		stroke: var(--color);
+		stroke: var(--mainColor);
 		stroke-width: 3;
 		transition: transform 0.3s ease-in-out;
 	}
 
 	button {
-		color: white;
+		color: var(--mainColor);
 		background: transparent;
 		border: transparent;
 		display: flex;
