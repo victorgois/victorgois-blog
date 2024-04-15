@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NavBar from "../lib/components/NavBar.svelte";
-	import Button from "../lib/components/Button.svelte";
-	import Tooltip from "../lib/components/Tooltip.svelte";
+	import NavBar from "$lib/components/NavBar.svelte";
+	import Button from "$lib/components/Button.svelte";
+	import Tooltip from "$lib/components/Tooltip.svelte";
 	import { page } from "$app/stores";
-	import Modal from "../lib/components/Modal.svelte";
+	import Modal from "$lib/components/Modal.svelte";
 	import { onDestroy, onMount } from "svelte";
 	import {
 		visualizationTheme,
@@ -20,12 +20,12 @@
 		setCustomColor,
 		setCustomFontFamily,
 		setCustomVisitedColor
-	} from "../lib/store";
-	import { Email } from "../lib/Constants";
+	} from "$lib/store";
+	import { Email } from "$lib/Constants";
 	import SocialIcons from "@rodneylab/svelte-social-icons";
 	import { t, locale } from "../i18n";
-	import ThemeSwitcher from "../lib/components/ThemeSwitcher.svelte";
-	import LanguageSelector from "../lib/components/LanguageSelector.svelte";
+	import ThemeSwitcher from "$lib/components/ThemeSwitcher.svelte";
+	import LanguageSelector from "$lib/components/LanguageSelector.svelte";
 	import CssVariablesSetter from "../funcs/CssVariablesSetter.svelte";
 	let copied = false;
 
