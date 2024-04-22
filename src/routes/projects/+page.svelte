@@ -6,7 +6,7 @@
 	import { derived } from "svelte/store";
 
 	import { visualizations } from "../../lib/store";
-	const menuItems = [0, 1, 2, 3, 4, 5, 6];
+	const menuItems = [0, 1, 2, 3, 4];
 
 	const menuContent = derived([t], ([$t]) => [
 		{
@@ -26,16 +26,8 @@
 			Content: $t("projectPageContent.dataVis")
 		},
 		{
-			Title: $t("projectPageContent.publishedWorkTitle"),
-			Content: $t("projectPageContent.publishedWork")
-		},
-		{
 			Title: $t("projectPageContent.techBlogTitle"),
 			Content: $t("projectPageContent.techBlog")
-		},
-		{
-			Title: $t("projectPageContent.professionalTimelineTitle"),
-			Content: $t("projectPageContent.professionalTimeline")
 		}
 	]);
 
@@ -75,13 +67,7 @@
 			<div class="menuContent">
 				{#if selectedMenuItem !== null}
 					<div use:reveal={{ transition: "fade" }} class="content">
-						{#if selectedMenuItem === 6}
-							<button class="timeline-button" on:click={toggleTimeline}>
-								<h4>{$menuContent[selectedMenuItem].Title}</h4>
-							</button>
-						{:else}
-							<h4>{$menuContent[selectedMenuItem].Title}</h4>
-						{/if}
+						<h4>{$menuContent[selectedMenuItem].Title}</h4>
 
 						{#if selectedMenuItem !== 3}
 							<p use:reveal={{ transition: "fade" }}>

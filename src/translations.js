@@ -28,9 +28,7 @@ export const translations = {
 		"project.menu1": "Formação acadêmica ",
 		"project.menu2": "Projetos de software",
 		"project.menu3": "Visualizações de dados",
-		"project.menu4": "Trabalho acadêmico",
-		"project.menu5": "Blog",
-		"project.menu6": "Timeline profissional",
+		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Visão Geral",
 		"projectPageContent.overview":
 			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 7 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
@@ -95,9 +93,7 @@ export const translations = {
 		"project.menu1": "Education",
 		"project.menu2": "Software projects",
 		"project.menu3": "Data visualizations",
-		"project.menu4": "Academic work",
-		"project.menu5": "Blog (in portuguese)",
-		"project.menu6": "Profissional Timeline",
+		"project.menu4": "Blog (in portuguese)",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
 			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 6 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
