@@ -6,7 +6,7 @@
 	import { derived } from "svelte/store";
 
 	import { visualizations } from "../../lib/store";
-	const menuItems = [0, 1, 2, 3, 4];
+	const menuItems = [0, 1];
 
 	const menuContent = derived([t], ([$t]) => [
 		{
@@ -16,18 +16,6 @@
 		{
 			Title: $t("projectPageContent.academicBackgroundTitle"),
 			Content: $t("projectPageContent.academicBackground")
-		},
-		{
-			Title: $t("projectPageContent.softwareProjectsTitle"),
-			Content: $t("projectPageContent.softwareProjects")
-		},
-		{
-			Title: $t("projectPageContent.dataVisTitle"),
-			Content: $t("projectPageContent.dataVis")
-		},
-		{
-			Title: $t("projectPageContent.techBlogTitle"),
-			Content: $t("projectPageContent.techBlog")
 		}
 	]);
 
