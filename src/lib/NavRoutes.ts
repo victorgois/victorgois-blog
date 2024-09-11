@@ -13,15 +13,15 @@ const routes = [
 		label: 'Stories'
 	},
 		*/
-	/* 	{
+	{
 		href: "/about",
 		label: "homepage.route3"
 	},
- */
+
 	{
 		href: "/blog",
 		label: "homepage.route4"
-	},
+	}
 	/* {
 		href: "/projects/visualizations",
 		label: "homepage.route5"
