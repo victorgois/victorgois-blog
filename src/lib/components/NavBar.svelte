@@ -33,6 +33,7 @@
 			<a class={`button ${segment === route.href ? "selected" : ""}`} href={route.href}
 				>{$t(`${route.label}`)}
 			</a>
+			<hr />
 		{/each}
 	</div>
 </div>
@@ -76,6 +77,12 @@
 		bottom: 0;
 	}
 
+	hr {
+		width: 100%;
+		height: 1px;
+		background: var(--color);
+	}
+
 	.innerContainer {
 		display: flex;
 		justify-content: space-between;
@@ -116,16 +123,19 @@
 	}
 
 	.responsiveButtons {
+		justify-content: center;
+		max-width: 700px;
 		margin-top: 20px;
 		width: 100%;
 		display: flex !important;
 		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.responsiveButtons .button {
 		max-width: 100px;
 		width: 100%;
-		text-align: center;
+		text-align: start;
 	}
 
 	.buttons .button {
