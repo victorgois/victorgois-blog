@@ -8,7 +8,8 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"allowImportingTsExtensions": true,
+		"noEmit": false,
+		"outDir": "./build",
 		"lib": ["DOM", "DOM.Iterable", "ES2022"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
