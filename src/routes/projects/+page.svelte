@@ -1,100 +1,51 @@
 <script>
 	import { locale, t } from "../../i18n";
-	import Timeline from "../../lib/components/Timeline.svelte";
-	import TableauGraphs from "../../lib/components/TableauGraphs.svelte";
 	import { reveal } from "svelte-reveal";
-	import { derived } from "svelte/store";
+	// @ts-ignore
+	import ProjectCard from "../../lib/components/ProjectCard.svelte";
 
-	import { visualizations } from "../../lib/store";
-	const menuItems = [0, 1];
-
-	const menuContent = derived([t], ([$t]) => [
+	const projects = [
 		{
-			Title: $t("projectPageContent.overviewTitle"),
-			Content: $t("projectPageContent.overview")
+			title: "Hoje tem evento na Arena MRV?",
+			description: "",
+			videoUrl: "https://example.com/video1.mp4",
+			poster: "https://example.com/poster1.jpg",
+			link: "https://github.com/username/project1"
 		},
 		{
-			Title: $t("projectPageContent.academicBackgroundTitle"),
-			Content: $t("projectPageContent.academicBackground")
+			title: "A História ilustrada do saber",
+			description: "Desenvolvido junto ao Nexo Jornalismo",
+			videoUrl: "historia-ilustrada.mp4",
+			poster: "historia-ilustrada.jpg",
+			link: "https://example.com/project2"
 		}
-	]);
 
-	/**
-	 * @type {number | null}
-	 */
-
-	let selectedMenuItem = null;
-	let showTimeline = false;
-
-	const handleClick = (/** @type {number} */ item) => {
-		selectedMenuItem = item;
-	};
-
-	const toggleTimeline = () => {
-		showTimeline = !showTimeline;
-	};
+		// Add more projects as needed
+	];
 </script>
 
 <svelte:head>
 	<title>Victor Góis — Projects</title>
 </svelte:head>
+
 <main>
+	<div class="header-container">
+		<h2>Projetos</h2>
+	</div>
 	<div class="column">
 		<div class="row">
-			<div class="menuWrapper">
-				<ul>
-					{#each menuItems as item, index (item)}
-						<li>
-							<button style="animation-delay: {index * 0.3}s;" on:click={() => handleClick(item)}>
-								{$t(`project.menu${item}`)}</button
-							>
-						</li>
-					{/each}
-				</ul>
-			</div>
-			<div class="menuContent">
-				{#if selectedMenuItem !== null}
-					<div use:reveal={{ transition: "fade" }} class="content">
-						<h4>{$menuContent[selectedMenuItem].Title}</h4>
-
-						{#if selectedMenuItem !== 3}
-							<p use:reveal={{ transition: "fade" }}>
-								{@html $menuContent[selectedMenuItem].Content}
-							</p>
-							{#if showTimeline}
-								<Timeline />
-							{/if}
-						{:else}
-							<p use:reveal={{ transition: "fade" }}>
-								{#each Object.values(visualizations) as { title, slug }}
-									<li><a href={`projects/visualizations/${slug}`}>{title}</a></li>
-								{/each}
-							</p>
-							<TableauGraphs />
-						{/if}
-					</div>
-				{:else}
-					<div class="content">
-						<h4>{$menuContent[0].Title}</h4>
-						<p use:reveal={{ transition: "fade" }}>{@html $menuContent[0].Content}</p>
-					</div>
+			{#each projects as project, index}
+				<ProjectCard {project} />
+				{#if (index + 1) % 3 === 0 && index !== projects.length - 1}
+					<div class="row" />
 				{/if}
-			</div>
+			{/each}
 		</div>
 	</div>
 </main>
 
 <style>
-	.timeline-button {
-		text-align: center;
-		background-color: var(--backgroundColor);
-		color: var(--mainColor);
-		border: none;
-	}
-
 	main {
-		padding: 0;
-		text-align: start;
 		padding: 20px;
 		display: flex;
 		flex-direction: column;
@@ -106,44 +57,22 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
+	}
+
+	h2 {
 		max-width: 700px;
 	}
 
 	.row {
 		display: flex;
 		flex-direction: row;
+		justify-content: center;
+		margin-bottom: 20px;
 	}
 
-	.menuWrapper {
-		display: flex;
-		flex-grow: 0;
-		flex-basis: 40%;
-	}
-
-	.menuWrapper ul {
-		margin-right: 2em;
-		list-style-type: none;
-		padding: 0;
-	}
-
-	.menuContent {
-		flex-grow: 0;
-		flex-basis: 60%;
-	}
-
-	button {
-		font-weight: 700;
-		padding: 0.25em;
-		text-align: start;
-		margin: 0 auto;
-		cursor: pointer;
-		font-size: 18px;
-		background-color: var(--mainColor);
-		color: var(--backgroundColor);
-	}
-
-	li {
-		margin: 0.5em;
-		list-style: none;
+	@media (max-width: 900px) {
+		.row {
+			flex-direction: column;
+		}
 	}
 </style>

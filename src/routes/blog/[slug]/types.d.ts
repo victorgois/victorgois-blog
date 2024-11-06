@@ -42,3 +42,9 @@ export interface User {
 export interface PageData {
 	article: Article;
 }
+
+export interface PageLoad {
+	params: {
+		slug: string;
+	};
+}

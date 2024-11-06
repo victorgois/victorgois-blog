@@ -1,141 +1,103 @@
-<script>
-	import { t, locale } from "../../i18n";
-	export let data;
-	let devToArticles = data.devToArticles;
+<script lang="ts">
+	import { fade } from "svelte/transition";
 
-	const blackListedArticles = [422939];
-
-	const articles = [...devToArticles];
-
-	const filteredArticles = articles.filter((article) => !blackListedArticles.includes(article?.id));
+	const posts = [
+		{
+			slug: "building-interactive-data-visualizations",
+			title: "Building Interactive Data Visualizations with D3 and Svelte",
+			subtitle: "A Deep Dive into Web-Based Data Visualization",
+			date: "2024-11-05",
+			metadata: {
+				author: "Victor Góis",
+				tags: ["D3.js", "Svelte", "Data Visualization", "Web Development"],
+				readingTime: 8
+			}
+		}
+	];
 </script>
 
-<svelte:head>
-	<title>Victor Góis — Blog</title>
-</svelte:head>
-
-<div class="articlesContainer">
-	<div class="articles">
-		<h1>{$t("blog.title")}</h1>
-
-		{#each filteredArticles as article}
-			<div class="article">
-				<div class="header">
-					<h2>
-						{article.title}
-					</h2>
-					<div>Tags: {article.tags || article.category}</div>
+<div class="container" in:fade>
+	<h1>Blog</h1>
+	<div class="posts-grid">
+		{#each posts as post}
+			<a href={`/blog/${post.slug}`} class="post-card">
+				<h2>{post.title}</h2>
+				{#if post.subtitle}
+					<h3>{post.subtitle}</h3>
+				{/if}
+				<div class="metadata">
+					<time datetime={post.date}>
+						{new Date(post.date).toLocaleDateString()}
+					</time>
+					<div class="tags">
+						{#each post.metadata.tags as tag}
+							<span class="tag">{tag}</span>
+						{/each}
+					</div>
 				</div>
-				<p>
-					{article.description || ""}
-				</p>
-
-				<a
-					href={article.id ? `/blog/${article.id}` : article.link}
-					target={!article.id ? "_blank" : "_self"}
-				>
-					<div class="button">{$t("blog.readMore")}</div>
-				</a>
-			</div>
+			</a>
 		{/each}
-		{#if filteredArticles.length === 0}
-			{#if $locale === "en"}
-				<div>No Articles</div>
-			{:else}
-				<div>Sem artigos</div>
-			{/if}
-		{/if}
 	</div>
 </div>
 
 <style>
-	.articlesContainer {
-		width: 100%;
-		max-width: 700px;
-		display: flex;
-		justify-content: center;
-		box-sizing: border-box;
-		text-align: center;
+	.container {
+		max-width: 900px;
 		margin: 0 auto;
-		text-align: center;
+		padding: 20px;
 	}
 
-	.articlesContainer .articles {
+	.posts-grid {
 		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 40px;
-		margin-top: 30px;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+
+	.post-card {
+		padding: 1.5rem;
+		border: 1px solid var(--mainColor);
+		border-radius: 8px;
+		text-decoration: none;
+		transition: transform 0.2s ease;
+	}
+
+	.post-card:hover {
+		transform: translateY(-4px);
+	}
+
+	h1 {
+		color: var(--mainColor);
+		font-size: 2.5rem;
 	}
 
 	h2 {
-		display: flex;
-	}
-
-	.articles > h1 {
-		font-weight: 700;
-		text-align: start;
+		color: var(--mainColor);
 		margin: 0;
-		font-size: 2em;
 	}
 
-	.article {
-		text-align: start;
-		box-sizing: border-box;
+	h3 {
+		color: var(--secondaryColor);
+		margin: 0.5rem 0;
+		font-size: 1.1rem;
+	}
+
+	.metadata {
 		display: flex;
-		flex-direction: column;
-		color: white;
-		background: #111;
-		padding: 2rem;
-		width: 100%;
-		border-radius: 5px;
-		transition: transform 0.2s ease-in-out;
-		border-radius: 25px;
-	}
-
-	.article p {
-		font-weight: 100;
-		color: #708090;
-	}
-
-	.articles {
-		width: 100%;
-		margin: 50px auto;
-		display: grid;
-		grid-gap: 1rem;
-		grid-template-columns: 1fr;
-	}
-
-	.button {
-		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		color: white;
-		border: 2px solid white;
-		padding: 10px;
+		margin-top: 1rem;
 	}
 
-	@media (min-width: 900px) {
-		.articles > h1 {
-			font-size: 2em;
-			margin: 0 0 50px 0;
-		}
-
-		.articles {
-			grid-template-columns: 1fr;
-		}
-
-		.articles .article {
-			min-height: 200px;
-		}
-
-		.button {
-			max-width: 200px;
-		}
+	.tags {
+		display: flex;
+		gap: 0.5rem;
 	}
 
-	@media (min-width: 600px) {
-		.articles {
-			grid-template-columns: 1fr;
-		}
+	.tag {
+		background: var(--secondaryColor);
+		color: var(--backgroundColor);
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.8rem;
 	}
 </style>
