@@ -3,6 +3,7 @@ export interface BlogPost {
 	title: string;
 	subtitle?: string;
 	date: string;
+	source?: "local" | "devto";
 	metadata: {
 		author: string;
 		tags: string[];
@@ -14,5 +15,9 @@ export interface BlogPost {
 export interface BlogContent {
 	type: "paragraph" | "quote" | "visualization" | "markdown";
 	content: string;
+	visualizationData?: {
+		type: string;
+		data: number[];
+	};
 	style?: string;
 }

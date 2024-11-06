@@ -3,6 +3,7 @@
 	import { fade } from "svelte/transition";
 	import Paragraph from "../components/Paragraph.svelte";
 	import Quote from "../components/Quote.svelte";
+	import D3BarChart from "../components/D3BarChart.svelte";
 
 	export let post: BlogPost;
 </script>
@@ -31,6 +32,8 @@
 				<Paragraph content={block.content} style={block.style} />
 			{:else if block.type === "quote"}
 				<Quote content={block.content} style={block.style} />
+			{:else if block.type === "visualization" && block.visualizationData}
+				<D3BarChart data={block.visualizationData.data} />
 			{/if}
 		{/each}
 	</div>
