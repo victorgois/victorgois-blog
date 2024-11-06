@@ -7,7 +7,10 @@
 	<h1>Blog</h1>
 	<div class="posts-grid">
 		{#each data.posts as post}
-			<a href={`/blog/${post.slug}`} class="post-card">
+			<a
+				href={`/blog/${post.slug}`}
+				class="post-card {post.source === 'devto' ? 'devto-post' : ''}"
+			>
 				<h2>{post.title}</h2>
 				{#if post.subtitle}
 					<h3>{post.subtitle}</h3>
@@ -22,6 +25,9 @@
 						{/each}
 					</div>
 				</div>
+				{#if post.source === "devto"}
+					<div class="source-badge">dev.to</div>
+				{/if}
 			</a>
 		{/each}
 	</div>
@@ -81,6 +87,23 @@
 	}
 
 	.tag {
+		background: var(--secondaryColor);
+		color: var(--backgroundColor);
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.8rem;
+	}
+
+	.devto-post {
+		border: 1px solid var(--secondaryColor);
+		background: rgba(var(--secondaryColor-rgb), 0.1);
+		position: relative;
+	}
+
+	.source-badge {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
 		background: var(--secondaryColor);
 		color: var(--backgroundColor);
 		padding: 0.2rem 0.5rem;

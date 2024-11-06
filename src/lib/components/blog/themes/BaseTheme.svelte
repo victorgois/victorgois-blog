@@ -4,6 +4,7 @@
 	import Paragraph from "../components/Paragraph.svelte";
 	import Quote from "../components/Quote.svelte";
 	import D3BarChart from "../components/D3BarChart.svelte";
+	import { marked } from "marked";
 
 	export let post: BlogPost;
 </script>
@@ -34,6 +35,8 @@
 				<Quote content={block.content} style={block.style} />
 			{:else if block.type === "visualization" && block.visualizationData}
 				<D3BarChart data={block.visualizationData.data} />
+			{:else if block.type === "markdown"}
+				{@html marked(block.content)}
 			{/if}
 		{/each}
 	</div>
@@ -85,5 +88,23 @@
 		padding: 0.2rem 0.5rem;
 		border-radius: 4px;
 		font-size: 0.8rem;
+	}
+
+	article :global(p) {
+		margin: 1rem 0;
+		line-height: 1.6;
+	}
+
+	article :global(h1),
+	article :global(h2),
+	article :global(h3) {
+		margin: 2rem 0 1rem;
+	}
+
+	article :global(pre),
+	article :global(code) {
+		background: rgba(var(--mainColor-rgb), 0.1);
+		padding: 0.2em 0.4em;
+		border-radius: 3px;
 	}
 </style>
