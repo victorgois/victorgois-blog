@@ -31,7 +31,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Visão Geral",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 7 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho como desenvolvedor há cerca de 5 anos, atuando em diversos segmentos.</p>",
 
 		"projectPageContent.academicBackgroundTitle": "Formação acadêmica",
 		"projectPageContent.academicBackground":
@@ -96,7 +96,7 @@ export const translations = {
 		"project.menu4": "Blog (in portuguese)",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>Eu sou Victor, jornalista, formado pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>. Trabalho com tecnologia há cerca de 6 anos, sendo os ultimos três como desenvolvedor de software em empresas de diversos segmentos.</p>",
+			"<p style='font-size: 14px'>Hi, I'm Victor, a journalist, graduated from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>. I've been working as a software developer for about 5 years, working in various segments.</p>",
 		"projectPageContent.academicBackgroundTitle": "Education",
 		"projectPageContent.academicBackground":
 			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> Master's in Social Communication. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>Truth in Deepfakes. A semiotic analysis of deepfakes in the 2022 elections</i>, Year of Completion: 2023. Advisor: Geane Carvalho Alzamora. Co-advisor: Conrado Mendes. Keywords: semiotics; deepfakes; artificial intelligence</li> <li style='list-style-type: none; font-size: 12px'> <br /><b>2017 - 2021</b> Bachelor's in Journalism. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil. Title: <i>PROTOCOLS, PLATFORMS, AND APIS, Experimentations with Google News, Twitter, and YouTube data on #BrequeDosApps.</i> Advisor: Carlos Frederico de Brito D'Andréa. Scholarship Holder: National Council for Scientific and Technological Development, CNPq, Brazil.</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2014 - 2015</b> Academic exchange <a href='https://www.hs-schmalkalden.de/en/'>University Of Applied Sciences Schmalkalden</a>, Germany</li></li><li style='list-style-type: none; font-size: 12px'> <br /><b>2011 - 2016</b> Undergraduate studies interrupted in 2016 in Information Systems. <a href='https://ufmg.br",

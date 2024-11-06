@@ -1,25 +1,12 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
-
-	const posts = [
-		{
-			slug: "building-interactive-data-visualizations",
-			title: "Building Interactive Data Visualizations with D3 and Svelte",
-			subtitle: "A Deep Dive into Web-Based Data Visualization",
-			date: "2024-11-05",
-			metadata: {
-				author: "Victor Góis",
-				tags: ["D3.js", "Svelte", "Data Visualization", "Web Development"],
-				readingTime: 8
-			}
-		}
-	];
+	export let data;
 </script>
 
 <div class="container" in:fade>
 	<h1>Blog</h1>
 	<div class="posts-grid">
-		{#each posts as post}
+		{#each data.posts as post}
 			<a href={`/blog/${post.slug}`} class="post-card">
 				<h2>{post.title}</h2>
 				{#if post.subtitle}

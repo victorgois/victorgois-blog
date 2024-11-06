@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
-	import BaseTheme from "$lib/components/blog/themes/BaseTheme.svelte";
+	import BaseTheme from "../../../lib/components/blog/themes/BaseTheme.svelte";
+
 	export let data;
 </script>
 

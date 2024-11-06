@@ -2,6 +2,11 @@
 	import { onMount } from "svelte";
 	import * as d3 from "d3";
 
+	interface VisualizationData {
+		type: string;
+		config: any; // TODO: Add proper typing
+	}
+
 	export let data: VisualizationData;
 	let element: HTMLDivElement;
 

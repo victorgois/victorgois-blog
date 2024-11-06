@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { BlogPost } from "$lib/types/blog";
+	import type { BlogPost } from "../../../types/blog";
 	import { fade } from "svelte/transition";
 	import Paragraph from "../components/Paragraph.svelte";
 	import Quote from "../components/Quote.svelte";
@@ -25,9 +25,8 @@
 			</span>
 		</div>
 	</header>
-
 	<div class="content">
-		{#each post.content as block}
+		{#each post.content ?? [] as block}
 			{#if block.type === "paragraph"}
 				<Paragraph content={block.content} style={block.style} />
 			{:else if block.type === "quote"}

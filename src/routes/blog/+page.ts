@@ -1,17 +1,13 @@
-import { UserInfoEndpoint } from "../../lib/Constants";
+import { getAllPosts } from "../../lib/posts";
 import { error } from "@sveltejs/kit";
 
-export async function load({ fetch }) {
-	let devToArticles;
-	let mediumArticles;
+export async function load() {
 	try {
-		devToArticles = await fetch(`${UserInfoEndpoint}`);
-		devToArticles = await devToArticles.json();
+		const posts = await getAllPosts();
+		return {
+			posts
+		};
 	} catch (e) {
 		throw error(404, "Not found");
 	}
-
-	return {
-		devToArticles
-	};
 }
