@@ -3,7 +3,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Oi! Eu sou Victor, um Engenheiro de Software Full-Stack do 🇧🇷, especializado em React, TypeScript, Node.js e visualização de dados.",
 		"homepage.presentation2":
-			"👋 Sou um desenvolvedor Full-Stack com mais de 7 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica, desenvolvimento de aplicações escaláveis e práticas avançadas de código limpo.",
+			"👋 Sou um desenvolvedor Full-Stack com mais de 6 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica, desenvolvimento de aplicações escaláveis e práticas avançadas de código limpo.",
 		"homepage.presentation3":
 			"🔧 Tenho ampla experiência trabalhando em equipes ágeis e liderando times de desenvolvimento frontend. Minha maior paixão é transformar dados complexos em experiências visuais envolventes, seja através de dashboards interativos, visualizações com D3.js ou aplicações web modernas.",
 		"homepage.longPresentation1": "Tecnologias principais que domino",
@@ -31,7 +31,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Visão Geral",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>Sou Victor Góis Pacheco, <strong>Engenheiro de Software Full-Stack Sênior</strong> com <strong>7+ anos de experiência profissional</strong> especializado em <strong>React, TypeScript, Node.js e Next.js</strong>. Formado em Jornalismo e Mestre em Comunicação Social pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, combino expertise técnica com fortes habilidades de comunicação. Atualmente focado em <strong>liderança técnica</strong>, <strong>arquiteturas escaláveis</strong> e <strong>integrações de IA</strong>.</p>",
+			"<p style='font-size: 14px'>Sou Victor Góis Pacheco, <strong>Engenheiro de Software Full-Stack Sênior</strong> com <strong>6 anos de experiência profissional</strong> especializado em <strong>React, TypeScript, Node.js e Next.js</strong>. Formado em Jornalismo e Mestre em Comunicação Social pela <a href='https://ufmg.br/'>Universidade Federal de Minas Gerais</a>, combino expertise técnica com fortes habilidades de comunicação. Atualmente focado em <strong>liderança técnica</strong>, <strong>arquiteturas escaláveis</strong> e <strong>integrações de IA</strong>.</p>",
 
 		"projectPageContent.academicBackgroundTitle": "Formação acadêmica",
 		"projectPageContent.academicBackground":
@@ -84,7 +84,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Hi! I'm Victor, a Full-Stack Software Engineer from 🇧🇷, specializing in React, TypeScript, Node.js, and data visualization.",
 		"homepage.presentation2":
-			"👋 I'm a Full-Stack developer with 7+ years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership, scalable application development, and advanced clean code practices.",
+			"👋 I'm a Full-Stack developer with 6 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership, scalable application development, and advanced clean code practices.",
 		"homepage.presentation3":
 			"🔧 I have extensive experience working in agile teams and leading frontend development teams. My biggest passion is transforming complex data into engaging visual experiences, whether through interactive dashboards, D3.js visualizations, or modern web applications.",
 		"homepage.longPresentation1": "Core technologies I master",
@@ -111,7 +111,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Full-Stack Software Engineer</strong> with <strong>7+ years of professional experience</strong> specializing in <strong>React, TypeScript, Node.js, and Next.js</strong>. Graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
+			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Full-Stack Software Engineer</strong> with <strong>6 years of professional experience</strong> specializing in <strong>React, TypeScript, Node.js, and Next.js</strong>. Graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
 		"projectPageContent.academicBackgroundTitle": "Education",
 		"projectPageContent.academicBackground":
 			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> <strong>Master of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Thesis: <i>\"Truth in Deep Fake: A Semiotic Study on Deepfakes in Brazilian 2022 Presidential Elections\"</i><br/>Technologies: Twitter API with Node.js, JavaScript data processing, Tableau visualizations</li><br/><li style='list-style-type: none; font-size: 12px'><b>2016 - 2020</b> <strong>Bachelor of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Final Project: <i>\"Protocols, Platforms and APIs: Experiments with Google News, Twitter and YouTube data\"</i></li><br/><li style='list-style-type: none; font-size: 12px'><b>2011 - 2016</b> <strong>Bachelor of Science in Information Systems</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Core Subjects: Web Development, Business Intelligence, Data Structures, C and Ruby Programming</li><br/><li style='list-style-type: none; font-size: 12px'><b>2014 - 2015</b> <strong>Exchange Program - Multimedia Marketing</strong>. <a href='https://www.hs-schmalkalden.de/en/'>University of Applied Sciences Schmalkalden</a>, Germany</li>",

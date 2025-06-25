@@ -83,18 +83,15 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
-		color: white;
-		background: #111;
+		color: var(--mainColor);
 		padding: 2rem;
 		width: 100%;
-		border-radius: 5px;
 		transition: transform 0.2s ease-in-out;
-		border-radius: 25px;
 	}
 
 	.article p {
 		font-weight: 100;
-		color: #708090;
+		color: var(--secondaryColor);
 	}
 
 	.articles {
@@ -109,8 +106,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: white;
-		border: 2px solid white;
+		color: var(--mainColor);
+		border: 2px solid var(--mainColor);
 		padding: 10px;
 	}
 
