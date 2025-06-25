@@ -18,7 +18,7 @@ export const defaultTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
-	backgroundColor: "black",
+	backgroundColor: "#1a1a1a",
 	mainColor: "white",
 	secondaryColor: "darkgray",
 	visitedColor: "rgb(200, 232, 16)",
