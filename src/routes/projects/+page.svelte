@@ -1,149 +1,73 @@
 <script>
-	import { locale, t } from "../../i18n";
-	import Timeline from "../../lib/components/Timeline.svelte";
-	import TableauGraphs from "../../lib/components/TableauGraphs.svelte";
-	import { reveal } from "svelte-reveal";
-	import { derived } from "svelte/store";
-
-	import { visualizations } from "../../lib/store";
-	const menuItems = [0, 1];
-
-	const menuContent = derived([t], ([$t]) => [
-		{
-			Title: $t("projectPageContent.overviewTitle"),
-			Content: $t("projectPageContent.overview")
-		},
-		{
-			Title: $t("projectPageContent.academicBackgroundTitle"),
-			Content: $t("projectPageContent.academicBackground")
-		}
-	]);
-
-	/**
-	 * @type {number | null}
-	 */
-
-	let selectedMenuItem = null;
-	let showTimeline = false;
-
-	const handleClick = (/** @type {number} */ item) => {
-		selectedMenuItem = item;
-	};
-
-	const toggleTimeline = () => {
-		showTimeline = !showTimeline;
-	};
+	import VideoGrid from '../../lib/components/VideoGrid.svelte';
+	import { getVideos } from '../../lib/Videos.ts';
+	import { t } from '../../i18n';
+	import { derived } from 'svelte/store';
+	
+	// Cria um store reativo que atualiza os vídeos quando o idioma muda
+	const videos = derived(t, () => getVideos());
 </script>
 
 <svelte:head>
-	<title>Victor Góis — Projects</title>
+	<title>{$t('projects.pageTitle')}</title>
 </svelte:head>
-<main>
-	<div class="column">
-		<div class="row">
-			<div class="menuWrapper">
-				<ul>
-					{#each menuItems as item, index (item)}
-						<li>
-							<button style="animation-delay: {index * 0.3}s;" on:click={() => handleClick(item)}>
-								{$t(`project.menu${item}`)}</button
-							>
-						</li>
-					{/each}
-				</ul>
-			</div>
-			<div class="menuContent">
-				{#if selectedMenuItem !== null}
-					<div use:reveal={{ transition: "fade" }} class="content">
-						<h4>{$menuContent[selectedMenuItem].Title}</h4>
 
-						{#if selectedMenuItem !== 3}
-							<p use:reveal={{ transition: "fade" }}>
-								{@html $menuContent[selectedMenuItem].Content}
-							</p>
-							{#if showTimeline}
-								<Timeline />
-							{/if}
-						{:else}
-							<p use:reveal={{ transition: "fade" }}>
-								{#each Object.values(visualizations) as { title, slug }}
-									<li><a href={`projects/visualizations/${slug}`}>{title}</a></li>
-								{/each}
-							</p>
-							<TableauGraphs />
-						{/if}
-					</div>
-				{:else}
-					<div class="content">
-						<h4>{$menuContent[0].Title}</h4>
-						<p use:reveal={{ transition: "fade" }}>{@html $menuContent[0].Content}</p>
-					</div>
-				{/if}
-			</div>
-		</div>
+<main>
+	<div class="projects-container">
+		<h1>{$t('projects.title')}</h1>
+		<p class="subtitle">{$t('projects.subtitle')}</p>
+		
+		<VideoGrid videos={$videos} />
 	</div>
 </main>
 
 <style>
-	.timeline-button {
-		text-align: center;
-		background-color: var(--backgroundColor);
-		color: var(--mainColor);
-		border: none;
-	}
-
 	main {
-		padding: 0;
-		text-align: start;
-		padding: 20px;
+		padding: 2rem;
+		min-height: 100vh;
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 	}
 
-	.column {
-		display: flex;
-		flex-direction: column;
+	.projects-container {
 		width: 100%;
-		max-width: 700px;
-	}
-
-	.row {
-		display: flex;
-		flex-direction: row;
-	}
-
-	.menuWrapper {
-		display: flex;
-		flex-grow: 0;
-		flex-basis: 40%;
-	}
-
-	.menuWrapper ul {
-		margin-right: 2em;
-		list-style-type: none;
-		padding: 0;
-	}
-
-	.menuContent {
-		flex-grow: 0;
-		flex-basis: 60%;
-	}
-
-	button {
-		font-weight: 700;
-		padding: 0.25em;
-		text-align: start;
+		max-width: 1200px;
 		margin: 0 auto;
-		cursor: pointer;
-		font-size: 18px;
-		background-color: var(--mainColor);
-		color: var(--backgroundColor);
 	}
 
-	li {
-		margin: 0.5em;
-		list-style: none;
+	h1 {
+		text-align: center;
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: var(--mainColor);
+		margin-bottom: 0.5rem;
+	}
+
+	.subtitle {
+		text-align: center;
+		font-size: 1.1rem;
+		color: var(--mainColor);
+		opacity: 0.8;
+		margin-bottom: 3rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* Responsividade */
+	@media (max-width: 768px) {
+		main {
+			padding: 1rem;
+		}
+
+		h1 {
+			font-size: 2rem;
+		}
+
+		.subtitle {
+			font-size: 1rem;
+			margin-bottom: 2rem;
+		}
 	}
 </style>

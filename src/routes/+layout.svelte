@@ -251,11 +251,10 @@
 
 	:global(#svelte) {
 		width: 100%;
-		height: 100%;
+		min-height: 100vh;
 		max-width: 180vw;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 	}
 
 	:global(body) {
@@ -267,10 +266,8 @@
 		position: relative;
 		width: 100%;
 		box-sizing: border-box;
-		display: grid;
 		line-height: 1.75;
-		place-items: center;
-		height: 100%;
+		min-height: 100vh;
 		overflow-x: hidden;
 		font-family: var(--fontFamily);
 	}
@@ -383,6 +380,7 @@
 		justify-content: space-between;
 		margin: 0 30px 0 30px;
 		align-items: center;
+		margin-top: auto;
 	}
 
 	.footer-row {
