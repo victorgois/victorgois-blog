@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Góis Pacheco - Full-Stack Engineer Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            font-size: 11px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #34495e;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            font-size: 10px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        h2 {
+            font-size: 14px;
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 3px;
+        }
+
+        h3 {
+            font-size: 12px;
+            color: #2c3e50;
+            margin: 15px 0 5px 0;
+            font-weight: 600;
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .company {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .date {
+            font-weight: 500;
+            color: #7f8c8d;
+            float: right;
+            font-size: 10px;
+        }
+
+        .job-header {
+            margin-bottom: 5px;
+            overflow: hidden;
+        }
+
+        .job-header::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        ul {
+            margin: 8px 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 3px;
+            text-align: justify;
+            font-size: 10px;
+        }
+
+        .summary {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .tech-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tech-category {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .tech-category h4 {
+            font-size: 11px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .tech-list {
+            font-size: 10px;
+            line-height: 1.4;
+            margin-left: 0;
+        }
+
+        .tech-list li {
+            list-style: none;
+            margin-bottom: 2px;
+        }
+
+        .highlight {
+            background-color: #ecf0f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .key-strengths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .strength-item {
+            font-size: 10px;
+            padding: 3px 0;
+        }
+
+        .strength-item::before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .education-item {
+            margin-bottom: 12px;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .university {
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .language-item {
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                font-size: 10px;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0.3in;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .job-header {
+                page-break-after: avoid;
+            }
+            
+            .job-header + ul {
+                page-break-before: avoid;
+            }
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+        }
+
+        @media print {
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+    
+    <div class="container">
+        <header>
+            <h1>Victor Góis Pacheco</h1>
+            <div class="subtitle">Full-Stack Software Engineer</div>
+            <div class="contact-info">
+                📧 dev@victorgois.info | 📱 +55 31 999322052<br>
+                🌐 victorgois.info | 💼 LinkedIn: victorgoisp | 🔗 GitHub: victorgois<br>
+                📍 Belo Horizonte, Brazil
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <div class="summary">
+                Senior Full-Stack Software Engineer with <span class="highlight">7+ years of professional experience</span> specializing in <span class="highlight">React, TypeScript, Node.js, and Next.js</span>. Proven track record in <span class="highlight">frontend and backend development</span>, <span class="highlight">data visualization</span>, and <span class="highlight">team leadership</span>. Academic background in journalism with Master's degree in Social Communication, combining technical expertise with strong <span class="highlight">communication skills</span>. Experienced in <span class="highlight">remote work environments</span>, <span class="highlight">mentorship</span>, and <span class="highlight">cross-functional collaboration</span>. Currently seeking opportunities to leverage expertise in <span class="highlight">modern web technologies</span> and <span class="highlight">AI integrations</span>.
+            </div>
+            <div style="text-align: center; font-weight: 600; color: #2c3e50; margin-bottom: 15px;">
+                Core Technologies: TypeScript | React | Node.js | Next.js | AWS | GraphQL | Python | Django
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="tech-section">
+                <div class="tech-category">
+                    <h4>Frontend Development</h4>
+                    <ul class="tech-list">
+                        <li><strong>Languages:</strong> TypeScript, JavaScript, HTML5, CSS3</li>
+                        <li><strong>Frameworks:</strong> React, Next.js, Material-UI, Tailwind CSS</li>
+                        <li><strong>State Management:</strong> Context API, Custom Hooks</li>
+                        <li><strong>Testing:</strong> Jest, Storybook</li>
+                        <li><strong>Visualization:</strong> D3.js, Tableau</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Backend Development</h4>
+                    <ul class="tech-list">
+                        <li><strong>Runtime:</strong> Node.js</li>
+                        <li><strong>Frameworks:</strong> Django (Python)</li>
+                        <li><strong>Databases:</strong> PostgreSQL, Elasticsearch</li>
+                        <li><strong>APIs:</strong> GraphQL, REST APIs</li>
+                        <li><strong>Languages:</strong> Python, Java</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Cloud & DevOps</h4>
+                    <ul class="tech-list">
+                        <li><strong>Cloud:</strong> AWS</li>
+                        <li><strong>Containers:</strong> Docker</li>
+                        <li><strong>Version Control:</strong> Git, GitHub</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Additional Technologies</h4>
+                    <ul class="tech-list">
+                        <li><strong>Mobile:</strong> Android (Java, Kotlin)</li>
+                        <li><strong>CMS:</strong> WordPress, Custom Solutions</li>
+                        <li><strong>Design:</strong> Figma, Design Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            
+            <div class="job-header">
+                <span class="job-title">Full-Stack Developer / Tech Lead</span> | <span class="company">Wikimedia Brasil</span>
+                <span class="date">Oct 2024 - Present</span>
+            </div>
+            <ul>
+                <li><strong>Leading a frontend development team</strong> on Capacity Exchange project, a complex <strong>React Next.js application</strong> for hierarchical capacity management</li>
+                <li>Implemented <strong>scalable frontend architecture</strong> using advanced patterns including <strong>pub/sub, global state management</strong>, and <strong>performance optimization</strong></li>
+                <li>Designed and developed <strong>responsive interfaces</strong> with focus on <strong>user experience</strong>, applying consistent visual patterns</li>
+                <li>Applied significant <strong>performance optimizations</strong> including <strong>asynchronous data loading</strong> and <strong>conditional rendering</strong></li>
+                <li>Collaborated on <strong>frontend-backend integration</strong> with <strong>Python/Django team</strong> through <strong>REST APIs</strong></li>
+            </ul>
+
+            <div class="job-header">
+                <span class="job-title">Mobile Software Developer</span> | <span class="company">Stellantis</span>
+                <span class="date">Jun 2024 - Sep 2024</span>
+            </div>
+            <ul>
+                <li>Developed <strong>Android applications in Java</strong> from <strong>Figma layouts</strong> and <strong>Design Systems</strong></li>
+                <li>Implemented mobile prototypes with focus on <strong>user interface consistency</strong></li>
+            </ul>
+
+            <div class="job-header">
+                <span class="job-title">Full-Stack Software Developer</span> | <span class="company">3778 Healthcare</span>
+                <span class="date">Aug 2022 - Feb 2024</span>
+            </div>
+            <ul>
+                <li>Implemented <strong>software testing frameworks</strong> that prevented critical errors, achieving <strong>85+ code coverage</strong></li>
+                <li><strong>Optimized page performance</strong> and table sorting based on profiling analysis, improving <strong>90+ Web Vitals metrics</strong></li>
+                <li>Delivered <strong>design system documentation</strong> using <strong>Storybook</strong></li>
+                <li>Developed <strong>functional components</strong> using <strong>Material-UI and React</strong></li>
+                <li>Implemented <strong>GraphQL queries and mutations</strong> for data delivery in React applications</li>
+            </ul>
+
+            <div class="job-header">
+                <span class="job-title">Frontend Software Developer</span> | <span class="company">Nexo Jornal/Revista Gama</span>
+                <span class="date">Jul 2021 - Jul 2022</span>
+            </div>
+            <ul>
+                <li><strong>Migrated webapp codebase</strong> from React, JavaScript, and Sass to <strong>Next.js, TypeScript, and styled-components</strong></li>
+                <li>Developed <strong>Progressive Web App (PWA)</strong> with <strong>Next.js</strong></li>
+                <li>Created <strong>interactive data stories</strong> using <strong>HTML, CSS, and D3.js</strong>, contributing to award-winning project <strong>"Best of Digital Design 2022"</strong></li>
+            </ul>
+
+            <div class="job-header">
+                <span class="job-title">Full-Stack Software Developer</span> | <span class="company">Omnilogic</span>
+                <span class="date">Jul 2020 - Jul 2021</span>
+            </div>
+            <ul>
+                <li>Developed <strong>marketplace tracking scripts</strong>, <strong>business metrics infrastructure</strong>, and <strong>showcase templates</strong></li>
+                <li>Maintained <strong>Java-based web APIs</strong></li>
+                <li>Created <strong>data-driven dashboards</strong> using <strong>React and JavaScript</strong></li>
+            </ul>
+
+            <div class="job-header">
+                <span class="job-title">Freelance Developer & Data Analyst</span> | <span class="company">Independent</span>
+                <span class="date">2018 - Present</span>
+            </div>
+            <ul>
+                <li>Assisted <strong>PhD candidates and graduate students</strong> with <strong>research data formatting, modeling, and visualization</strong> using <strong>Python and Tableau</strong></li>
+                <li>Developed websites using <strong>headless WordPress</strong> with <strong>React and Next.js</strong></li>
+                <li>Created <strong>data visualizations and visual narratives</strong> using <strong>D3.js and Svelte</strong></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="degree">Master of Science in Social Communication</div>
+                <div class="university">Universidade Federal de Minas Gerais (UFMG)</div>
+                <span class="date">Jan 2021 - May 2023</span>
+                <ul>
+                    <li><strong>Thesis:</strong> "Truth in Deep Fake: A Semiotic Study on Deepfakes in Brazilian 2022 Presidential Elections"</li>
+                    <li><strong>Technologies:</strong> Twitter API with Node.js, JavaScript data processing, Tableau visualizations</li>
+                </ul>
+            </div>
+
+            <div class="education-item">
+                <div class="degree">Bachelor of Science in Social Communication</div>
+                <div class="university">Universidade Federal de Minas Gerais (UFMG)</div>
+                <span class="date">Aug 2016 - Dec 2020</span>
+                <ul>
+                    <li><strong>Final Project:</strong> "Protocols, Platforms and APIs: Experiments with Google News, Twitter and YouTube data"</li>
+                </ul>
+            </div>
+
+            <div class="education-item">
+                <div class="degree">Bachelor of Science in Information Systems</div>
+                <div class="university">Universidade Federal de Minas Gerais (UFMG)</div>
+                <span class="date">Mar 2011 - Jun 2016</span>
+                <ul>
+                    <li><strong>Core Subjects:</strong> Web Development, Business Intelligence, Data Structures, C and Ruby Programming</li>
+                </ul>
+            </div>
+
+            <div class="education-item">
+                <div class="degree">Exchange Program - Multimedia Marketing</div>
+                <div class="university">University of Applied Sciences Schmalkalden, Germany</div>
+                <span class="date">Sep 2014 - Aug 2015</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Projects & Research</h2>
+            <ul>
+                <li><strong>Data Visualization & Analytics:</strong> Transmedia dynamics research, Twitter data extraction using Python and Selenium</li>
+                <li><strong>YouTube Analysis:</strong> Political ecosystem network analysis, LGBTQ+ representation studies with data visualizations</li>
+                <li><strong>Publications:</strong> Book chapter in "Disinformation Society and Infodemic" (2021), research papers on social media analysis</li>
+                <li><strong>Teaching:</strong> Delivered courses on video production and programming for communicators</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Languages</h2>
+            <div class="languages">
+                <div class="language-item"><strong>Portuguese:</strong> Native</div>
+                <div class="language-item"><strong>English:</strong> Business Proficiency</div>
+                <div class="language-item"><strong>Spanish:</strong> Intermediate</div>
+                <div class="language-item"><strong>German:</strong> Basic</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Strengths for Remote Full-Stack Development</h2>
+            <div class="key-strengths">
+                <div class="strength-item">7+ years professional software development experience</div>
+                <div class="strength-item">Proven expertise in TypeScript, React, Node.js, Next.js</div>
+                <div class="strength-item">AWS cloud experience and scalable architecture design</div>
+                <div class="strength-item">Strong communication skills with academic background</div>
+                <div class="strength-item">Remote work experience across multiple companies</div>
+                <div class="strength-item">Team leadership and mentorship experience</div>
+                <div class="strength-item">Cross-functional collaboration expertise</div>
+                <div class="strength-item">Performance optimization and testing expertise</div>
+                <div class="strength-item">Data visualization and CMS platform experience</div>
+                <div class="strength-item">Startup environment adaptability</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide the download button
+            const btn = document.querySelector('.download-btn');
+            btn.style.display = 'none';
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Show the button again after a short delay
+            setTimeout(() => {
+                btn.style.display = 'block';
+            }, 1000);
+        }
+
+        // Alternative method: Create a proper PDF download
+        function createPDFDownload() {
+            const element = document.querySelector('.container');
+            const opt = {
+                margin: 0.5,
+                filename: 'Victor_Gois_Pacheco_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+        }
+    </script>
+</body>
+</html>
