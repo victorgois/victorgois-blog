@@ -66,16 +66,6 @@
 		bottom: 0;
 	}
 
-	.button.selected:after {
-		content: "";
-		color: var(--color);
-		background: white;
-		display: block;
-		height: 3px;
-		width: 100%;
-		position: absolute;
-		bottom: 0;
-	}
 
 	hr {
 		width: 100%;

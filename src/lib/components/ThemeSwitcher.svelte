@@ -92,6 +92,9 @@
 		padding: 0.5em;
 		margin: 0.5em;
 		cursor: pointer;
+		background: transparent;
+		border: none;
+		color: var(--mainColor);
 	}
 
 	.light-button {

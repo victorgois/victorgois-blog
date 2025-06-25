@@ -10,12 +10,14 @@
 
 <style>
 	select {
-		border-radius: 4px;
 		cursor: pointer;
 		width: 45px;
 		height: fit-content;
 		font-size: medium;
 		font-weight: 500;
 		font-family: "Fira Code", monospace;
+		background: transparent;
+		border: none;
+		color: var(--mainColor);
 	}
 </style>
