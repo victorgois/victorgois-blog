@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TechChips from "../lib/components/TechChips.svelte";
 	import TechDetail from "../lib/components/TechDetail.svelte";
-	import { techList } from "../lib/Constants";
+	import { expertTechList, experiencedTechList, familiarTechList } from "../lib/Constants";
 	import { selectedTechStore } from "../lib/store";
 	import { reveal } from "svelte-reveal";
 	import vic from "$lib/assets/vic.gif";
@@ -63,9 +63,24 @@
 		</div>
 		<div class="row">
 			<div class="long-presentation">
-				<h4>{$t("homepage.longPresentation1")}</h4>
 				{#if techListVisible}
-					<TechChips {techList} on:chipclick={handleChipClick} />
+					<div class="tech-section">
+						<h3>{$t("tech.expert.title")}</h3>
+						<p class="tech-description">{$t("tech.expert.description")}</p>
+						<TechChips techList={expertTechList} on:chipclick={handleChipClick} />
+					</div>
+					
+					<div class="tech-section">
+						<h3>{$t("tech.experienced.title")}</h3>
+						<p class="tech-description">{$t("tech.experienced.description")}</p>
+						<TechChips techList={experiencedTechList} on:chipclick={handleChipClick} />
+					</div>
+					
+					<div class="tech-section">
+						<h3>{$t("tech.familiar.title")}</h3>
+						<p class="tech-description">{$t("tech.familiar.description")}</p>
+						<TechChips techList={familiarTechList} on:chipclick={handleChipClick} />
+					</div>
 				{:else}
 					<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
 				{/if}
@@ -175,6 +190,48 @@
 	@media (min-width: 600px) {
 		main {
 			max-width: none;
+		}
+	}
+
+	.tech-section {
+		margin-bottom: 3rem;
+		padding: 1.5rem;
+		border-radius: 12px;
+		background: linear-gradient(135deg, var(--backgroundColor) 0%, rgba(200, 232, 16, 0.05) 100%);
+		border: 1px solid rgba(200, 232, 16, 0.1);
+		transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	}
+
+	.tech-section:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(200, 232, 16, 0.15);
+	}
+
+	.tech-section h3 {
+		color: var(--visitedColor);
+		margin: 0 0 0.5rem 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+		text-align: left;
+	}
+
+	.tech-description {
+		color: var(--secondaryColor);
+		margin: 0 0 1rem 0;
+		font-style: italic;
+		font-size: 0.95rem;
+		line-height: 1.4;
+		text-align: left;
+	}
+
+	@media (max-width: 900px) {
+		.tech-section {
+			padding: 1rem;
+			margin-bottom: 2rem;
+		}
+		
+		.tech-section h3 {
+			font-size: 1.3rem;
 		}
 	}
 </style>

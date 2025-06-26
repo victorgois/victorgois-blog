@@ -3,19 +3,19 @@ export const translations = {
 		"homepage.presentation1":
 			"Oi! Eu sou Victor, um Engenheiro de Software Full-Stack do 🇧🇷, especializado em React, TypeScript, Node.js e visualização de dados.",
 		"homepage.presentation2":
-			"👋 Sou um desenvolvedor Full-Stack com mais de 6 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica, desenvolvimento de aplicações escaláveis e práticas avançadas de código limpo.",
+			"Sou um desenvolvedor Full-Stack com mais de 6 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica, desenvolvimento de aplicações escaláveis e práticas avançadas de código limpo.",
 		"homepage.presentation3":
-			"🔧 Tenho ampla experiência trabalhando em equipes ágeis e liderando times de desenvolvimento frontend. Minha maior paixão é transformar dados complexos em experiências visuais envolventes, seja através de dashboards interativos, visualizações com D3.js ou aplicações web modernas.",
+			"Tenho ampla experiência trabalhando em equipes ágeis e desenvolvimento web. Minha maior paixão é transformar dados complexos em experiências visuais envolventes, seja através de dashboards interativos, visualizações com D3.js ou aplicações web modernas.",
 		"homepage.longPresentation1": "Tecnologias principais que domino",
 		"homepage.infographic": "Minha trajetória profissional em uma linha do tempo",
 		"homepage.longPresentation2":
 			"Atualmente, estou focado em arquiteturas escaláveis com React/Next.js, integrações de IA e desenvolvimento de sistemas complexos. Meu foco está em criar soluções tecnológicas inovadoras que combinam performance, usabilidade e design moderno.",
 		"homepage.longPresentation3":
-			"🚀 Estou aberto a oportunidades para trabalhar com desenvolvimento Full-Stack, liderança técnica e projetos desafiadores. Constantemente aprimorando minhas habilidades em novas tecnologias e frameworks.",
+			"Estou aberto a oportunidades para trabalhar com desenvolvimento Full-Stack, liderança técnica e projetos desafiadores. Constantemente aprimorando minhas habilidades em novas tecnologias e frameworks.",
 		"homepage.footnote":
 			"A maior parte do meu trabalho está sob acordos de confidencialidade (NDA). Por favor, entre em contato para obter mais detalhes.",
 		"homepage.longPresentation4":
-			"📚 Me defino profissionalmente como um Engenheiro Jornalista, inspirado no conceito de ",
+			"Me defino profissionalmente como um Engenheiro Jornalista, inspirado no conceito de ",
 		"homepage.longPresentation5": "Matthew Daniels de 2015.",
 		"homepage.route1": "home",
 		"homepage.route2": "projetos",
@@ -63,9 +63,9 @@ export const translations = {
 		"homepage.description.nexo":
 			"<strong>Migrei codebase da webapp</strong> de React, JavaScript e Sass para <strong>Next.js, TypeScript e styled-components</strong>. Desenvolvi <strong>Progressive Web App (PWA)</strong> com <strong>Next.js</strong>. Criei <strong>histórias interativas de dados</strong> usando <strong>HTML, CSS e D3.js</strong>, contribuindo para projeto premiado <strong>\"Best of Digital Design 2022\"</strong>.",
 		"homepage.description.omnilogic":
-			"Desenvolvi <strong>scripts de rastreamento de marketplace</strong>, <strong>infraestrutura de métricas de negócio</strong> e <strong>templates de showcase</strong>. Mantive <strong>APIs web baseadas em Java</strong>. Criei <strong>dashboards orientados a dados</strong> usando <strong>React e JavaScript</strong>.",
+			"Desenvolvi <strong>scripts de rastreamento de marketplace</strong>, <strong>infraestrutura de métricas de negócio</strong> e <strong>templates de showcase</strong>. Mantive <strong>APIs web baseadas em Java</strong>. Criei <strong>dashboards orientados a dados</strong> usando <strong>React e JavaScript</strong>. Trabalhei com <strong>containers Docker e bancos PostgreSQL</strong>.",
 		"homepage.description.freela": 
-			"Auxiliei <strong>candidatos a PhD e estudantes de pós-graduação</strong> com <strong>formatação, modelagem e visualização de dados de pesquisa</strong> usando <strong>Python e Tableau</strong>. Desenvolvi websites usando <strong>WordPress headless</strong> com <strong>React e Next.js</strong>. Criei <strong>visualizações de dados e narrativas visuais</strong> usando <strong>D3.js e Svelte</strong>.",
+			"Auxiliei <strong>candidatos a PhD e estudantes de pós-graduação</strong> com <strong>formatação, modelagem e visualização de dados de pesquisa</strong> usando <strong>Python e Tableau</strong>. Desenvolvi websites usando <strong>WordPress headless</strong> com <strong>React e Next.js</strong>. Criei <strong>visualizações de dados e narrativas visuais</strong> usando <strong>D3.js</strong>.",
 		"blog.title": "Artigos",
 		"blog.readMore": "Leia o artigo",
 		"project.description1": "Esta é a visão geral profissional",
@@ -78,24 +78,38 @@ export const translations = {
 		// Video content translations
 		"videos.nexo.title": "Nexo - A História Ilustrada do Saber",
 		"videos.nexo.description": "Uma visualização interativa explorando a evolução do conhecimento humano através dos séculos.",
-		"videos.unsupported": "Seu navegador não suporta vídeos HTML5."
+		"videos.unsupported": "Seu navegador não suporta vídeos HTML5.",
+		
+		// Technology sections translations
+		"tech.expert.title": "Tecnologias que tenho mais experiência",
+		"tech.expert.description": "7+ anos de experiência, uso atual, liderança técnica",
+		"tech.experienced.title": "Tecnologias que tenho experiência", 
+		"tech.experienced.description": "Experiência profissional sólida em múltiplos projetos",
+		"tech.familiar.title": "Tecnologias que tenho alguma experiência",
+		"tech.familiar.description": "Usadas em contextos específicos, conhecimento aplicado",
+		
+		// TechDetail component translations
+		"tech.detail.back": "Voltar",
+		"tech.detail.intro": "Aqui está minha experiência específica com",
+		"tech.detail.otherTechs": "Outras tecnologias usadas:",
+		"tech.detail.defaultExperience": "Experiência com"
 	},
 	en: {
 		"homepage.presentation1":
 			"Hi! I'm Victor, a Full-Stack Software Engineer from 🇧🇷, specializing in React, TypeScript, Node.js, and data visualization.",
 		"homepage.presentation2":
-			"👋 I'm a Full-Stack developer with 6 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership, scalable application development, and advanced clean code practices.",
+			"I'm a Full-Stack developer with 6 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership, scalable application development, and advanced clean code practices.",
 		"homepage.presentation3":
-			"🔧 I have extensive experience working in agile teams and leading frontend development teams. My biggest passion is transforming complex data into engaging visual experiences, whether through interactive dashboards, D3.js visualizations, or modern web applications.",
-		"homepage.longPresentation1": "Core technologies I master",
+			"I have extensive experience working in agile teams and web development. My biggest passion is transforming complex data into engaging visual experiences, whether through interactive dashboards, D3.js visualizations, or modern web applications.",
+		"homepage.longPresentation1": "Core technologies I am familiar with",
 		"homepage.infographic": "My professional journey in a timeline",
 		"homepage.longPresentation2":
 			"Currently, I'm focused on scalable architectures with React/Next.js, AI integrations, and complex system development. My focus is on creating innovative technological solutions that combine performance, usability, and modern design.",
 		"homepage.longPresentation3":
-			"🚀 I'm open to opportunities for Full-Stack development, technical leadership, and challenging projects. Constantly improving my skills in new technologies and frameworks.",
+			"I'm open to opportunities for Full-Stack development, technical leadership, and challenging projects. Constantly improving my skills in new technologies and frameworks.",
 		"homepage.footnote": "Most of my work is under NDA. Please reach out for more details.",
 		"homepage.longPresentation4":
-			"📚 I professionally define myself as a Journalist Engineer, inspired by the concept of ",
+			"I professionally define myself as a Journalist Engineer, inspired by the concept of ",
 		"homepage.longPresentation5": "Matthew Daniels from 2015.",
 		"homepage.route1": "home",
 		"homepage.route2": "projects",
@@ -141,9 +155,9 @@ export const translations = {
 		"homepage.description.nexo":
 			"<strong>Migrated webapp codebase</strong> from React, JavaScript, and Sass to <strong>Next.js, TypeScript, and styled-components</strong>. Developed <strong>Progressive Web App (PWA)</strong> with <strong>Next.js</strong>. Created <strong>interactive data stories</strong> using <strong>HTML, CSS, and D3.js</strong>, contributing to award-winning project <strong>\"Best of Digital Design 2022\"</strong>.",
 		"homepage.description.omnilogic":
-			"Developed <strong>marketplace tracking scripts</strong>, <strong>business metrics infrastructure</strong>, and <strong>showcase templates</strong>. Maintained <strong>Java-based web APIs</strong>. Created <strong>data-driven dashboards</strong> using <strong>React and JavaScript</strong>.",
+			"Developed <strong>marketplace tracking scripts</strong>, <strong>business metrics infrastructure</strong>, and <strong>showcase templates</strong>. Maintained <strong>Java-based web APIs</strong>. Created <strong>data-driven dashboards</strong> using <strong>React and JavaScript</strong>. Worked with <strong>Docker containers and PostgreSQL databases</strong>.",
 		"homepage.description.freela": 
-			"Assisted <strong>PhD candidates and graduate students</strong> with <strong>research data formatting, modeling, and visualization</strong> using <strong>Python and Tableau</strong>. Developed websites using <strong>headless WordPress</strong> with <strong>React and Next.js</strong>. Created <strong>data visualizations and visual narratives</strong> using <strong>D3.js and Svelte</strong>.",
+			"Assisted <strong>PhD candidates and graduate students</strong> with <strong>research data formatting, modeling, and visualization</strong> using <strong>Python and Tableau</strong>. Developed websites using <strong>headless WordPress</strong> with <strong>React and Next.js</strong>. Created <strong>data visualizations and visual narratives</strong> using <strong>D3.js</strong>.",
 		"blog.title": "Articles",
 		"blog.readMore": "Read Article",
 		"project.description1": "This is the professional overview",
@@ -156,6 +170,20 @@ export const translations = {
 		// Video content translations
 		"videos.nexo.title": "Nexo - The Illustrated History of Knowledge",
 		"videos.nexo.description": "An interactive visualization exploring the evolution of human knowledge through the centuries.",
-		"videos.unsupported": "Your browser does not support HTML5 video."
+		"videos.unsupported": "Your browser does not support HTML5 video.",
+		
+		// Technology sections translations
+		"tech.expert.title": "Technologies I have the most experience with",
+		"tech.expert.description": "7+ years of experience, current usage, technical leadership",
+		"tech.experienced.title": "Technologies I have experience with",
+		"tech.experienced.description": "Solid professional experience across multiple projects", 
+		"tech.familiar.title": "Technologies I have some experience with",
+		"tech.familiar.description": "Used in specific contexts, applied knowledge",
+		
+		// TechDetail component translations
+		"tech.detail.back": "Back",
+		"tech.detail.intro": "Here's my specific experience with",
+		"tech.detail.otherTechs": "Other technologies used:",
+		"tech.detail.defaultExperience": "Experience with"
 	}
 };
