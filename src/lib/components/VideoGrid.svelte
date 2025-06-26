@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { t } from '../../i18n';
+	import { getVideoMimeType } from '../Videos.ts';
 
 	/**
 	 * @typedef {Object} Video
@@ -26,11 +27,19 @@
 							const video = entry.target;
 							if (video && !video.hasAttribute('data-loaded')) {
 								video.setAttribute('data-loaded', 'true');
-								// Inicia o carregamento do vídeo apenas quando visível
-								video.play().catch(() => {
-									// Fallback caso autoplay seja bloqueado
-									console.log('Autoplay bloqueado para:', video.src);
-								});
+								// Força o carregamento do vídeo
+								video.load();
+								// Tenta iniciar o play após um pequeno delay
+								setTimeout(() => {
+									video.play().catch((error) => {
+										console.log('Autoplay bloqueado ou erro:', error);
+										// Se falhar, tenta novamente com muted
+										video.muted = true;
+										video.play().catch(() => {
+											console.log('Vídeo não pode ser reproduzido:', video.src);
+										});
+									});
+								}, 100);
 							}
 						}
 					});
@@ -76,14 +85,22 @@
 				muted
 				loop
 				playsinline
-				preload="metadata"
+				preload="auto"
 				poster={video.poster}
+				controls
 				on:mouseenter={(e) => handleVideoHover(e, true)}
 				on:mouseleave={(e) => handleVideoHover(e, false)}
+				on:error={(e) => console.error('Erro ao carregar vídeo:', video.src, e)}
+				on:loadstart={() => console.log('Iniciando carregamento:', video.src)}
+				on:canplay={() => console.log('Vídeo pode ser reproduzido:', video.src)}
 				class="video-item"
 			>
-				<!-- Múltiplos formatos para melhor compatibilidade -->
-				<source src={video.src} type="video/mp4" />
+				<!-- Múltiplos formatos para melhor compatibilidade: MP4, MOV, WebM, etc. -->
+				<source src={video.src} type={getVideoMimeType(video.src)} />
+				<!-- Fallback: tenta interpretar .mov como MP4 se necessário -->
+				{#if video.src.includes('.mov')}
+					<source src={video.src} type="video/mp4" />
+				{/if}
 				<!-- Futuramente podemos adicionar WebM aqui -->
 				<!-- <source src={video.webmSrc} type="video/webm" /> -->
 				
@@ -144,6 +161,12 @@
 		min-height: 200px;
 		object-fit: cover;
 		display: block;
+		background: linear-gradient(45deg, #333 25%, #666 25%, #666 50%, #333 50%, #333 75%, #666 75%);
+		background-size: 20px 20px;
+	}
+
+	/* Quando o vídeo está carregado, remove o background pattern */
+	.video-item[data-loaded] {
 		background: #000;
 	}
 

@@ -170,33 +170,33 @@
 				<a href="https://github.com/victorgois"
 					><SocialIcons
 						network="github"
-						fgColor="black"
+						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
 						bgColor="transparent"
-						style="opacity: 0.5"
+						style="opacity: 0.7"
 					/>
 				</a>
 				<a href="mailto:victorgois18@gmail.com">
 					<SocialIcons
 						network="mailto"
-						fgColor="black"
+						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
 						bgColor="transparent"
-						style="opacity: 0.5"
+						style="opacity: 0.7"
 					/>
 				</a>
 				<a href="https://medium.com/@victorgispacheco">
 					<SocialIcons
 						network="medium"
-						fgColor="black"
+						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
 						bgColor="transparent"
-						style="opacity: 0.5"
+						style="opacity: 0.7"
 					/>
 				</a>
 				<a href="https://www.linkedin.com/in/victorgoisp/">
 					<SocialIcons
 						network="linkedin"
-						fgColor="black"
+						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
 						bgColor="transparent"
-						style="opacity: 0.5"
+						style="opacity: 0.7"
 					/>
 				</a>
 			</div>
@@ -362,6 +362,12 @@
 
 	.socialNetworks a {
 		padding: 0.1rem;
+		transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+	}
+
+	.socialNetworks a:hover {
+		opacity: 1 !important;
+		transform: translateY(-2px);
 	}
 
 	.footerLine {

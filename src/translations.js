@@ -78,6 +78,8 @@ export const translations = {
 		// Video content translations
 		"videos.nexo.title": "Nexo - A História Ilustrada do Saber",
 		"videos.nexo.description": "Uma visualização interativa explorando a evolução do conhecimento humano através dos séculos.",
+		"videos.nexo.home.title": "Nexo - Home Page Redesign",
+		"videos.nexo.home.description": "Redesign da página inicial do Nexo Jornal com foco em experiência do usuário e interface moderna.",
 		"videos.unsupported": "Seu navegador não suporta vídeos HTML5.",
 		
 		// Technology sections translations
@@ -125,7 +127,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Full-Stack Software Engineer</strong> with <strong>6 years of professional experience</strong> specializing in <strong>React, TypeScript, Node.js, and Next.js</strong>. Graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
+			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Full-Stack Software Engineer</strong> with <strong>6 years of professional experience</strong> specializing in <strong>web development, data analysis and visualization. I've worked with React, TypeScript, Python and Next.js in the last 5 years</strong> I have experience connecting frontend apps with backend APIs, databases and other data sources. In this way, its relevant to mention my academic background.  I am  graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Besides software engineering, I research on <strong>Internet, AI and sociability</strong>. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
 		"projectPageContent.academicBackgroundTitle": "Education",
 		"projectPageContent.academicBackground":
 			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> <strong>Master of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Thesis: <i>\"Truth in Deep Fake: A Semiotic Study on Deepfakes in Brazilian 2022 Presidential Elections\"</i><br/>Technologies: Twitter API with Node.js, JavaScript data processing, Tableau visualizations</li><br/><li style='list-style-type: none; font-size: 12px'><b>2016 - 2020</b> <strong>Bachelor of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Final Project: <i>\"Protocols, Platforms and APIs: Experiments with Google News, Twitter and YouTube data\"</i></li><br/><li style='list-style-type: none; font-size: 12px'><b>2011 - 2016</b> <strong>Bachelor of Science in Information Systems</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Core Subjects: Web Development, Business Intelligence, Data Structures, C and Ruby Programming</li><br/><li style='list-style-type: none; font-size: 12px'><b>2014 - 2015</b> <strong>Exchange Program - Multimedia Marketing</strong>. <a href='https://www.hs-schmalkalden.de/en/'>University of Applied Sciences Schmalkalden</a>, Germany</li>",
@@ -170,6 +172,8 @@ export const translations = {
 		// Video content translations
 		"videos.nexo.title": "Nexo - The Illustrated History of Knowledge",
 		"videos.nexo.description": "An interactive visualization exploring the evolution of human knowledge through the centuries.",
+		"videos.nexo.home.title": "Nexo - Home Page Redesign",
+		"videos.nexo.home.description": "Redesign of Nexo Jornal homepage focused on user experience and modern interface.",
 		"videos.unsupported": "Your browser does not support HTML5 video.",
 		
 		// Technology sections translations
