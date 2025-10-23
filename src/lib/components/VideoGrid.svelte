@@ -14,7 +14,9 @@
 	/** @type {Video[]} */
 	export let videos = [];
 
+	/** @type {HTMLVideoElement[]} */
 	let videoElements = [];
+	/** @type {IntersectionObserver | null} */
 	let observer;
 
 	onMount(() => {
@@ -64,22 +66,31 @@
 
 	/**
 	 * Manipula o hover para controle de play/pause
-	 * @param {Event} event
-	 * @param {boolean} shouldPlay
 	 */
 	const handleVideoHover = (event, shouldPlay) => {
 		const video = event.target;
-		if (shouldPlay) {
-			video.play().catch(() => {});
-		} else {
-			video.pause();
+		if (video) {
+			if (shouldPlay) {
+				video.play().catch(() => {});
+			} else {
+				video.pause();
+			}
 		}
 	};
 </script>
 
 <div class="video-grid">
 	{#each videos as video, index}
-		<div class="video-container">
+		<div
+			class="video-container"
+			class:portrait={video.src.includes('capacity-directory')}
+			class:large-video={index === 0}
+			class:small-video-1={index === 1}
+			class:portrait-video={index === 2}
+			class:small-video-2={index === 3}
+			class:overflow={index === 4}
+			class:extra-video={index >= 5}
+		>
 			<video
 				bind:this={videoElements[index]}
 				muted
@@ -118,26 +129,91 @@
 <style>
 	.video-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
-		padding: 1rem;
-		max-width: 1200px;
+		grid-template-columns: 1.5fr 1.5fr 1.3fr;
+		grid-template-rows: repeat(2, 300px);
+		grid-auto-rows: 300px;
+		row-gap: 2rem;
+		column-gap: 2rem;
+		padding: 2rem 1rem;
+		max-width: 1400px;
 		margin: 0 auto;
+		justify-content: center;
+		align-items: start;
 	}
 
-	/* Desktop: Grid 3x3 */
-	@media (min-width: 768px) {
+	/* Desktop: Grid responsivo baseado no conteúdo */
+	@media (min-width: 768px) and (max-width: 1199px) {
 		.video-grid {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: 1.5fr 1.5fr 1.3fr;
+			grid-template-rows: repeat(2, 300px);
+			grid-auto-rows: 300px;
+			align-items: start;
+		}
+	}
+
+	/* Telas muito grandes: mantém layout assimétrico */
+	@media (min-width: 1200px) {
+		.video-grid {
+			grid-template-columns: 1.5fr 1.5fr 1.3fr;
+			grid-template-rows: repeat(2, 300px);
+			grid-auto-rows: 300px;
+			align-items: start;
 		}
 	}
 
 	/* Mobile: Grid 1x1 */
 	@media (max-width: 767px) {
 		.video-grid {
+			display: grid;
 			grid-template-columns: 1fr;
-			gap: 1rem;
-			padding: 0.5rem;
+			grid-auto-rows: auto;
+			grid-template-rows: auto;
+			row-gap: 1.5rem;
+			column-gap: 0;
+			padding: 1.5rem 0.5rem;
+		}
+
+		/* Reset posicionamento no mobile */
+		.video-container.large-video,
+		.video-container.small-video-1,
+		.video-container.small-video-2,
+		.video-container.overflow {
+			grid-column: 1 !important;
+			grid-row: auto !important;
+			align-self: auto;
+			height: auto;
+			max-height: none;
+			aspect-ratio: 16/9;
+		}
+
+		/* Vídeos landscape no mobile */
+		.video-container.large-video .video-item,
+		.video-container.small-video-1 .video-item,
+		.video-container.small-video-2 .video-item,
+		.video-container.overflow .video-item {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		/* Ajuste específico para vídeos retrato no mobile - altura maior */
+		.video-container.portrait,
+		.video-container.portrait-video {
+			grid-column: 1 !important;
+			grid-row: auto !important;
+			align-self: auto;
+			width: 100%;
+			height: auto;
+			max-height: 650px;
+			aspect-ratio: 9/16;
+		}
+
+		/* Vídeo retrato no mobile - ocupa toda a largura */
+		.video-container.portrait .video-item,
+		.video-container.portrait-video .video-item {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
 
@@ -148,7 +224,70 @@
 		background: var(--backgroundColor);
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		width: 100%;
+		height: fit-content;
 	}
+
+	/* Posicionamento específico dos vídeos */
+	.video-container.large-video {
+		grid-column: 1;
+		grid-row: 1;
+		aspect-ratio: 16/9;
+		height: fit-content;
+		max-height: 300px;
+		align-self: start;
+	}
+
+	.video-container.small-video-1 {
+		grid-column: 2;
+		grid-row: 1;
+		aspect-ratio: 16/9;
+		height: fit-content;
+		max-height: 300px;
+		align-self: start;
+	}
+
+	.video-container.portrait-video {
+		grid-column: 3;
+		grid-row: 1 / 3;
+		height: 550px;
+		width: 100%;
+		max-height: 550px;
+	}
+
+	.video-container.small-video-2 {
+		grid-column: 1;
+		grid-row: 2;
+		aspect-ratio: 16/9;
+		height: fit-content;
+		max-height: 300px;
+		align-self: start;
+	}
+
+	.video-container.overflow {
+		grid-column: 2;
+		grid-row: 2;
+		aspect-ratio: 16/9;
+		height: fit-content;
+		max-height: 300px;
+		align-self: start;
+	}
+
+	/* Vídeos adicionais (índice >= 5) fluem automaticamente no grid */
+	.video-container.extra-video {
+		aspect-ratio: 16/9;
+		height: fit-content;
+		max-height: 300px;
+		align-self: start;
+	}
+
+	/* Estilo especial para vídeos em formato retrato */
+	.video-container.portrait {
+		height: 550px;
+		width: 100%;
+		max-height: 550px;
+	}
+
 
 	.video-container:hover {
 		transform: translateY(-5px);
@@ -158,17 +297,13 @@
 	.video-item {
 		width: 100%;
 		height: 100%;
-		min-height: 200px;
 		object-fit: cover;
 		display: block;
 		background: linear-gradient(45deg, #333 25%, #666 25%, #666 50%, #333 50%, #333 75%, #666 75%);
 		background-size: 20px 20px;
 	}
 
-	/* Quando o vídeo está carregado, remove o background pattern */
-	.video-item[data-loaded] {
-		background: #000;
-	}
+
 
 	.video-overlay {
 		position: absolute;

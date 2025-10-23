@@ -3,7 +3,7 @@ export const translations = {
 		"homepage.presentation1":
 			"Oi! Eu sou Victor, um Engenheiro de Software Full-Stack do 🇧🇷, especializado em React, TypeScript, Node.js e visualização de dados.",
 		"homepage.presentation2":
-			"Sou um desenvolvedor Full-Stack com mais de 6 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica, desenvolvimento de aplicações escaláveis e práticas avançadas de código limpo.",
+			"Sou um desenvolvedor Full-Stack com mais de 6 anos de experiência profissional e expertise em tecnologias como TypeScript, React, Node.js, Next.js, GraphQL, AWS e Python. Minha experiência inclui liderança técnica e desenvolvimento de aplicações escaláveis.",
 		"homepage.presentation3":
 			"Tenho ampla experiência trabalhando em equipes ágeis e desenvolvimento web. Minha maior paixão é transformar dados complexos em experiências visuais envolventes, seja através de dashboards interativos, visualizações com D3.js ou aplicações web modernas.",
 		"homepage.longPresentation1": "Tecnologias principais que domino",
@@ -50,8 +50,9 @@ export const translations = {
 		"projectPageContent.techBlogTitle": "Blog técnico",
 		"projectPageContent.techBlog":
 			"Descubra publicações sobre desenvolvimento, tecnologias modernas e análise de dados.",
-		"projectPageContent.professionalTimelineTitle": "Linha do tempo profissional",
-		"projectPageContent.professionalTimeline": "Clique no título para ver a timeline completa",
+			"projectPageContent.professionalTimelineTitle": "Linha do tempo profissional",
+	"projectPageContent.professionalTimeline": "Clique no título para ver a timeline completa",
+	"careerTimeline.title": "Trajetória Profissional",
 
 		"project.description0": ["Experiência em liderança técnica", "Desenvolvimento full-stack"],
 		"homepage.description.wikimedia":
@@ -80,11 +81,19 @@ export const translations = {
 		"videos.nexo.description": "Uma visualização interativa explorando a evolução do conhecimento humano através dos séculos.",
 		"videos.nexo.home.title": "Nexo - Home Page Redesign",
 		"videos.nexo.home.description": "Redesign da página inicial do Nexo Jornal com foco em experiência do usuário e interface moderna.",
+		"videos.capx.title": "Capx - Capacity Directory",
+		"videos.capx.description": "Visualização interativa do diretório de capacidades usado no projeto Capacity Exchange.",
+		"videos.capx.visualization.title": "Capx - Capacity Visualization",
+		"videos.capx.visualization.description": "Visualização interativa da capacidade do projeto Capacity Exchange.",
+		"videos.capx.profile.title": "Capx - Capacity Profile",
+		"videos.capx.profile.description": "Visualização interativa do perfil de capacidade do projeto Capacity Exchange.",
+		"videos.cop30.title": "COP30 - Instagram and Tiktok scraper and data visualization",
+		"videos.cop30.description": "Visualização interativa dos dados coletados do Instagram e Tiktok usado no projeto COP30.",
 		"videos.unsupported": "Seu navegador não suporta vídeos HTML5.",
 		
 		// Technology sections translations
 		"tech.expert.title": "Tecnologias que tenho mais experiência",
-		"tech.expert.description": "7+ anos de experiência, uso atual, liderança técnica",
+		"tech.expert.description": "7 anos de experiência, uso atual, liderança técnica",
 		"tech.experienced.title": "Tecnologias que tenho experiência", 
 		"tech.experienced.description": "Experiência profissional sólida em múltiplos projetos",
 		"tech.familiar.title": "Tecnologias que tenho alguma experiência",
@@ -98,9 +107,9 @@ export const translations = {
 	},
 	en: {
 		"homepage.presentation1":
-			"Hi! I'm Victor, a Full-Stack Software Engineer from 🇧🇷, specializing in React, TypeScript, Node.js, and data visualization.",
+			"Hi! I'm Victor, a Frontend Engineer from 🇧🇷, specializing in React, TypeScript, Node.js, and data visualization.",
 		"homepage.presentation2":
-			"I'm a Full-Stack developer with 6 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership, scalable application development, and advanced clean code practices.",
+			"I'm a Frontend Engineer with 7 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership and scalable application development.",
 		"homepage.presentation3":
 			"I have extensive experience working in agile teams and web development. My biggest passion is transforming complex data into engaging visual experiences, whether through interactive dashboards, D3.js visualizations, or modern web applications.",
 		"homepage.longPresentation1": "Core technologies I am familiar with",
@@ -127,7 +136,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Full-Stack Software Engineer</strong> with <strong>6 years of professional experience</strong> specializing in <strong>web development, data analysis and visualization. I've worked with React, TypeScript, Python and Next.js in the last 5 years</strong> I have experience connecting frontend apps with backend APIs, databases and other data sources. In this way, its relevant to mention my academic background.  I am  graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Besides software engineering, I research on <strong>Internet, AI and sociability</strong>. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
+			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Frontend Engineer</strong> with <strong>7 years of professional experience</strong> specializing in <strong>web development, data analysis and visualization. I've worked with React, TypeScript, Python and Next.js in the last 5 years</strong> I have experience connecting frontend apps with backend APIs, databases and other data sources. In this way, its relevant to mention my academic background.  I am  graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Besides software engineering, I research on <strong>Internet, AI and sociability</strong>. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
 		"projectPageContent.academicBackgroundTitle": "Education",
 		"projectPageContent.academicBackground":
 			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> <strong>Master of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Thesis: <i>\"Truth in Deep Fake: A Semiotic Study on Deepfakes in Brazilian 2022 Presidential Elections\"</i><br/>Technologies: Twitter API with Node.js, JavaScript data processing, Tableau visualizations</li><br/><li style='list-style-type: none; font-size: 12px'><b>2016 - 2020</b> <strong>Bachelor of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Final Project: <i>\"Protocols, Platforms and APIs: Experiments with Google News, Twitter and YouTube data\"</i></li><br/><li style='list-style-type: none; font-size: 12px'><b>2011 - 2016</b> <strong>Bachelor of Science in Information Systems</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Core Subjects: Web Development, Business Intelligence, Data Structures, C and Ruby Programming</li><br/><li style='list-style-type: none; font-size: 12px'><b>2014 - 2015</b> <strong>Exchange Program - Multimedia Marketing</strong>. <a href='https://www.hs-schmalkalden.de/en/'>University of Applied Sciences Schmalkalden</a>, Germany</li>",
@@ -145,8 +154,9 @@ export const translations = {
 		"projectPageContent.techBlog":
 			"Discover publications about development, modern technologies, and data analysis.",
 
-		"projectPageContent.professionalTimelineTitle": "Professional Timeline",
-		"projectPageContent.professionalTimeline": "Click on the title to see the complete timeline",
+			"projectPageContent.professionalTimelineTitle": "Professional Timeline",
+	"projectPageContent.professionalTimeline": "Click on the title to see the complete timeline",
+	"careerTimeline.title": "Professional Journey",
 
 		"homepage.description.wikimedia":
 			"<strong>Tech Lead</strong> on Capacity Exchange project, leading frontend development team on complex <strong>React Next.js application</strong> for hierarchical capacity management. Implemented <strong>scalable frontend architecture</strong> using advanced patterns including <strong>pub/sub</strong>, <strong>global state management</strong>, and <strong>performance optimization</strong>. Collaborated on <strong>frontend-backend integration</strong> with <strong>Python/Django team</strong> through <strong>REST APIs</strong>.",
@@ -174,11 +184,19 @@ export const translations = {
 		"videos.nexo.description": "An interactive visualization exploring the evolution of human knowledge through the centuries.",
 		"videos.nexo.home.title": "Nexo - Home Page Redesign",
 		"videos.nexo.home.description": "Redesign of Nexo Jornal homepage focused on user experience and modern interface.",
+		"videos.capx.title": "Capx - Capacity Directory",
+		"videos.capx.description": "Interative visualization of the capacity directory used in the Capacity Exchange project.",
+		"videos.capx.visualization.title": "Capx - Capacity Visualization",
+		"videos.capx.visualization.description": "Interactive visualization of the capacity used in the Capacity Exchange project.",
+		"videos.capx.profile.title": "Capx - Capacity Profile",
+		"videos.capx.profile.description": "Interactive visualization of the capacity profile used in the Capacity Exchange project.",
+		"videos.cop30.title": "COP30 - Instagram and Tiktok scraper and data visualization",
+		"videos.cop30.description": "Interactive visualization of the data scraped from Instagram and Tiktok used in the COP30 project.",
 		"videos.unsupported": "Your browser does not support HTML5 video.",
 		
 		// Technology sections translations
 		"tech.expert.title": "Technologies I have the most experience with",
-		"tech.expert.description": "7+ years of experience, current usage, technical leadership",
+		"tech.expert.description": "5+ years of experience, current usage, technical leadership",
 		"tech.experienced.title": "Technologies I have experience with",
 		"tech.experienced.description": "Solid professional experience across multiple projects", 
 		"tech.familiar.title": "Technologies I have some experience with",

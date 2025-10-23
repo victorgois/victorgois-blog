@@ -51,7 +51,31 @@ const videoData = [
 		titleKey: 'videos.nexo.home.title',
 		descriptionKey: 'videos.nexo.home.description',
 		poster: '', // Vamos adicionar uma imagem de poster futuramente
-	}
+	},
+	{
+		src: '/videos/capacity-directory.mp4',
+		titleKey: 'videos.capx.title',
+		descriptionKey: 'videos.capx.description',
+		poster: '',	
+	},
+	{
+		src: '/videos/capx-capacities-visualization.mp4',
+		titleKey: 'videos.capx.visualization.title',
+		descriptionKey: 'videos.capx.visualization.description',
+		poster: '',	
+	},
+	{
+		src: '/videos/capx-profile.mp4',
+		titleKey: 'videos.capx.profile.title',
+		descriptionKey: 'videos.capx.profile.description',
+		poster: '',	
+	},
+	{
+		src: '/videos/cop30.mp4',
+		titleKey: 'videos.cop30.title',
+		descriptionKey: 'videos.cop30.description',
+		poster: '',	
+	},
 	// Adicione mais vídeos aqui conforme necessário
 ];
 
