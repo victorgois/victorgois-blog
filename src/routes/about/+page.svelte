@@ -69,7 +69,7 @@
 						<p use:reveal={{ transition: "fade" }}>{@html $menuContent[0].Content}</p>
 						<figure class="image-container" use:reveal={{ transition: "fade" }}>
 							<img
-								src="/src/lib/images/WikiCon_Brasil_2025_por_Rodrigo_Tetsuo_Argenton_23.png"
+								src="/WikiCon_Brasil_2025_por_Rodrigo_Tetsuo_Argenton_23.png"
 								alt="Victor Góis at WikiCon Brasil 2025"
 								class="profile-image"
 							/>
