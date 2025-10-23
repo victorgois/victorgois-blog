@@ -16,6 +16,19 @@ export interface CareerItem {
 export const careerData: CareerItem[] = [
 	// Educação
 	{
+		id: 'bachelor-is-2016',
+		date: '2011-06',
+		type: 'education',
+		title: 'Bacharelado em Sistemas de Informação',
+		company: 'Universidade Federal de Minas Gerais (UFMG)',
+		description: 'Desenvolvimento Web, Business Intelligence, Estruturas de Dados, Programação C e Ruby',
+		period: 'Mar 2011 - Jun 2016',
+		icon: '🎓',
+		titleEn: 'Bachelor of Science in Information Systems',
+		descriptionEn: 'Web Development, Business Intelligence, Data Structures, C and Ruby Programming',
+		periodEn: 'Mar 2011 - Jun 2016'
+	},
+	{
 		id: 'exchange-2014',
 		date: '2014-09',
 		type: 'education',
@@ -29,24 +42,11 @@ export const careerData: CareerItem[] = [
 		periodEn: 'Sep 2014 - Aug 2015'
 	},
 	{
-		id: 'bachelor-is-2016',
-		date: '2016-06',
-		type: 'education',
-		title: 'Bacharelado em Sistemas de Informação',
-		company: 'Universidade Federal de Minas Gerais (UFMG)',
-		description: 'Desenvolvimento Web, Business Intelligence, Estruturas de Dados, Programação C e Ruby',
-		period: 'Mar 2011 - Jun 2016',
-		icon: '🎓',
-		titleEn: 'Bachelor of Science in Information Systems',
-		descriptionEn: 'Web Development, Business Intelligence, Data Structures, C and Ruby Programming',
-		periodEn: 'Mar 2011 - Jun 2016'
-	},
-	{
 		id: 'freelance-2018',
 		date: '2018-01',
 		type: 'work',
 		title: 'Desenvolvedor Freelancer & Analista de Dados',
-		company: 'Independente',
+		company: 'Freelancer',
 		description: 'Desenvolvimento de sites com WordPress headless, React e Next.js. Visualizações de dados com Python, D3.js e Tableau.',
 		technologies: ['Python', 'React', 'Next.js', 'D3.js', 'Tableau', 'WordPress'],
 		period: '2018 - Presente',
@@ -57,7 +57,7 @@ export const careerData: CareerItem[] = [
 	},
 	{
 		id: 'bachelor-comm-2020',
-		date: '2020-12',
+		date: '2017-12',
 		type: 'education',
 		title: 'Bacharelado em Comunicação Social',
 		company: 'Universidade Federal de Minas Gerais (UFMG)',
