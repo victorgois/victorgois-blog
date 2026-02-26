@@ -1,26 +1,37 @@
 <script lang="ts">
 	import FaExternalLinkAlt from 'svelte-icons/fa/FaExternalLinkAlt.svelte';
-	import type { Article, PageData } from './types.js';
+	import type { Article } from './types.js';
 
-	export let data: PageData;
-	let article: Article = data.article;
+	export let data;
+
+	$: isDevTo = data.type === 'devto';
+	$: article = isDevTo ? data.article : null;
+	$: post = !isDevTo ? data.post : null;
+
+	$: pageTitle = isDevTo ? article?.title : post?.metadata?.title;
 </script>
 
 <svelte:head>
-	<title>VictorGóis — {article?.title || 'Missing article'}</title>
+	<title>VictorGóis — {pageTitle || 'Missing article'}</title>
 </svelte:head>
 
-<div class="articleContainer">
-	<div class="article">
-		{#if article}
+{#if isDevTo && article}
+	<!-- Dev.to article rendering -->
+	<div class="articleContainer">
+		<div class="article">
 			<h1 class="title">
-				<a href={article.url} target="_blank" rel="noreferrer">{article.title} </a>
+				<a href={article.url} target="_blank" rel="noreferrer">{article.title}</a>
 				<a class="icon" href={article.url} target="_blank"><FaExternalLinkAlt /></a>
 			</h1>
 			{@html article.body_html}
-		{/if}
+		</div>
 	</div>
-</div>
+{:else if post}
+	<!-- mdsvex post rendering -->
+	<div class="mdsvex-container">
+		<svelte:component this={post.default} />
+	</div>
+{/if}
 
 <style>
 	.articleContainer {
@@ -34,6 +45,13 @@
 		margin: 50px 10px 0;
 		text-align: center;
 		/* font-size: 20px; */
+	}
+
+	.mdsvex-container {
+		width: 100%;
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 0 20px;
 	}
 
 	h1 {

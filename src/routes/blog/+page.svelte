@@ -1,13 +1,53 @@
-<script>
+<script lang="ts">
 	import { t, locale } from "../../i18n";
+	import type { BlogPost } from "$lib/types/blog";
+	import { isDevToArticle, isMdsvexPost } from "$lib/types/blog";
+
 	export let data;
-	let devToArticles = data.devToArticles;
 
 	const blackListedArticles = [422939];
 
-	const articles = [...devToArticles];
+	// Use combined posts
+	let allPosts: BlogPost[] = data.allPosts || [];
 
-	const filteredArticles = articles.filter((article) => !blackListedArticles.includes(article?.id));
+	// Filter blacklisted dev.to articles and mdsvex posts not matching the current locale
+	$: filteredPosts = allPosts.filter((post) => {
+		if (isDevToArticle(post)) {
+			return !blackListedArticles.includes(post.id);
+		}
+		return post.lang === $locale;
+	});
+
+	// Helper to get article URL
+	function getPostUrl(post: BlogPost): string {
+		if (isDevToArticle(post)) {
+			return `/blog/${post.id}`;
+		} else {
+			return `/blog/${post.slug}?lang=${post.lang}`;
+		}
+	}
+
+	// Reactive helper to get post date (depends on locale)
+	$: getPostDate = (post: BlogPost): string => {
+		if (isDevToArticle(post)) {
+			return post.readable_publish_date;
+		} else {
+			return new Date(post.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'pt-BR', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			});
+		}
+	};
+
+	// Helper to get tags string
+	function getPostTags(post: BlogPost): string {
+		if (isDevToArticle(post)) {
+			return post.tags || post.category || '';
+		} else {
+			return post.tags.join(', ');
+		}
+	}
 </script>
 
 <svelte:head>
@@ -18,27 +58,24 @@
 	<div class="articles">
 		<h1>{$t("blog.title")}</h1>
 
-		{#each filteredArticles as article}
+		{#each filteredPosts as post}
 			<div class="article">
 				<div class="header">
-					<h2>
-						{article.title}
-					</h2>
-					<div>Tags: {article.tags || article.category}</div>
+					<h2>{post.title}</h2>
+					<div class="meta">
+						<span class="tags">Tags: {getPostTags(post)}</span>
+						<span class="date">{getPostDate(post)}</span>
+					</div>
 				</div>
-				<p>
-					{article.description || ""}
-				</p>
+				<p>{post.description || ""}</p>
 
-				<a
-					href={article.id ? `/blog/${article.id}` : article.link}
-					target={!article.id ? "_blank" : "_self"}
-				>
+				<a href={getPostUrl(post)}>
 					<div class="button">{$t("blog.readMore")}</div>
 				</a>
 			</div>
 		{/each}
-		{#if filteredArticles.length === 0}
+
+		{#if filteredPosts.length === 0}
 			{#if $locale === "en"}
 				<div>No Articles</div>
 			{:else}
@@ -87,11 +124,36 @@
 		padding: 2rem;
 		width: 100%;
 		transition: transform 0.2s ease-in-out;
+		position: relative;
 	}
 
 	.article p {
 		font-weight: 100;
 		color: var(--secondaryColor);
+	}
+
+	.meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--secondaryColor);
+	}
+
+	.date {
+		font-style: italic;
+	}
+
+	.badge {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background: var(--visitedColor);
+		color: var(--backgroundColor);
+		padding: 0.3rem 0.6rem;
+		border-radius: 3px;
+		font-size: 0.75rem;
+		font-weight: 600;
 	}
 
 	.articles {
