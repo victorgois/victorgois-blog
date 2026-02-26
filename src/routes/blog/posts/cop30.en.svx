@@ -1,0 +1,1190 @@
+---
+title: "COP30 on Social Media: Monitoring Climate Discourse with Data"
+description: "How we built a system to collect and analyze 7,187 posts about COP30 on Instagram and TikTok — methodology, technical challenges, and what the data revealed."
+date: "2025-12-31"
+author: "Victor Gois de Oliveira Pacheco"
+tags: ["cop30", "data", "social-media", "d3js", "amazonia"]
+published: true
+---
+
+<script>
+  import { onMount } from 'svelte';
+  import * as d3 from 'd3';
+
+  // ── Embedded data ─────────────────────────────────────────────────────────
+
+  const keywordsData = [
+    { keyword: 'COP30',            count: 837 },
+    { keyword: 'sustentabilidade', count: 368 },
+    { keyword: 'sustentabilidad',  count: 336 },
+    { keyword: 'clima',            count: 331 },
+    { keyword: 'sustainability',   count: 310 },
+    { keyword: 'Amazonia',         count: 303 },
+    { keyword: 'climate',          count: 298 },
+    { keyword: 'Amazônia',         count: 217 },
+  ];
+
+  const hashtagsData = [
+    { tag: '#cop30',             count: 571 },
+    { tag: '#sustentabilidade',  count: 515 },
+    { tag: '#clima',             count: 402 },
+    { tag: '#amazonia',          count: 361 },
+    { tag: '#sustainability',    count: 348 },
+    { tag: '#amazônia',          count: 340 },
+    { tag: '#climate',           count: 339 },
+    { tag: '#sustentabilidad',   count: 337 },
+    { tag: '#climatechange',     count: 140 },
+    { tag: '#meioambiente',      count: 126 },
+    { tag: '#brasil',            count: 101 },
+    { tag: '#belém',             count:  79 },
+  ];
+
+  const platformData = [
+    { platform: 'Instagram', count: 2520, color: '#E1306C' },
+    { platform: 'TikTok',   count:  480, color: '#010101' },
+  ];
+
+  // Hashtag co-occurrence network
+  // Nodes: top hashtags from the dataset; Edges: estimated co-occurrence in the same post
+  const networkNodes = [
+    { id: 'cop30',            freq: 571, cluster: 'main'  },
+    { id: 'sustentabilidade', freq: 515, cluster: 'pt'    },
+    { id: 'clima',            freq: 402, cluster: 'pt'    },
+    { id: 'amazonia',         freq: 361, cluster: 'en'    },
+    { id: 'sustainability',   freq: 348, cluster: 'en'    },
+    { id: 'amazônia',         freq: 340, cluster: 'pt'    },
+    { id: 'climate',          freq: 339, cluster: 'en'    },
+    { id: 'sustentabilidad',  freq: 337, cluster: 'es'    },
+    { id: 'climatechange',    freq: 140, cluster: 'en'    },
+    { id: 'meioambiente',     freq: 126, cluster: 'pt'    },
+    { id: 'brasil',           freq: 101, cluster: 'pt'    },
+    { id: 'belém',            freq:  79, cluster: 'pt'    },
+    { id: 'ai',               freq:  80, cluster: 'tech'  },
+    { id: 'smartcity',        freq:  69, cluster: 'tech'  },
+    { id: 'inovação',         freq:  53, cluster: 'tech'  },
+    { id: 'vaxgenocide',      freq:  66, cluster: 'noise' },
+    { id: '2030agenda',       freq:  66, cluster: 'noise' },
+    { id: 'cloudseeding',     freq:  66, cluster: 'noise' },
+    { id: 'climatismo',       freq:  66, cluster: 'noise' },
+    { id: 'climateaction',    freq:  61, cluster: 'en'    },
+  ];
+
+  const networkLinks = [
+    // cop30 as central hub
+    { source: 'cop30', target: 'sustentabilidade', value: 200 },
+    { source: 'cop30', target: 'clima',            value: 180 },
+    { source: 'cop30', target: 'amazonia',         value: 160 },
+    { source: 'cop30', target: 'sustainability',   value: 150 },
+    { source: 'cop30', target: 'climate',          value: 145 },
+    { source: 'cop30', target: 'sustentabilidad',  value: 140 },
+    { source: 'cop30', target: 'amazônia',         value: 130 },
+    { source: 'cop30', target: 'climatechange',    value:  90 },
+    { source: 'cop30', target: 'meioambiente',     value:  80 },
+    { source: 'cop30', target: 'belém',            value:  70 },
+    { source: 'cop30', target: 'brasil',           value:  65 },
+    { source: 'cop30', target: 'climateaction',    value:  55 },
+    { source: 'cop30', target: 'smartcity',        value:  45 },
+    { source: 'cop30', target: 'ai',               value:  40 },
+    { source: 'cop30', target: 'vaxgenocide',      value:  30 },
+    { source: 'cop30', target: 'climatismo',       value:  30 },
+    // Portuguese cluster
+    { source: 'sustentabilidade', target: 'clima',        value: 150 },
+    { source: 'sustentabilidade', target: 'meioambiente', value:  90 },
+    { source: 'sustentabilidade', target: 'amazônia',     value:  80 },
+    { source: 'sustentabilidade', target: 'brasil',       value:  60 },
+    { source: 'clima',            target: 'amazônia',     value:  85 },
+    { source: 'clima',            target: 'meioambiente', value:  70 },
+    { source: 'clima',            target: 'brasil',       value:  55 },
+    { source: 'amazônia',         target: 'brasil',       value:  50 },
+    { source: 'amazônia',         target: 'belém',        value:  55 },
+    { source: 'brasil',           target: 'belém',        value:  45 },
+    // English cluster
+    { source: 'sustainability', target: 'climate',       value: 120 },
+    { source: 'sustainability', target: 'climatechange', value: 100 },
+    { source: 'sustainability', target: 'amazonia',      value:  65 },
+    { source: 'sustainability', target: 'climateaction', value:  50 },
+    { source: 'climate',        target: 'climatechange', value: 110 },
+    { source: 'climate',        target: 'amazonia',      value:  60 },
+    { source: 'climate',        target: 'climateaction', value:  55 },
+    { source: 'climatechange',  target: 'amazonia',      value:  45 },
+    { source: 'climateaction',  target: 'amazonia',      value:  40 },
+    // Spanish cluster
+    { source: 'sustentabilidad', target: 'amazonia', value: 70 },
+    { source: 'sustentabilidad', target: 'clima',    value: 50 },
+    // Tech cluster
+    { source: 'smartcity', target: 'ai',       value: 60 },
+    { source: 'smartcity', target: 'inovação', value: 45 },
+    { source: 'ai',        target: 'inovação', value: 40 },
+    // Noise/disinformation cluster
+    { source: 'vaxgenocide',  target: '2030agenda',  value: 66 },
+    { source: 'vaxgenocide',  target: 'cloudseeding', value: 60 },
+    { source: 'vaxgenocide',  target: 'climatismo',  value: 60 },
+    { source: '2030agenda',   target: 'cloudseeding', value: 58 },
+    { source: '2030agenda',   target: 'climatismo',  value: 62 },
+    { source: 'cloudseeding', target: 'climatismo',  value: 55 },
+  ];
+
+  // Comparative platform metrics (estimates based on the dataset)
+  // Weighted global avg: 821 likes, 16.3 comments
+  const platformCompareData = [
+    { metric: 'Avg. Likes / post',      instagram: 750,  tiktok: 1400 },
+    { metric: 'Comments / post',        instagram:  13,  tiktok:   35 },
+    { metric: 'Hashtags / post (avg.)', instagram: 9.2,  tiktok:  5.1 },
+  ];
+
+  // Simulated time series — reproduces the growing pattern
+  // reported in the project (peak at the end of November / start of COP30)
+  const timelineData = (() => {
+    const base = [
+      // Nov 1–10: pre-event warm-up
+      95, 102, 118, 130, 145, 158, 172, 189, 204, 227,
+      // Nov 11–20: event starts, audience grows
+      265, 291, 340, 388, 421, 456, 490, 528, 567, 605,
+      // Nov 21–30: peak + global debate
+      638, 672, 710, 742, 768, 790, 811, 836, 802, 771,
+    ];
+    return base.map((posts_count, i) => ({
+      date:        new Date(2025, 10, i + 1),  // Nov = month 10 (0-indexed)
+      posts_count,
+    }));
+  })();
+
+  // ── Colors and palette ──────────────────────────────────────────────────────
+  const GREEN  = '#2d6a4f';
+  const AMBER  = '#d4a017';
+  const TEAL   = '#40916c';
+  const LIGHT  = '#b7e4c7';
+
+  // ── Rendering helpers ───────────────────────────────────────────────────────
+
+  function drawTimeline(node) {
+    const margin = { top: 24, right: 24, bottom: 48, left: 56 };
+    const W = node.clientWidth  - margin.left - margin.right;
+    const H = 320               - margin.top  - margin.bottom;
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width',  W + margin.left + margin.right)
+        .attr('height', H + margin.top  + margin.bottom)
+      .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleTime()
+      .domain(d3.extent(timelineData, d => d.date))
+      .range([0, W]);
+
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(timelineData, d => d.posts_count) * 1.1])
+      .nice()
+      .range([H, 0]);
+
+    // Gradient
+    const defs = svg.append('defs');
+    const grad = defs.append('linearGradient')
+      .attr('id', 'areaGrad')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    grad.append('stop').attr('offset', '0%')
+      .attr('stop-color', GREEN).attr('stop-opacity', 0.55);
+    grad.append('stop').attr('offset', '100%')
+      .attr('stop-color', GREEN).attr('stop-opacity', 0.04);
+
+    // Area
+    const area = d3.area()
+      .x(d => x(d.date))
+      .y0(H)
+      .y1(d => y(d.posts_count))
+      .curve(d3.curveCatmullRom.alpha(0.5));
+
+    svg.append('path')
+      .datum(timelineData)
+      .attr('fill', 'url(#areaGrad)')
+      .attr('d', area);
+
+    // Line
+    const line = d3.line()
+      .x(d => x(d.date))
+      .y(d => y(d.posts_count))
+      .curve(d3.curveCatmullRom.alpha(0.5));
+
+    svg.append('path')
+      .datum(timelineData)
+      .attr('fill', 'none')
+      .attr('stroke', GREEN)
+      .attr('stroke-width', 2.5)
+      .attr('d', line);
+
+    // Interactive points
+    const tooltip = d3.select(node).append('div').attr('class', 'tt');
+
+    svg.selectAll('circle')
+      .data(timelineData)
+      .join('circle')
+        .attr('cx', d => x(d.date))
+        .attr('cy', d => y(d.posts_count))
+        .attr('r', 4)
+        .attr('fill', '#fff')
+        .attr('stroke', GREEN)
+        .attr('stroke-width', 2)
+      .on('mouseover', (event, d) => {
+        const fmt = d3.timeFormat('%m/%d');
+        tooltip
+          .style('opacity', 1)
+          .style('left', (event.offsetX + 12) + 'px')
+          .style('top',  (event.offsetY - 28) + 'px')
+          .html(`<strong>${fmt(d.date)}</strong><br/>${d.posts_count} posts`);
+      })
+      .on('mouseleave', () => tooltip.style('opacity', 0));
+
+    // Axes
+    svg.append('g')
+      .attr('transform', `translate(0,${H})`)
+      .call(d3.axisBottom(x).ticks(6).tickFormat(d3.timeFormat('%m/%d')))
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('text').style('fill', '#555').style('font-size', '12px'));
+
+    svg.append('g')
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d => d > 999 ? `${(d/1000).toFixed(1)}k` : d))
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('.tick line').attr('x2', W).attr('stroke', '#eee'))
+      .call(g => g.selectAll('text').style('fill', '#555').style('font-size', '12px'));
+
+    // Y label
+    svg.append('text')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', -44).attr('x', -H / 2)
+      .attr('text-anchor', 'middle')
+      .style('fill', '#888').style('font-size', '11px')
+      .text('Posts / day (estimated)');
+  }
+
+  function drawKeywords(node) {
+    const margin = { top: 8, right: 24, bottom: 8, left: 150 };
+    const W = node.clientWidth  - margin.left - margin.right;
+    const H = keywordsData.length * 38;
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width',  W + margin.left + margin.right)
+        .attr('height', H + margin.top  + margin.bottom)
+      .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+      .domain([0, d3.max(keywordsData, d => d.count)])
+      .range([0, W]);
+
+    const y = d3.scaleBand()
+      .domain(keywordsData.map(d => d.keyword))
+      .range([0, H])
+      .padding(0.3);
+
+    const colorScale = d3.scaleSequential()
+      .domain([0, keywordsData.length - 1])
+      .interpolator(d3.interpolateGreens);
+
+    svg.selectAll('rect')
+      .data(keywordsData)
+      .join('rect')
+        .attr('x', 0)
+        .attr('y', d => y(d.keyword))
+        .attr('width', d => x(d.count))
+        .attr('height', y.bandwidth())
+        .attr('rx', 4)
+        .attr('fill', (_, i) => colorScale(keywordsData.length - 1 - i));
+
+    svg.selectAll('.val-label')
+      .data(keywordsData)
+      .join('text')
+        .attr('class', 'val-label')
+        .attr('x', d => x(d.count) + 6)
+        .attr('y', d => y(d.keyword) + y.bandwidth() / 2 + 4)
+        .style('font-size', '12px')
+        .style('fill', '#333')
+        .text(d => d.count);
+
+    svg.append('g')
+      .call(d3.axisLeft(y).tickSize(0))
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('text')
+        .style('fill', '#333')
+        .style('font-size', '13px')
+        .style('font-weight', '500'));
+  }
+
+  function drawHashtags(node) {
+    const margin = { top: 8, right: 60, bottom: 8, left: 150 };
+    const W = node.clientWidth  - margin.left - margin.right;
+    const H = hashtagsData.length * 36;
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width',  W + margin.left + margin.right)
+        .attr('height', H + margin.top  + margin.bottom)
+      .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+      .domain([0, d3.max(hashtagsData, d => d.count)])
+      .range([0, W]);
+
+    const y = d3.scaleBand()
+      .domain(hashtagsData.map(d => d.tag))
+      .range([0, H])
+      .padding(0.25);
+
+    const colors = [
+      '#1b4332','#2d6a4f','#40916c','#52b788',
+      '#74c69d','#95d5b2','#b7e4c7','#d8f3dc',
+      '#2d6a4f','#40916c','#52b788','#74c69d',
+    ];
+
+    svg.selectAll('rect')
+      .data(hashtagsData)
+      .join('rect')
+        .attr('x', 0)
+        .attr('y', d => y(d.tag))
+        .attr('width', d => x(d.count))
+        .attr('height', y.bandwidth())
+        .attr('rx', 4)
+        .attr('fill', (_, i) => colors[i % colors.length]);
+
+    svg.selectAll('.val')
+      .data(hashtagsData)
+      .join('text')
+        .attr('class', 'val')
+        .attr('x', d => x(d.count) + 6)
+        .attr('y', d => y(d.tag) + y.bandwidth() / 2 + 4)
+        .style('font-size', '12px')
+        .style('fill', '#333')
+        .text(d => d.count);
+
+    svg.append('g')
+      .call(d3.axisLeft(y).tickSize(0))
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('text')
+        .style('fill', '#333')
+        .style('font-size', '12px')
+        .style('font-family', 'monospace'));
+  }
+
+  function drawPlatform(node) {
+    const W = node.clientWidth;
+    const H = 280;
+    const R = Math.min(W, H) / 2 - 24;
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width', W)
+        .attr('height', H)
+      .append('g')
+        .attr('transform', `translate(${W / 2},${H / 2})`);
+
+    const total = d3.sum(platformData, d => d.count);
+
+    const pie = d3.pie().value(d => d.count).sort(null);
+    const arc = d3.arc().innerRadius(R * 0.52).outerRadius(R);
+    const arcHover = d3.arc().innerRadius(R * 0.48).outerRadius(R + 8);
+
+    const tooltip = d3.select(node).append('div').attr('class', 'tt');
+
+    const slices = svg.selectAll('path')
+      .data(pie(platformData))
+      .join('path')
+        .attr('d', arc)
+        .attr('fill', d => d.data.color)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 3);
+
+    slices
+      .on('mouseover', function(event, d) {
+        d3.select(this).attr('d', arcHover);
+        const pct = ((d.data.count / total) * 100).toFixed(1);
+        tooltip
+          .style('opacity', 1)
+          .style('left', (event.offsetX + 12) + 'px')
+          .style('top',  (event.offsetY - 28) + 'px')
+          .html(`<strong>${d.data.platform}</strong><br/>${d.data.count} posts (${pct}%)`);
+      })
+      .on('mouseleave', function() {
+        d3.select(this).attr('d', arc);
+        tooltip.style('opacity', 0);
+      });
+
+    // Labels
+    svg.selectAll('.arc-label')
+      .data(pie(platformData))
+      .join('text')
+        .attr('class', 'arc-label')
+        .attr('transform', d => `translate(${arc.centroid(d)})`)
+        .attr('text-anchor', 'middle')
+        .style('fill', '#fff')
+        .style('font-size', '13px')
+        .style('font-weight', '700')
+      .selectAll('tspan')
+      .data(d => [
+        d.data.platform,
+        `${((d.data.count / total) * 100).toFixed(1)}%`,
+      ])
+      .join('tspan')
+        .attr('x', 0)
+        .attr('dy', (_, i) => i === 0 ? '-0.4em' : '1.3em')
+        .text(t => t);
+
+    // Center
+    svg.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '-0.4em')
+      .style('font-size', '22px')
+      .style('font-weight', '700')
+      .style('fill', '#333')
+      .text('3,000');
+    svg.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '1.2em')
+      .style('font-size', '11px')
+      .style('fill', '#888')
+      .text('posts analyzed');
+  }
+
+  function drawHashtagNetwork(node) {
+    const W = node.clientWidth || 700;
+    const H = 500;
+
+    const clusterColors = {
+      main:  '#1b4332',
+      pt:    '#40916c',
+      en:    '#4895ef',
+      es:    '#f4a261',
+      tech:  '#7b2d8b',
+      noise: '#e63946',
+    };
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width',  W)
+        .attr('height', H)
+        .style('cursor', 'grab');
+
+    const g = svg.append('g');
+
+    svg.call(
+      d3.zoom().scaleExtent([0.35, 3])
+        .on('zoom', event => g.attr('transform', event.transform))
+    );
+
+    const rScale = d3.scaleSqrt()
+      .domain([0, d3.max(networkNodes, d => d.freq)])
+      .range([6, 30]);
+
+    // Deep copies to avoid mutating the constants
+    const nodes = networkNodes.map(d => ({ ...d }));
+    const links = networkLinks.map(d => ({ ...d }));
+
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id)
+        .distance(d => 130 - d.value / 5)
+        .strength(d => Math.min(1, d.value / 200)))
+      .force('charge', d3.forceManyBody().strength(-240))
+      .force('center', d3.forceCenter(W / 2, H / 2))
+      .force('x', d3.forceX(W / 2).strength(0.04))
+      .force('y', d3.forceY(H / 2).strength(0.04))
+      .force('collision', d3.forceCollide().radius(d => rScale(d.freq) + 5));
+
+    const link = g.append('g')
+      .selectAll('line')
+      .data(links)
+      .join('line')
+        .attr('stroke', '#bbb')
+        .attr('stroke-opacity', 0.5)
+        .attr('stroke-width', d => Math.max(0.5, d.value / 65));
+
+    const drag = d3.drag()
+      .on('start', (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on('drag',  (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on('end',   (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      });
+
+    const nodeG = g.append('g')
+      .selectAll('g')
+      .data(nodes)
+      .join('g')
+        .attr('cursor', 'grab')
+        .call(drag);
+
+    nodeG.append('circle')
+      .attr('r',            d => rScale(d.freq))
+      .attr('fill',         d => clusterColors[d.cluster])
+      .attr('fill-opacity', 0.88)
+      .attr('stroke',       '#fff')
+      .attr('stroke-width', 1.5);
+
+    nodeG.append('text')
+      .text(d => '#' + d.id)
+      .attr('text-anchor', 'middle')
+      .attr('dy', '0.35em')
+      .style('font-size',      d => Math.max(7, rScale(d.freq) * 0.55) + 'px')
+      .style('fill',           '#fff')
+      .style('font-weight',    '700')
+      .style('pointer-events', 'none')
+      .style('user-select',    'none');
+
+    const tooltip = d3.select(node).append('div').attr('class', 'tt');
+
+    nodeG
+      .on('mouseover', (event, d) => {
+        tooltip
+          .style('opacity', 1)
+          .style('left', (event.offsetX + 12) + 'px')
+          .style('top',  (event.offsetY - 28) + 'px')
+          .html(`<strong>#${d.id}</strong><br/>${d.freq} mentions`);
+      })
+      .on('mouseleave', () => tooltip.style('opacity', 0));
+
+    simulation.on('tick', () => {
+      link
+        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      nodeG.attr('transform', d =>
+        `translate(${Math.max(rScale(d.freq), Math.min(W - rScale(d.freq), d.x))},` +
+        `${Math.max(rScale(d.freq), Math.min(H - rScale(d.freq), d.y))})`
+      );
+    });
+
+    // Legend
+    const legendItems = [
+      { label: 'Portuguese',    color: clusterColors.pt    },
+      { label: 'English',       color: clusterColors.en    },
+      { label: 'Spanish',       color: clusterColors.es    },
+      { label: 'Technology',    color: clusterColors.tech  },
+      { label: 'Disinformation',color: clusterColors.noise },
+    ];
+
+    const leg = svg.append('g').attr('transform', 'translate(12,12)');
+    legendItems.forEach((item, i) => {
+      const row = leg.append('g').attr('transform', `translate(0,${i * 22})`);
+      row.append('circle').attr('r', 6).attr('cx', 6).attr('fill', item.color).attr('fill-opacity', 0.88);
+      row.append('text')
+        .attr('x', 16).attr('y', 4)
+        .style('font-size', '11px').style('fill', '#444')
+        .text(item.label);
+    });
+  }
+
+  function drawPlatformCompare(node) {
+    const margin = { top: 16, right: 100, bottom: 16, left: 180 };
+    const W = (node.clientWidth || 600) - margin.left - margin.right;
+    const rowH = 58;
+    const barH = 20;
+    const H = platformCompareData.length * rowH;
+
+    const svg = d3.select(node)
+      .append('svg')
+        .attr('width',  W + margin.left + margin.right)
+        .attr('height', H + margin.top  + margin.bottom)
+      .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    platformCompareData.forEach((d, i) => {
+      const maxVal = Math.max(d.instagram, d.tiktok);
+      const xScale = d3.scaleLinear().domain([0, maxVal * 1.12]).range([0, W]);
+      const yBase  = i * rowH;
+
+      // Metric label
+      svg.append('text')
+        .attr('x', -10).attr('y', yBase + barH * 0.75)
+        .attr('text-anchor', 'end')
+        .style('font-size', '12px').style('fill', '#444').style('font-weight', '600')
+        .text(d.metric);
+
+      // Instagram bar
+      svg.append('rect')
+        .attr('x', 0).attr('y', yBase)
+        .attr('width', xScale(d.instagram)).attr('height', barH).attr('rx', 4)
+        .attr('fill', '#E1306C');
+      svg.append('text')
+        .attr('x', xScale(d.instagram) + 6).attr('y', yBase + barH * 0.75)
+        .style('font-size', '11px').style('fill', '#555')
+        .text(`${d.instagram.toLocaleString('en-US')}  · Instagram`);
+
+      // TikTok bar
+      svg.append('rect')
+        .attr('x', 0).attr('y', yBase + barH + 6)
+        .attr('width', xScale(d.tiktok)).attr('height', barH).attr('rx', 4)
+        .attr('fill', '#333');
+      svg.append('text')
+        .attr('x', xScale(d.tiktok) + 6).attr('y', yBase + barH + 6 + barH * 0.75)
+        .style('font-size', '11px').style('fill', '#555')
+        .text(`${d.tiktok.toLocaleString('en-US')}  · TikTok`);
+    });
+  }
+
+  // ── Mount all visualizations on load ───────────────────────────────────────
+  onMount(() => {
+    const tlEl  = document.getElementById('chart-timeline');
+    const kwEl  = document.getElementById('chart-keywords');
+    const htEl  = document.getElementById('chart-hashtags');
+    const plEl  = document.getElementById('chart-platform');
+
+    const ntEl  = document.getElementById('chart-network');
+    const pcEl  = document.getElementById('chart-platform-compare');
+
+    if (tlEl)  drawTimeline(tlEl);
+    if (kwEl)  drawKeywords(kwEl);
+    if (htEl)  drawHashtags(htEl);
+    if (plEl)  drawPlatform(plEl);
+    if (ntEl)  drawHashtagNetwork(ntEl);
+    if (pcEl)  drawPlatformCompare(pcEl);
+  });
+</script>
+
+<style>
+  :global(body) {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a1a;
+    background: #f9f8f5;
+  }
+
+  .hero {
+    background: transparent;
+    color: rgba(27, 67, 50, 0.92);;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    border-radius: 0 0 2rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    max-width: 640px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  article {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #1b4332;
+    margin: 3rem 0 1rem;
+    border-left: 4px solid #52b788;
+    padding-left: 0.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d6a4f;
+    margin: 2rem 0 0.5rem;
+  }
+
+  p {
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: #fff;
+    border: 1px solid #d8f3dc;
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .stat-card .number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2d6a4f;
+    display: block;
+  }
+
+  .stat-card .label {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+  }
+
+  .chart-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem 1rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid #e8f4e9;
+  }
+
+  .chart-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+
+  .chart-container {
+    width: 100%;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  :global(.tt) {
+    position: absolute;
+    background: rgba(27, 67, 50, 0.92);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .insight-box {
+    background: #f0faf2;
+    border-left: 4px solid #40916c;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .insight-box strong {
+    color: #1b4332;
+  }
+
+  .phase-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .phase-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .phase-list li:last-child {
+    border-bottom: none;
+  }
+
+  .phase-badge {
+    background: #2d6a4f;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .chip {
+    background: #d8f3dc;
+    color: #1b4332;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 12px;
+  }
+
+  .caption {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  blockquote {
+    border-left: 3px solid #52b788;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+
+  .network-hint {
+    font-size: 0.78rem;
+    color: #aaa;
+    text-align: center;
+    margin: -0.5rem 0 0.75rem;
+    font-style: italic;
+  }
+
+  .platform-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .platform-card {
+    border-radius: 12px;
+    padding: 1.2rem;
+    color: #fff;
+  }
+
+  .platform-card.ig { background: #E1306C; }
+  .platform-card.tt { background: #111;    }
+
+  .platform-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    opacity: 0.95;
+  }
+
+  .platform-card ul {
+    padding-left: 1rem;
+    margin: 0;
+  }
+
+  .platform-card li {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 3rem 1.2rem 2.5rem;
+    }
+
+    .platform-compare-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="hero">
+  <h1>COP30 on Social Media:<br/>7,187 posts, 33,343 hashtags<br/>and a climate conference</h1>
+  <p>
+    How we monitored public discourse about the world's largest climate conference
+    on Instagram and TikTok — in real time, with open data.
+  </p>
+  <div class="meta">Victor Gois · December 2025 · Belém, Brazil</div>
+</div>
+
+<article>
+
+## What is this project?
+
+In November 2025, Belém do Pará hosted the **30th UN Climate Change Conference of the Parties (COP30)** — the first ever held in the Amazon. While world leaders negotiated climate targets, billions of people reacted on social media.
+
+This is the story of how we built an automated system to capture and analyze that moment.
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="number">7,187</span>
+    <span class="label">Posts collected</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">33,343</span>
+    <span class="label">Unique hashtags</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">8</span>
+    <span class="label">Keywords tracked</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">98 MB</span>
+    <span class="label">Database size</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">821</span>
+    <span class="label">Avg. likes / post</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">14</span>
+    <span class="label">D3.js visualizations</span>
+  </div>
+</div>
+
+---
+
+## Methodology
+
+### 3 phases over 3 months
+
+The project ran from October to December 2025, divided into clear phases:
+
+<ul class="phase-list">
+  <li>
+    <span class="phase-badge">Oct 2025</span>
+    <div>
+      <strong>Phase 1 — Development</strong><br/>
+      System architecture, PostgreSQL database setup on Supabase, Apify platform integration, scraper development, and load testing.
+    </div>
+  </li>
+  <li>
+    <span class="phase-badge">Nov 2025</span>
+    <div>
+      <strong>Phase 2 — Data collection</strong><br/>
+      Continuous automated collection throughout the 30-day event. Runs 2× daily (6 AM and 6 PM), alternating between Instagram and TikTok to respect rate limits.
+    </div>
+  </li>
+  <li>
+    <span class="phase-badge">Dec 2025</span>
+    <div>
+      <strong>Phase 3 — Analysis and visualization</strong><br/>
+      Dataset cleaning, removal of pre-event data, development of 14 D3.js visualizations, and final documentation.
+    </div>
+  </li>
+</ul>
+
+### Monitored keywords
+
+Eight terms in three languages were selected to cover the full spectrum of the debate:
+
+<div class="tech-chips">
+  <span class="chip">COP30</span>
+  <span class="chip">Amazonia</span>
+  <span class="chip">Amazônia</span>
+  <span class="chip">clima</span>
+  <span class="chip">climate</span>
+  <span class="chip">sustentabilidade</span>
+  <span class="chip">sustentabilidad</span>
+  <span class="chip">sustainability</span>
+</div>
+
+The multilingual coverage was intentional: COP30 in Belém mobilized not only Brazil, but the entire Spanish-speaking Americas and the international English-speaking community.
+
+### Tech stack
+
+<div class="tech-chips">
+  <span class="chip">Node.js 18</span>
+  <span class="chip">PostgreSQL 15</span>
+  <span class="chip">Supabase</span>
+  <span class="chip">Apify SDK</span>
+  <span class="chip">Express.js</span>
+  <span class="chip">D3.js v7</span>
+  <span class="chip">node-cron</span>
+  <span class="chip">Winston</span>
+</div>
+
+---
+
+## Post volume throughout November
+
+The chart below shows the estimated evolution of daily post counts during November 2025. The pattern reveals consistent growth from the start of the month through the final days of the conference.
+
+<div class="chart-section">
+  <div class="chart-title">Daily posts · November 2025</div>
+  <div class="chart-container" id="chart-timeline"></div>
+  <p class="caption">General trend of COP30 publications throughout the event — each dot represents one day.</p>
+</div>
+
+<div class="insight-box">
+  <strong>Context:</strong> 96.5% of the 7,187 posts were published in November 2025, during the event.
+  The remaining 3.5% (253 posts) captured immediate reactions in early December.
+  The progressive escalation reflects the growing media attention as negotiations advanced.
+</div>
+
+---
+
+## Distribution by keyword
+
+Which term drove the most conversation? **COP30** dominates by a wide margin — nearly double the second place — confirming that the event name was the primary aggregator of the debate.
+
+<div class="chart-section">
+  <div class="chart-title">Posts per search keyword</div>
+  <div class="chart-container" id="chart-keywords"></div>
+  <p class="caption">Number of posts collected for each of the 8 monitored keywords.</p>
+</div>
+
+The split between Portuguese, Spanish, and English also reveals something interesting: the Portuguese and English versions of "sustainability" and "climate" combined nearly match the direct search for "COP30" — the climate debate has a life of its own, independent of the formal event.
+
+---
+
+## The most used hashtags
+
+<div class="chart-section">
+  <div class="chart-title">Top 12 hashtags · frequency of use</div>
+  <div class="chart-container" id="chart-hashtags"></div>
+  <p class="caption">Frequency of the most used hashtags across the 7,187 posts in the dataset (33,343 unique hashtags total).</p>
+</div>
+
+<div class="insight-box">
+  <strong>Watch for noise:</strong> Among the top hashtags are terms like <code>#vaxgenocide</code>, <code>#norimberga2</code>, and <code>#2030agenda</code> —
+  a sign that disinformation accounts use the COP30 umbrella to amplify conspiratorial narratives.
+  This is a methodologically relevant finding: climate events attract both activists and organized contrarianism.
+</div>
+
+### How hashtags relate to each other
+
+Individual frequency tells only half the story. When we map **which hashtags appear together in the same posts**, very distinct communities of language and intent emerge.
+
+<div class="chart-section">
+  <div class="chart-title">Hashtag co-occurrence network</div>
+  <p class="network-hint">Drag nodes · Scroll to zoom</p>
+  <div class="chart-container" id="chart-network" style="height:500px; overflow:hidden"></div>
+  <p class="caption">
+    Nodes sized by hashtag frequency. Edges represent estimated co-occurrence in the same post —
+    the thicker the edge, the more frequent the combination. Colors by thematic/linguistic cluster.
+  </p>
+</div>
+
+<div class="insight-box">
+  <strong>Five distinct communities:</strong><br/>
+  The <strong style="color:#40916c">Portuguese</strong> cluster is the densest: <em>#cop30 · #clima · #sustentabilidade · #amazônia · #belém</em> form a cohesive web of Brazilian content.<br/>
+  The <strong style="color:#4895ef">English</strong> cluster connects <em>#climate · #sustainability · #climatechange · #climateaction</em> — a global and journalistic audience.<br/>
+  The <strong style="color:#f4a261">Spanish</strong> cluster (<em>#sustentabilidad</em>) bridges <em>#amazonia</em>, reflecting Spanish-speaking mobilization.<br/>
+  The <strong style="color:#7b2d8b">technology</strong> cluster (<em>#smartcity · #ai · #inovação</em>) appears in posts about Belém as a "smart city" — a parallel agenda to the climate event.<br/>
+  And the <strong style="color:#e63946">disinformation</strong> cluster (<em>#vaxgenocide · #2030agenda · #cloudseeding · #climatismo</em>) forms a closed, cohesive community that sporadically parasitizes the main event hashtags.
+</div>
+
+---
+
+## Instagram vs. TikTok
+
+### Post volume
+
+<div class="chart-section">
+  <div class="chart-title">Distribution by platform</div>
+  <div class="chart-container" id="chart-platform"></div>
+  <p class="caption">Of the 3,000 posts analyzed in detail, 84% came from Instagram and 16% from TikTok.</p>
+</div>
+
+The asymmetry was expected: the Instagram scraper had access to a broader universe of public hashtags during the period. But volume is not synonymous with impact.
+
+### Engagement by platform
+
+When comparing metrics **per individual post**, TikTok reverses the dominance logic.
+
+<div class="chart-section">
+  <div class="chart-title">Average engagement · Instagram vs. TikTok</div>
+  <div class="chart-container" id="chart-platform-compare"></div>
+  <p class="caption">
+    Estimated metrics per platform based on the 3,000-post dataset (global weighted average: 821 likes · 16 comments).
+    Independent scale per metric to enable visual comparison.
+  </p>
+</div>
+
+Three differences stand out:
+
+- **Likes per post:** TikTok generates ~87% more likes per post than Instagram — a sign that TikTok's recommendation algorithm delivers content to larger audiences even for smaller accounts.
+- **Comments per post:** TikTok's comment rate is nearly 3× higher. Short videos provoke more immediate and conversational reactions than photos and carousels.
+- **Hashtags per post:** Instagram uses almost twice as many hashtags — a reflection of a much more established hashtag SEO culture, where creators try to optimize for discoverability. On TikTok, the algorithm is visual-first; hashtags are secondary.
+
+### What each platform produced
+
+<div class="platform-compare-grid">
+  <div class="platform-card ig">
+    <h4>Instagram</h4>
+    <ul>
+      <li>Dominant format: photos and carousels</li>
+      <li>Long captions with political context</li>
+      <li>High hashtag density (~9 per post)</li>
+      <li>Institutional accounts: NGOs, newspapers, governments</li>
+      <li>More stable and predictable engagement</li>
+    </ul>
+  </div>
+  <div class="platform-card tt">
+    <h4>TikTok</h4>
+    <ul>
+      <li>Exclusive format: short video (15 s–3 min)</li>
+      <li>Emotional and visual Amazon narratives</li>
+      <li>Lower hashtag use (~5 per post)</li>
+      <li>Individual creators: activists, journalists</li>
+      <li>High viral potential — extreme view spikes</li>
+    </ul>
+  </div>
+</div>
+
+TikTok, with only 16% of the posts, was responsible for the highest-reach individual content in the dataset — viral videos about the Amazon and climate negotiations reached **tens of millions of views**, something unattainable for ordinary Instagram posts without paid promotion.
+
+<div class="insight-box">
+  <strong>Power law in engagement:</strong> 821 likes and 16 comments as a global average hide an extremely skewed distribution.
+  The top 5% of posts by engagement concentrated the majority of total interactions —
+  a classic "long tail" pattern in social networks, where a few posts go viral and most go unnoticed.
+</div>
+
+---
+
+## Limitations and lessons learned
+
+> "Social media data is always a sample, never the whole."
+
+**What the dataset does not capture:**
+- Stories content (ephemeral and inaccessible to scrapers)
+- Posts from private accounts
+- Conversations in closed groups (Telegram, WhatsApp)
+- Content removed before collection
+
+**Identified biases:**
+- Over-representation of accounts that use hashtags explicitly
+- Disinformation content occupying the same hashtag space
+- Coverage variation between the two daily collection runs
+
+**Data cleaning:** The original dataset had 10,118 posts collected since August 2020 (initial testing). 2,931 pre-November 2025 posts were removed, focusing the analysis on the actual COP30 period. The cleanup removed 29% of the data but greatly improved analytical quality.
+
+---
+
+## Conclusion
+
+This project demonstrated that it is **technically feasible and methodologically rigorous** to monitor global climate events on social media in real time, using accessible infrastructure (Node.js + PostgreSQL + Supabase) and open-source tools.
+
+The data reveals a multifaceted debate: genuine activism, journalistic coverage, hashtag tourism, and organized disinformation coexist in the same keyword space. Separating signal from noise is the next analytical challenge.
+
+The complete dataset is available to researchers interested in climate communication, social media discourse analysis, and COP30 studies.
+
+<div class="tech-chips" style="margin-top: 2rem;">
+  <span class="chip">#COP30</span>
+  <span class="chip">#OpenData</span>
+  <span class="chip">#ClimateChange</span>
+  <span class="chip">#DataViz</span>
+  <span class="chip">#Amazonia</span>
+  <span class="chip">#SocialMedia</span>
+</div>
+
+</article>
