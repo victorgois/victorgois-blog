@@ -93,7 +93,7 @@ export const translations = {
 		
 		// Technology sections translations
 		"tech.expert.title": "Tecnologias que tenho mais experiência",
-		"tech.expert.description": "7 anos de experiência, uso atual, liderança técnica",
+		"tech.expert.description": "8 anos de experiência, uso atual, liderança técnica",
 		"tech.experienced.title": "Tecnologias que tenho experiência", 
 		"tech.experienced.description": "Experiência profissional sólida em múltiplos projetos",
 		"tech.familiar.title": "Tecnologias que tenho alguma experiência",
@@ -103,13 +103,14 @@ export const translations = {
 		"tech.detail.back": "Voltar",
 		"tech.detail.intro": "Aqui está minha experiência específica com",
 		"tech.detail.otherTechs": "Outras tecnologias usadas:",
-		"tech.detail.defaultExperience": "Experiência com"
+		"tech.detail.defaultExperience": "Experiência com",
+		"homepage.recentPosts.title": "Meus últimos pensamentos e projetos"
 	},
 	en: {
 		"homepage.presentation1":
 			"Hi! I'm Victor, a Frontend Engineer from 🇧🇷, specializing in React, TypeScript, Node.js, and data visualization.",
 		"homepage.presentation2":
-			"I'm a Frontend Engineer with 7 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership and scalable application development.",
+			"I'm a Frontend Engineer with 8 years of professional experience and expertise in technologies such as TypeScript, React, Node.js, Next.js, GraphQL, AWS, and Python. My experience includes technical leadership and scalable application development.",
 		"homepage.presentation3":
 			"I have extensive experience working in agile teams and web development. My biggest passion is transforming complex data into engaging visual experiences, whether through interactive dashboards, D3.js visualizations, or modern web applications.",
 		"homepage.longPresentation1": "Core technologies I am familiar with",
@@ -136,7 +137,7 @@ export const translations = {
 		"project.menu4": "Blog",
 		"projectPageContent.overviewTitle": "Overview",
 		"projectPageContent.overview":
-			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Frontend Engineer</strong> with <strong>7 years of professional experience</strong> specializing in <strong>web development, data analysis and visualization. I've worked with React, TypeScript, Python and Next.js in the last 5 years</strong> I have experience connecting frontend apps with backend APIs, databases and other data sources. In this way, its relevant to mention my academic background.  I am  graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Besides software engineering, I research on <strong>Internet, AI and sociability</strong>. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
+			"<p style='font-size: 14px'>I'm Victor Góis Pacheco, <strong>Senior Frontend Engineer</strong> with <strong>8 years of professional experience</strong> specializing in <strong>web development, data analysis and visualization. I've worked with React, TypeScript, Python and Next.js in the last 5 years</strong> I have experience connecting frontend apps with backend APIs, databases and other data sources. In this way, its relevant to mention my academic background.  I am  graduated in Journalism and Master's in Social Communication from <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, combining technical expertise with strong communication skills. Besides software engineering, I research on <strong>Internet, AI and sociability</strong>. Currently focused on <strong>technical leadership</strong>, <strong>scalable architectures</strong>, and <strong>AI integrations</strong>.</p>",
 		"projectPageContent.academicBackgroundTitle": "Education",
 		"projectPageContent.academicBackground":
 			"<li style='list-style-type: none; font-size: 12px'><b>2021 - 2023</b> <strong>Master of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Thesis: <i>\"Truth in Deep Fake: A Semiotic Study on Deepfakes in Brazilian 2022 Presidential Elections\"</i><br/>Technologies: Twitter API with Node.js, JavaScript data processing, Tableau visualizations</li><br/><li style='list-style-type: none; font-size: 12px'><b>2016 - 2020</b> <strong>Bachelor of Science in Social Communication</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Final Project: <i>\"Protocols, Platforms and APIs: Experiments with Google News, Twitter and YouTube data\"</i></li><br/><li style='list-style-type: none; font-size: 12px'><b>2011 - 2016</b> <strong>Bachelor of Science in Information Systems</strong>. <a href='https://ufmg.br/'>Federal University of Minas Gerais</a>, UFMG, Brazil.<br/>Core Subjects: Web Development, Business Intelligence, Data Structures, C and Ruby Programming</li><br/><li style='list-style-type: none; font-size: 12px'><b>2014 - 2015</b> <strong>Exchange Program - Multimedia Marketing</strong>. <a href='https://www.hs-schmalkalden.de/en/'>University of Applied Sciences Schmalkalden</a>, Germany</li>",
@@ -206,6 +207,7 @@ export const translations = {
 		"tech.detail.back": "Back",
 		"tech.detail.intro": "Here's my specific experience with",
 		"tech.detail.otherTechs": "Other technologies used:",
-		"tech.detail.defaultExperience": "Experience with"
+		"tech.detail.defaultExperience": "Experience with",
+		"homepage.recentPosts.title": "My last thoughts and projects"
 	}
 };

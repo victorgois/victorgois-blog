@@ -34,7 +34,7 @@
 			setCustomBackground(visualizationTheme.backgroundColor);
 			setCustomSecondaryColor(visualizationTheme.secondaryColor);
 		} else {
-			setCustomBackground(defaultTheme.backgroundColor);
+			setCustomBackground(themes[$selectedTheme]?.backgroundColor ?? defaultTheme.backgroundColor);
 		}
 	}
 

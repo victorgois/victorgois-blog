@@ -7,10 +7,16 @@
 	import vic from "$lib/assets/vic.gif";
 	import { t, locale } from "../i18n";
 
+	export let data;
+
 	let selectedTech = "";
 	let techListVisible = true;
 
 	let name = "Vicky";
+
+	$: recentPosts = (data.recentPosts ?? [])
+		.filter((post: any) => post.lang === $locale)
+		.slice(0, 2);
 
 	/**
 	 * @param {{ detail: { tech: string; }; }} event
@@ -49,6 +55,8 @@
 				</div>
 			</div>
 		</div>
+
+		
 		<div class="row">
 			<div class="presentation" use:reveal>
 				<p use:reveal={{ transition: "fade" }}>
@@ -61,7 +69,23 @@
 				</p>
 			</div>
 		</div>
+
+		{#if recentPosts.length > 0}
+		<hr use:reveal={{ transition: "fade" }} />
 		<div class="row">
+			<div class="long-presentation" use:reveal>
+				<h2 use:reveal={{ transition: "fade" }}>{$t("homepage.recentPosts.title")}</h2>
+				<ul class="recent-posts">
+					{#each recentPosts as post}
+						<li use:reveal={{ transition: "fade" }}>
+							<a href="/blog/{post.slug}?lang={post.lang}">{post.title}</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
+		{/if}
+<!-- 		<div class="row">
 			<div class="long-presentation">
 				{#if techListVisible}
 					<div class="tech-section">
@@ -85,7 +109,7 @@
 					<TechDetail techName={selectedTech} on:backclick={handleBackClick} />
 				{/if}
 			</div>
-		</div>
+		</div> -->
 		<hr use:reveal={{ transition: "fade" }} />
 
 		<div class="row">
@@ -113,6 +137,7 @@
 				</p>
 			</div>
 		</div>
+
 	</div>
 </main>
 
