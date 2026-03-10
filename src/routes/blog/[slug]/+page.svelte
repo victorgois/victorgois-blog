@@ -1,6 +1,11 @@
 <script lang="ts">
 	import FaExternalLinkAlt from 'svelte-icons/fa/FaExternalLinkAlt.svelte';
 	import type { Article } from './types.js';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { get } from 'svelte/store';
+	import { locale } from '../../../i18n';
+	import { onMount, onDestroy } from 'svelte';
 
 	export let data;
 
@@ -9,6 +14,28 @@
 	$: post = !isDevTo ? data.post : null;
 
 	$: pageTitle = isDevTo ? article?.title : post?.metadata?.title;
+
+	let unsubLocale: (() => void) | null = null;
+
+	onMount(() => {
+		if (isDevTo) return;
+
+		const currentPage = get(page);
+		const urlLang = currentPage.url.searchParams.get('lang');
+		if (urlLang) locale.set(urlLang as any);
+
+		unsubLocale = locale.subscribe((lang) => {
+			const currentPage = get(page);
+			const currentLang = currentPage.url.searchParams.get('lang');
+			if (currentLang !== null && currentLang !== lang) {
+				goto(`/blog/${currentPage.params.slug}?lang=${lang}`);
+			}
+		});
+	});
+
+	onDestroy(() => {
+		unsubLocale?.();
+	});
 </script>
 
 <svelte:head>

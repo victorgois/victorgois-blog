@@ -76,6 +76,12 @@ const videoData = [
 		descriptionKey: 'videos.cop30.description',
 		poster: '',	
 	},
+	{
+		src: '/videos/capx-map.mp4',
+		titleKey: 'videos.capx.map.title',
+		descriptionKey: 'videos.capx.map.description',
+		poster: '',	
+	},
 	// Adicione mais vídeos aqui conforme necessário
 ];
 

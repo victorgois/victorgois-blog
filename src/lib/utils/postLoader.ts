@@ -11,7 +11,7 @@ export interface PostModule {
  */
 export async function loadMdsvexPosts(): Promise<MdsvexPost[]> {
 	const postFiles = import.meta.glob<PostModule>(
-		'/src/routes/blog/posts/*.svx',
+		'../../routes/blog/posts/*.svx',
 		{ eager: false }
 	);
 

@@ -8,7 +8,7 @@
 	const blackListedArticles = [422939];
 
 	// Use combined posts
-	let allPosts: BlogPost[] = data.allPosts || [];
+	$: allPosts = data.allPosts || [];
 
 	// Filter blacklisted dev.to articles and mdsvex posts not matching the current locale
 	$: filteredPosts = allPosts.filter((post) => {

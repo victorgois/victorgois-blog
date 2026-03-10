@@ -1,0 +1,562 @@
+---
+title: "Interactive Data Visualization: Building a Static SVG World Map in React"
+description: "Building an interactive data visualization using static SVG and React - exploring the technical architecture, geopolitical considerations of global cartography, and lessons learned."
+date: "2026-03-04"
+author: "Victor Gois de Oliveira Pacheco"
+tags: ["data-visualization", "svg", "react", "cartography", "geopolitics"]
+published: true
+---
+
+<style>
+  .hero {
+    background: transparent;
+    color: rgba(15, 60, 94, 0.92);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    border-radius: 0 0 2rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    max-width: 640px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  article {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #0f3c5e;
+    margin: 3rem 0 1rem;
+    border-left: 4px solid #2d7dd2;
+    padding-left: 0.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a6fa8;
+    margin: 2rem 0 0.5rem;
+  }
+
+  p {
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .insight-box {
+    background: #f0f7ff;
+    border-left: 4px solid #2d7dd2;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .insight-box strong {
+    color: #0f3c5e;
+  }
+
+  .tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .chip {
+    background: #c8e6f8;
+    color: #0f3c5e;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 12px;
+  }
+
+  .challenge-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .challenge-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .challenge-list li:last-child {
+    border-bottom: none;
+  }
+
+  .challenge-badge {
+    background: #1a6fa8;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .territory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .territory-card {
+    background: #fff;
+    border: 1px solid #c8e6f8;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+
+  .territory-card strong {
+    color: #0f3c5e;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.95rem;
+  }
+
+  blockquote {
+    border-left: 3px solid #2d7dd2;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+
+  .caption {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .pros-cons-card {
+    border-radius: 12px;
+    padding: 1.2rem;
+  }
+
+  .pros-cons-card.pros {
+    background: #f0f7ff;
+    border: 1px solid #c8e6f8;
+  }
+
+  .pros-cons-card.cons {
+    background: #fff8f0;
+    border: 1px solid #f0d5b3;
+  }
+
+  .pros-cons-card h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pros-cons-card.pros h4 { color: #0f3c5e; }
+  .pros-cons-card.cons h4 { color: #7a4000; }
+
+  .pros-cons-card ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+
+  .pros-cons-card li {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 3rem 1.2rem 2.5rem;
+    }
+
+    .pros-cons {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="hero">
+  <h1>Interactive Data Visualization:<br/>Building a Static SVG World Map in React</h1>
+  <p>
+    How we built an interactive world map without heavy libraries — exploring static SVG,
+    React integration, and the politics of cartography.
+  </p>
+  <div class="meta">Victor Gois · March 2026</div>
+</div>
+
+<article>
+
+## Introduction
+
+Building interactive data visualizations on the web often presents a trade-off between flexibility and performance. When Wikimedia Capacity Building Project (CAPX) needed to display user distribution, language adoption, and skill capacity across global territories, we chose an unconventional approach: a static SVG file paired with React's dynamic styling system. This post explores why we chose this path, the technical challenges we encountered, and the deeper geopolitical considerations embedded in global cartography.
+
+<div class="tech-chips">
+  <span class="chip">React</span>
+  <span class="chip">SVG</span>
+  <span class="chip">TypeScript</span>
+  <span class="chip">Wikimedia CAPX</span>
+  <span class="chip">ISO 3166-1</span>
+</div>
+
+---
+
+## Part I: The Architecture — Why Static SVG?
+
+### The Case for Static SVG
+
+When most developers think of interactive maps, they reach for D3.js or specialized libraries like Mapbox. These tools are powerful and flexible, but they come with significant overhead:
+
+- **Bundle size**: D3 alone is 50+ KB minified
+- **Learning curve**: D3's data binding model is sophisticated and context-specific
+- **Performance overhead**: Real-time data binding and transitions consume CPU cycles
+- **State management complexity**: Integrating D3's state model with React's creates friction
+
+We took a different approach. Instead of generating geographic paths dynamically, we use a pre-rendered blank world map in SVG format sourced from Wikimedia Commons—a static asset that changes rarely, if ever.
+
+### Coupling React Styling with Static SVG
+
+The key insight is this: **SVG elements are just DOM elements**. Once loaded, we can target them with JavaScript, apply CSS, bind event listeners, and manipulate their attributes—all the things D3 does, but with React's declarative model.
+
+```tsx
+// Load the SVG from Wikimedia Commons
+useEffect(() => {
+  fetch('/static/images/BlankMap-World.svg')
+    .then((response) => response.text())
+    .then((text) => {
+      setSvgContent(text);
+    });
+}, []);
+
+// Apply colors and interactivity based on React state
+useEffect(() => {
+  if (!svgContainerRef.current || !svgContent) return;
+
+  const container = svgContainerRef.current;
+  container.innerHTML = svgContent;
+
+  const svg = container.querySelector('svg');
+  const landElements = svg.querySelectorAll('.landxx');
+
+  landElements.forEach((element) => {
+    const countryCode = getCountryCodeFromElement(element);
+    const territory = countryCode ? getTerritoryByCountry(countryCode) : undefined;
+    const color = getTerritoryColor(territory);
+
+    applyTerritoryStylesToElement(element, color, !!territory);
+    attachTerritoryEventListeners(element, territory);
+  });
+}, [svgContent, darkMode, mapOrientation, /* ...dependencies */]);
+```
+
+<div class="insight-box">
+  <strong>Key advantages of this approach:</strong> No D3 or heavy map libraries required. State updates drive visual changes. Static SVG renders instantly; we only update styles, not redraw. Standard SVG semantics work with screen readers. A pre-generated SVG is smaller than the code to generate it.
+</div>
+
+---
+
+## Part II: Technical Challenges
+
+<ul class="challenge-list">
+  <li>
+    <span class="challenge-badge">Challenge 1</span>
+    <div>
+      <strong>Parsing Country Codes from SVG Elements</strong><br/>
+      The Wikimedia Commons blank map uses ISO 3166-1 alpha-2 country codes in element IDs or classes. Our backend uses both alpha-2 and alpha-3 codes — and sometimes refers to countries by Wikimedia territory groupings — requiring careful translation including special cases like Indonesia's code conflicting with the word "id".
+    </div>
+  </li>
+  <li>
+    <span class="challenge-badge">Challenge 2</span>
+    <div>
+      <strong>Color Interpolation Across Multiple View Modes</strong><br/>
+      The map supports three view modes: users, languages, and capacities. Each has different color schemes, and the intensity of coloring should reflect data density. We needed a flexible color interpolation system for smooth gradients — blue for users, green for languages, purple for capacities.
+    </div>
+  </li>
+  <li>
+    <span class="challenge-badge">Challenge 3</span>
+    <div>
+      <strong>Responsive SVG Scaling and Touch Interactions</strong><br/>
+      SVG viewBox attributes ensure scalability, but we needed careful handling of responsive sizing (280px mobile to 450px desktop), click-based selection for touch devices where hover states don't work, and memory-safe event listener management.
+    </div>
+  </li>
+</ul>
+
+### Country code parsing
+
+```tsx
+const getCountryCodeFromElement = (element: Element): string | null => {
+  const elementId = element.getAttribute('id') || '';
+  const classList = element.getAttribute('class') || '';
+  const classes = classList.split(' ');
+
+  // Try ID first (alpha-2 format)
+  if (elementId.length === 2 && ISO_ALPHA2_TO_ALPHA3[elementId.toLowerCase()]) {
+    return elementId.toLowerCase();
+  }
+
+  // Try class names
+  for (const cls of classes) {
+    const lowerCls = cls.toLowerCase();
+    if (lowerCls.length === 2 && lowerCls !== 'id' && ISO_ALPHA2_TO_ALPHA3[lowerCls]) {
+      return lowerCls;
+    }
+  }
+
+  // Special case for Indonesia (commonly labeled 'id')
+  if (elementId.toLowerCase() === 'id' || classes.includes('id')) {
+    return 'id';
+  }
+
+  return null;
+};
+```
+
+### Color interpolation
+
+```tsx
+const interpolateColor = (lightColor: string, baseColor: string, intensity: number) => {
+  const r1 = Number.parseInt(lightColor.slice(1, 3), 16);
+  const g1 = Number.parseInt(lightColor.slice(3, 5), 16);
+  const b1 = Number.parseInt(lightColor.slice(5, 7), 16);
+  const r2 = Number.parseInt(baseColor.slice(1, 3), 16);
+  const g2 = Number.parseInt(baseColor.slice(3, 5), 16);
+  const b2 = Number.parseInt(baseColor.slice(5, 7), 16);
+
+  const r = Math.round(r1 + (r2 - r1) * intensity);
+  const g = Math.round(g1 + (g2 - g1) * intensity);
+  const b = Math.round(b1 + (b2 - b1) * intensity);
+
+  return {
+    r, g, b,
+    hex: `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+  };
+};
+```
+
+---
+
+## Part III: The Geopolitical Dimensions
+
+### Beyond the Map: Territories as Territories
+
+Here's where things get interesting. This isn't just a technical artifact—the map represents **political choices**.
+
+<div class="insight-box">
+  <strong>This is geopolitics embedded in code.</strong> When you color a map, you're making political statements about which countries belong together. Wikimedia's organizational territories are not geographic regions in the traditional sense — they reflect linguistic affinities, institutional capacity, historical relationships, and economic development patterns.
+</div>
+
+Wikimedia divides the world into 8 territories:
+
+<div class="territory-grid">
+  <div class="territory-card"><strong>SSA</strong>Sub-Saharan Africa</div>
+  <div class="territory-card"><strong>NWE</strong>Northern & Western Europe</div>
+  <div class="territory-card"><strong>ESEAP</strong>East, Southeast Asia, & Pacific</div>
+  <div class="territory-card"><strong>LAC</strong>Latin America & Caribbean</div>
+  <div class="territory-card"><strong>CEECA</strong>Central & Eastern Europe & Central Asia</div>
+  <div class="territory-card"><strong>SA</strong>South Asia</div>
+  <div class="territory-card"><strong>MENA</strong>Middle East & North Africa</div>
+  <div class="territory-card"><strong>NA</strong>North America</div>
+</div>
+
+### The North-Up / South-Up Toggle: Cartographic Bias
+
+The most controversial feature in our map is the orientation toggle. Why does this matter?
+
+**The Mercator projection's legacy**: Most world maps show north at the top and use the Mercator projection, which:
+- Exaggerates the size of northern landmasses (Greenland appears larger than Africa)
+- Reinforces a "North as superior" visual hierarchy
+- Is a colonial-era choice designed for European maritime navigation
+
+**The South-Up perspective** (rotating the map 180°) is increasingly used by educators and organizations like Google to challenge the assumption that north = up/superior, provide a Southern-hemisphere perspective, and question inherited cartographic conventions.
+
+```tsx
+svg.style.transform = mapOrientation === 'south-up' ? 'rotate(180deg)' : 'none';
+```
+
+<div class="insight-box">
+  <strong>This simple CSS transformation represents a profound shift in perspective.</strong> It's not just about visual novelty — it's about acknowledging that maps are not neutral. They encode power relationships.
+</div>
+
+### Territories and Marginalization
+
+Consider these territorial assignments:
+- **Island nations in the Pacific** are grouped with East Asia, not with their nearest geographic neighbors
+- **Australia** is with Asia, not with the Americas despite similar development levels
+- **North Africa** is grouped with the Middle East, not Sub-Saharan Africa, reflecting political/linguistic divisions
+
+Each choice reflects organizational priorities, historical alliances, and implicit assumptions about where cultural/institutional affinities lie. The map becomes a record of how an organization chooses to partition the world.
+
+---
+
+## Part IV: Building with Territories in Code
+
+The mapping between API territories and display territories requires careful consideration:
+
+```tsx
+// Build mapping from API territory to Wikimedia territory using either dynamic names or fallback
+export function buildApiTerritoryToWikimediaMap(
+  territories: Record<string, string> | null | undefined
+): Record<string, string> {
+  const map: Record<string, string> = {};
+
+  if (territories && Object.keys(territories).length > 0) {
+    const NORMALIZED_TERRITORY_MAP: Record<string, string> = {
+      subsaharanafrica: 'SSA',
+      northernandwesterneurope: 'NWE',
+      eastsoutheastasiaandpacific: 'ESEAP',
+      // ... etc
+    };
+
+    Object.entries(territories).forEach(([id, name]) => {
+      const normalizedName = name
+        .toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]/g, '')
+        .trim();
+      const wikimediaId = NORMALIZED_TERRITORY_MAP[normalizedName];
+      if (wikimediaId) {
+        map[id] = wikimediaId;
+      }
+    });
+
+    if (Object.keys(map).length > 0) {
+      return map;
+    }
+  }
+
+  // Fallback to hardcoded mapping
+  return { ...API_TERRITORY_ID_TO_WIKIMEDIA };
+}
+```
+
+This function handles the reality that backends may have their own territory nomenclature, requiring translation to the display layer's Wikimedia territories.
+
+---
+
+## Part V: Dark Mode and Accessibility
+
+Color is not just aesthetic—it's functional and accessible:
+
+```tsx
+const getBaseAndLightColors = (currentViewMode: ViewMode, isDarkMode: boolean) => {
+  const light = isDarkMode ? '#1A2F3A' : '#E8F4FC';
+
+  switch (currentViewMode) {
+    case 'languages':
+      return {
+        baseColor: isDarkMode ? '#10B85C' : '#0B8E46',
+        lightColor: light,
+      };
+    // ... other modes
+  }
+};
+```
+
+- **Dark mode** uses higher-contrast colors and reduced brightness for background elements
+- **Color gradients** use carefully chosen pairs for CVD (color vision deficiency) accessibility
+- **Fallback colors** ensure unmapped countries remain visible but distinguished
+
+---
+
+## Part VI: Lessons and Trade-offs
+
+<div class="pros-cons">
+  <div class="pros-cons-card pros">
+    <h4>What Worked Well</h4>
+    <ul>
+      <li>No complex library abstractions — just JavaScript on SVG</li>
+      <li>Static SVG renders instantly; only color updates require repaints</li>
+      <li>Easy to add new interaction modes (hover, click, selection)</li>
+      <li>Fits naturally into React component lifecycle</li>
+      <li>SVG file is independent; updates don't break the code</li>
+    </ul>
+  </div>
+  <div class="pros-cons-card cons">
+    <h4>Trade-offs & Limitations</h4>
+    <ul>
+      <li>Can't easily reproject or transform for different purposes</li>
+      <li>No animated paths or geodesic calculations without D3</li>
+      <li>Large countries dominate visually on a flat map</li>
+      <li>No zoom/pan without more complex SVG manipulation</li>
+      <li>Data encoded through color alone; no size or opacity encoding</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## Conclusion: Maps as Political Documents
+
+Building this world map forced us to confront uncomfortable truths: **Every map is a choice.** By choosing static SVG, Wikimedia territories, the north-up/south-up toggle, and specific color schemes, we're making political and cultural statements.
+
+The technical decision to use a static SVG was practical—it's fast, simple, and effective. But the deeper lesson is that visualization is never neutral. The territories you display, the colors you choose, the perspective you default to—these all reflect values, priorities, and power relationships.
+
+<div class="insight-box">
+  The next time you see a world map in an application, ask yourself:<br/>
+  <strong>Which territories are grouped together, and why? What perspective is the default view? Who benefits from this particular representation? What's invisible or deemphasized?</strong><br/><br/>
+  That's the story your map is telling. Make sure it's the story you intend to tell.
+</div>
+
+---
+
+## Resources
+
+<div class="tech-chips" style="margin-top: 1rem;">
+  <span class="chip">Wikimedia Commons</span>
+  <span class="chip">ISO 3166-1</span>
+  <span class="chip">Gall–Peters Projection</span>
+  <span class="chip">MDN SVG Docs</span>
+</div>
+
+- **Wikimedia Commons Blank Map**: [BlankMap-World.svg](https://commons.wikimedia.org/wiki/File:BlankMap-World.svg)
+- **ISO 3166-1 Country Codes**: [Wikipedia Reference](https://en.wikipedia.org/wiki/ISO_3166-1)
+- **Cartography and Power**: [Map Projections and Geopolitics](https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection)
+- **SVG Specification**: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG)
+
+</article>

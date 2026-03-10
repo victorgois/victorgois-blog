@@ -90,6 +90,8 @@ export const translations = {
 		"videos.cop30.title": "COP30 - Instagram and Tiktok scraper and data visualization",
 		"videos.cop30.description": "Visualização interativa dos dados coletados do Instagram e Tiktok usado no projeto COP30.",
 		"videos.unsupported": "Seu navegador não suporta vídeos HTML5.",
+		"videos.capx.map.title": "Capx - Map",
+		"videos.capx.map.description": "Visualização interativa do mapa do projeto Capacity Exchange.",
 		
 		// Technology sections translations
 		"tech.expert.title": "Tecnologias que tenho mais experiência",
@@ -194,6 +196,8 @@ export const translations = {
 		"videos.cop30.title": "COP30 - Instagram and Tiktok scraper and data visualization",
 		"videos.cop30.description": "Interactive visualization of the data scraped from Instagram and Tiktok used in the COP30 project.",
 		"videos.unsupported": "Your browser does not support HTML5 video.",
+		"videos.capx.map.title": "Capx - Map",
+		"videos.capx.map.description": "Interactive visualization of the map used in the Capacity Exchange project.",
 		
 		// Technology sections translations
 		"tech.expert.title": "Technologies I have the most experience with",
