@@ -1,16 +1,17 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { Email } from '$lib/Constants';
+
+	const openMail = () => {
+		window.location.href = `mailto:${Email}`;
+	};
 </script>
 
 <div
 	class="button"
 	role="button"
 	tabindex="0"
-	on:keypress={() => {
-		goto(`mailto:${Email}`);
-	}}
-	on:click={() => goto(`mailto:${Email}`)}
+	on:keypress={openMail}
+	on:click={openMail}
 >
 	<slot />
 </div>

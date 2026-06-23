@@ -54,7 +54,7 @@
 
 {#each Object.entries(themes) as [themeName, theme]}
 	{#if themeName === "darkTheme"}
-		<button class="dark-button" on:click={() => handleClick("darkTheme")}>
+		<button class="dark-button" aria-label="Switch to dark theme" on:click={() => handleClick("darkTheme")}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="16"
@@ -69,7 +69,7 @@
 			</svg>
 		</button>
 	{:else}
-		<button class="light-button" on:click={() => handleClick("defaultTheme")}>
+		<button class="light-button" aria-label="Switch to light theme" on:click={() => handleClick("defaultTheme")}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="16"

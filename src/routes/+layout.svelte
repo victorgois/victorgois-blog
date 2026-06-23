@@ -143,7 +143,7 @@
 								copied = false;
 							}, 500);
 						}}
-					/>
+					></div>
 				</Tooltip>
 			</div>
 		</div>

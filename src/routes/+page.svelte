@@ -3,7 +3,7 @@
 	import TechDetail from "../lib/components/TechDetail.svelte";
 	import { expertTechList, experiencedTechList, familiarTechList } from "../lib/Constants";
 	import { selectedTechStore } from "../lib/store";
-	import { reveal } from "svelte-reveal";
+	import { reveal } from "$lib/utils/reveal";
 	import vic from "$lib/assets/vic.gif";
 	import { t, locale } from "../i18n";
 

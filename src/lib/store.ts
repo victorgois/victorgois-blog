@@ -33,7 +33,7 @@ export const visualizationTheme: Theme = {
 	fontFamily: "Playfair Display, serif"
 };
 
-export const themes: { [key: string]; theme: value } = {
+export const themes: Record<string, Theme> = {
 	darkTheme: darkTheme,
 	defaultTheme: defaultTheme
 };

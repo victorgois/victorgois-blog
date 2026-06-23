@@ -3,7 +3,7 @@
 	import Timeline from "../../lib/components/Timeline.svelte";
 	import CareerTimeline from "../../lib/components/CareerTimeline.svelte";
 	import TableauGraphs from "../../lib/components/TableauGraphs.svelte";
-	import { reveal } from "svelte-reveal";
+	import { reveal } from "$lib/utils/reveal";
 	import { derived } from "svelte/store";
 
 	import { visualizations } from "../../lib/store";

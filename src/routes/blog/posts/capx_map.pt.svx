@@ -151,7 +151,7 @@ lang: "pt"
     font-size: 0.95rem;
   }
 
-  blockquote {
+  :global(blockquote) {
     border-left: 3px solid #2d7dd2;
     padding-left: 1rem;
     color: #555;
@@ -159,7 +159,7 @@ lang: "pt"
     margin: 1.5rem 0;
   }
 
-  .caption {
+  :global(.caption) {
     font-size: 0.8rem;
     color: #888;
     text-align: center;
