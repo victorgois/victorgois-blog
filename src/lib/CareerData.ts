@@ -151,6 +151,34 @@ export const careerData: CareerItem[] = [
 		titleEn: 'Frontend Engineer',
 		descriptionEn: 'Frontend team leadership on Capacity Exchange project. Scalable React Next.js architecture with performance optimizations.',
 		periodEn: 'Oct 2024 - Present'
+	},
+	{
+		id: 'agencia-tatu-2026',
+		date: '2026-02',
+		type: 'work',
+		title: 'Engenheiro de Software de ML & Backend',
+		company: 'Agência Tatu (Freelance)',
+		description: 'Desenvolvimento de backend e soluções de machine learning. Trabalho remoto.',
+		period: 'Fev 2026 - Jul 2026',
+		icon: '💼',
+		titleEn: 'ML & Backend Software Engineer',
+		descriptionEn: 'Backend development and machine learning solutions. Remote work.',
+		periodEn: 'Feb 2026 - Jul 2026'
+	},
+	{
+		id: 'minc-sniic-2026',
+		date: '2026-04',
+		type: 'work',
+		title: 'Especialista em Visualização de Dados e Data Storytelling — SNIIC',
+		company: 'Ministério da Cultura',
+		description:
+			'Visualização de dados e data storytelling para o SNIIC (Sistema Nacional de Informações e Indicadores Culturais). Trabalho remoto.',
+		period: 'Abr 2026 - Presente',
+		icon: '💼',
+		titleEn: 'Data Visualization and Data Storytelling Specialist — SNIIC',
+		descriptionEn:
+			'Data visualization and data storytelling for SNIIC (National System of Cultural Information and Indicators). Remote work.',
+		periodEn: 'Apr 2026 - Present'
 	}
 ];
 
