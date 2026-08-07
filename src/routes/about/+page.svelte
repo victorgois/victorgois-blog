@@ -68,11 +68,24 @@
 						<h4>{$menuContent[0].Title}</h4>
 						<p use:reveal={{ transition: "fade" }}>{@html $menuContent[0].Content}</p>
 						<figure class="image-container" use:reveal={{ transition: "fade" }}>
-							<img
-								src="/WikiCon_Brasil_2025_por_Rodrigo_Tetsuo_Argenton_23.png"
-								alt="Victor Góis at WikiCon Brasil 2025"
-								class="profile-image"
-							/>
+							<picture>
+								<source
+									type="image/webp"
+									srcset="/images/wikicon-2025-600w.webp 600w, /images/wikicon-2025-1200w.webp 1200w"
+									sizes="(max-width: 768px) 100vw, 600px"
+								/>
+								<img
+									src="/images/wikicon-2025-600w.jpg"
+									srcset="/images/wikicon-2025-600w.jpg 600w, /images/wikicon-2025-1200w.jpg 1200w"
+									sizes="(max-width: 768px) 100vw, 600px"
+									width="600"
+									height="510"
+									loading="lazy"
+									decoding="async"
+									alt="Victor Góis at WikiCon Brasil 2025"
+									class="profile-image"
+								/>
+							</picture>
 							<figcaption class="image-caption">
 								Photo by Rodrigo Tetsuo Argenton. 2025
 							</figcaption>
