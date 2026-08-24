@@ -23,7 +23,7 @@
 	} from "../lib/store";
 	import { Email } from "../lib/Constants";
 	import SocialIcons from "@rodneylab/svelte-social-icons";
-	import { t, locale } from "../i18n";
+	import { t, locale, useBrowserLocale } from "../i18n";
 	import ThemeSwitcher from "../lib/components/ThemeSwitcher.svelte";
 	import LanguageSelector from "../lib/components/LanguageSelector.svelte";
 	import CssVariablesSetter from "../funcs/CssVariablesSetter.svelte";
@@ -66,6 +66,8 @@
 	let subscribeSelectedTheme: { (): void; unsubscribe?: any };
 
 	onMount(() => {
+		useBrowserLocale();
+
 		subscribeSelectedTheme = selectedTheme.subscribe((value) => {
 			if (value) {
 				updateThemeVariables(value);
@@ -143,7 +145,7 @@
 								copied = false;
 							}, 500);
 						}}
-					></div>
+					/>
 				</Tooltip>
 			</div>
 		</div>
@@ -170,7 +172,7 @@
 				<a href="https://github.com/victorgois"
 					><SocialIcons
 						network="github"
-						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
+						fgColor={$selectedTheme === "darkTheme" ? "white" : "black"}
 						bgColor="transparent"
 						style="opacity: 0.7"
 					/>
@@ -178,7 +180,7 @@
 				<a href="mailto:victorgois18@gmail.com">
 					<SocialIcons
 						network="mailto"
-						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
+						fgColor={$selectedTheme === "darkTheme" ? "white" : "black"}
 						bgColor="transparent"
 						style="opacity: 0.7"
 					/>
@@ -186,7 +188,7 @@
 				<a href="https://medium.com/@victorgispacheco">
 					<SocialIcons
 						network="medium"
-						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
+						fgColor={$selectedTheme === "darkTheme" ? "white" : "black"}
 						bgColor="transparent"
 						style="opacity: 0.7"
 					/>
@@ -194,7 +196,7 @@
 				<a href="https://www.linkedin.com/in/victorgoisp/">
 					<SocialIcons
 						network="linkedin"
-						fgColor={$selectedTheme === 'darkTheme' ? 'white' : 'black'}
+						fgColor={$selectedTheme === "darkTheme" ? "white" : "black"}
 						bgColor="transparent"
 						style="opacity: 0.7"
 					/>
