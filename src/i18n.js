@@ -1,8 +1,42 @@
+import { browser } from "$app/environment";
 import { derived, writable } from "svelte/store";
 import { translations } from "./translations";
 
-export const locale = writable("en");
+/** Idioma do HTML renderizado no servidor, e o que sobra se o navegador pedir um que não temos. */
+const fallbackLocale = "en";
+
+/**
+ * O idioma do navegador, quando ele for um dos que o site tem.
+ *
+ * `navigator.languages` já vem na ordem de preferência do usuário, e só nos
+ * interessa a parte antes do hífen — `pt-BR`, `pt-PT` e `pt` são todos `pt`.
+ *
+ * @returns {string}
+ */
+function detectLocale() {
+	if (!browser) return fallbackLocale;
+
+	const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
+
+	for (const tag of preferred) {
+		const base = tag?.toLowerCase().split("-")[0];
+		if (base && base in translations) return base;
+	}
+
+	return fallbackLocale;
+}
+
+export const locale = writable(fallbackLocale);
 export const locales = Object.keys(translations);
+
+/**
+ * Aplica o idioma do navegador. Roda no `onMount` do layout raiz — e não na
+ * criação da store — para que a primeira renderização no cliente seja igual à
+ * do servidor, que não tem `navigator`. Depois disso, quem manda é o seletor.
+ */
+export function useBrowserLocale() {
+	locale.set(detectLocale());
+}
 
 /**
  * @param {string} locale
