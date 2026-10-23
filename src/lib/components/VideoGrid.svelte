@@ -96,7 +96,7 @@
 				muted
 				loop
 				playsinline
-				preload="auto"
+				preload="metadata"
 				poster={video.poster}
 				controls
 				on:mouseenter={(e) => handleVideoHover(e, true)}
@@ -121,6 +121,19 @@
 			<div class="video-overlay">
 				<h3 class="video-title">{video.title}</h3>
 				<p class="video-description">{video.description}</p>
+				{#if video.liveUrl || video.codeUrl || video.postUrl}
+					<div class="video-links">
+						{#if video.liveUrl}
+							<a href={video.liveUrl} target="_blank" rel="noopener noreferrer">{$t('videos.links.live')} ↗</a>
+						{/if}
+						{#if video.codeUrl}
+							<a href={video.codeUrl} target="_blank" rel="noopener noreferrer">{$t('videos.links.code')} ↗</a>
+						{/if}
+						{#if video.postUrl}
+							<a href={video.postUrl}>{$t('videos.links.post')}</a>
+						{/if}
+					</div>
+				{/if}
 			</div>
 		</div>
 	{/each}
@@ -129,7 +142,7 @@
 <style>
 	.video-grid {
 		display: grid;
-		grid-template-columns: 1.5fr 1.5fr 1.3fr;
+		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(2, 300px);
 		grid-auto-rows: 300px;
 		row-gap: 2rem;
@@ -144,7 +157,7 @@
 	/* Desktop: Grid responsivo baseado no conteúdo */
 	@media (min-width: 768px) and (max-width: 1199px) {
 		.video-grid {
-			grid-template-columns: 1.5fr 1.5fr 1.3fr;
+			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: repeat(2, 300px);
 			grid-auto-rows: 300px;
 			align-items: start;
@@ -154,7 +167,7 @@
 	/* Telas muito grandes: mantém layout assimétrico */
 	@media (min-width: 1200px) {
 		.video-grid {
-			grid-template-columns: 1.5fr 1.5fr 1.3fr;
+			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: repeat(2, 300px);
 			grid-auto-rows: 300px;
 			align-items: start;
@@ -317,27 +330,91 @@
 			transparent 100%
 		);
 		color: white;
-		padding: 1.5rem 1rem 1rem;
+		padding: 1.25rem 0.9rem 0.8rem;
 		transform: translateY(100%);
 		transition: transform 0.3s ease;
 	}
 
-	.video-container:hover .video-overlay {
+	.video-container:hover .video-overlay,
+	.video-container:focus-within .video-overlay {
 		transform: translateY(0);
 	}
 
+	/* Telas touch não têm hover: mantém título e links sempre visíveis */
+	@media (hover: none) {
+		.video-overlay {
+			transform: translateY(0);
+		}
+	}
+
+	/* Celular: texto e links abaixo do vídeo, sem cobrir os controles */
+	@media (hover: none) and (max-width: 767px) {
+		.video-grid .video-container {
+			aspect-ratio: auto;
+			height: auto;
+			max-height: none;
+		}
+
+		.video-grid .video-container .video-item {
+			height: auto;
+			aspect-ratio: 16/9;
+		}
+
+		.video-grid .video-container.portrait .video-item,
+		.video-grid .video-container.portrait-video .video-item {
+			aspect-ratio: 9/16;
+			max-height: 650px;
+		}
+
+		.video-overlay {
+			position: static;
+			background: rgba(0, 0, 0, 0.85);
+		}
+	}
+
+	.video-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 0.55rem;
+	}
+
+	.video-links a {
+		color: white;
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-decoration: none;
+		padding: 0.2rem 0.7rem;
+		border: 1px solid rgba(255, 255, 255, 0.6);
+		border-radius: 999px;
+		transition: background 0.2s ease;
+	}
+
+	.video-links a:hover,
+	.video-links a:focus-visible {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
 	.video-title {
-		font-size: 1.2rem;
+		font-size: 1.05rem;
 		font-weight: bold;
-		margin: 0 0 0.5rem 0;
+		margin: 0 0 0.35rem 0;
 		line-height: 1.3;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.video-description {
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 		margin: 0;
 		opacity: 0.9;
-		line-height: 1.4;
+		line-height: 1.35;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	/* Responsividade para textos */

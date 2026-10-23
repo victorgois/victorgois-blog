@@ -25,6 +25,29 @@
 	 */
 
 	let selectedMenuItem = null;
+
+	const COMMONS = "https://commons.wikimedia.org/wiki/File:";
+	const DATATHON = "Datathon do Ministério da Cultura. Brasília, setembro de 2026. Photo by Victor Vec";
+	const photos = [
+		{ name: "event-laptop", width: 600, height: 566, alt: "Victor Góis working on a laptop at the Ministry of Culture Datathon", caption: DATATHON },
+		{ name: "event-portrait-bw", width: 600, height: 400, alt: "Black and white portrait of Victor Góis at the Ministry of Culture Datathon", caption: DATATHON },
+		{
+			name: "capx-technical-meeting-2025-01",
+			width: 600,
+			height: 338,
+			alt: "Capacity Exchange technical meeting, July 2025",
+			caption: "Capacity Exchange Technical Meeting. Photo: AJurno (WMB), CC BY-SA 4.0. 2025",
+			href: COMMONS + "Capacity_Exchange_Technical_Meeting_-_July_2025_01.jpg"
+		},
+		{
+			name: "capx-technical-meeting-2025-02",
+			width: 600,
+			height: 338,
+			alt: "Capacity Exchange team at the technical meeting, July 2025",
+			caption: "Capacity Exchange Technical Meeting. Photo: AJurno (WMB), CC BY-SA 4.0. 2025",
+			href: COMMONS + "Capacity_Exchange_Technical_Meeting_-_July_2025_02.jpg"
+		}
+	];
 	let showTimeline = false;
 
 	const handleClick = (/** @type {number} */ item) => {
@@ -90,6 +113,39 @@
 								Photo by Rodrigo Tetsuo Argenton. 2025
 							</figcaption>
 						</figure>
+						<div class="photo-gallery">
+							{#each photos as photo}
+								<figure class="gallery-item" use:reveal={{ transition: "fade" }}>
+									<picture>
+										<source
+											type="image/webp"
+											srcset="/images/{photo.name}-600w.webp 600w, /images/{photo.name}-1200w.webp 1200w"
+											sizes="(max-width: 768px) 100vw, 300px"
+										/>
+										<img
+											src="/images/{photo.name}-600w.jpg"
+											srcset="/images/{photo.name}-600w.jpg 600w, /images/{photo.name}-1200w.jpg 1200w"
+											sizes="(max-width: 768px) 100vw, 300px"
+											width={photo.width}
+											height={photo.height}
+											loading="lazy"
+											decoding="async"
+											alt={photo.alt}
+											class="profile-image gallery-image"
+										/>
+									</picture>
+									{#if photo.caption}
+										<figcaption class="image-caption">
+											{#if photo.href}
+												<a href={photo.href} target="_blank" rel="noopener noreferrer">{photo.caption}</a>
+											{:else}
+												{photo.caption}
+											{/if}
+										</figcaption>
+									{/if}
+								</figure>
+							{/each}
+						</div>
 					</div>
 				{/if}
 			</div>
@@ -207,6 +263,33 @@
 		color: #666;
 		margin-top: 8px;
 		font-style: italic;
+	}
+
+	.photo-gallery {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+		max-width: 600px;
+		margin-bottom: 20px;
+	}
+
+	.gallery-item {
+		margin: 0;
+	}
+
+	.gallery-image {
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.image-caption a {
+		color: inherit;
+	}
+
+	@media (max-width: 480px) {
+		.photo-gallery {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	/* Responsivo para mobile */
